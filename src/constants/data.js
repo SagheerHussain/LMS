@@ -5,7 +5,7 @@ export const sampleBooks = [
     author: "Matt Haig",
     genre: "Fantasy / Fiction",
     publishedYear: 2025,
-    rating: 4.6,
+    rating: 4.2,
     total_copies: 20,
     available_copies: 10,
     description:
@@ -136,6 +136,60 @@ export const sampleBooks = [
     color: "#ffffff",
     cover:
       "https://m.media-amazon.com/images/I/81Dky+tD+pL._AC_UF1000,1000_QL80_.jpg",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
+    summary:
+      "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
+  },
+  {
+    id: 9,
+    title: "The Psychology of Money",
+    author: "Morgan Housel",
+    publishedYear: 2025,
+    genre: "Finance / Self-Help",
+    rating: 4.8,
+    total_copies: 10,
+    available_copies: 1,
+    description:
+      "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
+    color: "#ffffff",
+    cover:
+      "https://bookio.wpbingosite.com/wp-content/webp-express/webp-images/uploads/2018/05/Image-8-480x693.jpg.webp",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
+    summary:
+      "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
+  },
+  {
+    id: 10,
+    title: "The Psychology of Money",
+    author: "Morgan Housel",
+    publishedYear: 2025,
+    genre: "Finance / Self-Help",
+    rating: 4.8,
+    total_copies: 10,
+    available_copies: 1,
+    description:
+      "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
+    color: "#ffffff",
+    cover:
+      "https://bookio.wpbingosite.com/wp-content/webp-express/webp-images/uploads/2018/05/Image-7-480x693.jpg.webp",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
+    summary:
+      "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
+  },
+  {
+    id: 11,
+    title: "The Psychology of Money",
+    author: "Morgan Housel",
+    publishedYear: 2025,
+    genre: "Finance / Self-Help",
+    rating: 4.2,
+    total_copies: 10,
+    available_copies: 1,
+    description:
+      "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
+    color: "#ffffff",
+    cover:
+      "https://bookio.wpbingosite.com/wp-content/webp-express/webp-images/uploads/2018/05/Image-14-480x693.jpg.webp",
     video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",

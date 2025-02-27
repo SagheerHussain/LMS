@@ -1,50 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import sliderOne from "/Images/Slider/slider (1).webp";
+import sliderTwo from "/Images/Slider/slider (2).webp";
+import sliderThree from "/Images/Slider/slider (3).webp";
+import sliderFour from "/Images/Slider/slider (4).webp";
+import { Pagination } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade"; // Import fade effect style
 
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
-import { sampleBooks } from "@/constants/data";
-import { BookOverview } from "./index";
-
 const HeroSection = () => {
-
-  const [newReleaseBooks, setNewReleaseBooks] = useState([]);
-
-  useEffect(() => {
-    // 2025 wale books ko filter karna
-    const filteredBooks = sampleBooks.filter(book => book.publishedYear === 2025);
-  
-    // State update karna
-    setNewReleaseBooks(filteredBooks);
-  }, []);
-
   return (
-    <section id="hero_section" className="my-10 relative">
-      <div className="container mx-auto max-w-[1800px] px-10 py-6 bg-[#ff29544e] rounded-[15px]">
-        <div className="book_details ">
-          <Swiper
-            spaceBetween={30}
-            // autoplay={{ delay: 2000, disableOnInteraction: false }}
-            pagination={{ clickable: true }}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            grabCursor={true}
-            modules={[Autoplay, Pagination, EffectFade]}
-            className="mySwiper w-full h-full"
-          >
-            {newReleaseBooks?.map((book) => (
-              <SwiperSlide className="overflow-hidden">
-                <BookOverview book={book} />
+    <section id="hero_section" className="mt-6">
+      <div className="container mx-auto">
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={1}
+          autoplay={{ delay: 2500 }}
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+        >
+          {[sliderOne, sliderTwo, sliderThree, sliderFour].map(
+            (slide, index) => (
+              <SwiperSlide>
+                <img src={slide} className="w-full rounded-[10px]" alt="" />
               </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+            )
+          )}
+        </Swiper>
       </div>
     </section>
   );

@@ -1,6 +1,4 @@
 import React from "react";
-import { BookCoverSvg } from "./index";
-import { cn } from "@/lib/utils";
 
 const BookCover = ({ coverImage = "", coverColor = "", className = "" }) => {
   return (
