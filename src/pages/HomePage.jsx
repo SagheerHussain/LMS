@@ -78,6 +78,7 @@ const HomePage = () => {
         </div>
         <BookList title="New Releases" className="flex flex-col" books={newReleasesBooks} />
         <BookList title="Popular Books" isMoreInfo={true} content_classes="ms-6 mt-4" className="flex flex-row" books={booksOfTheMonth.slice(0, 2)} />
+        
       </Layout>
     </>
   );
