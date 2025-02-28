@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BookCard } from "./index";
 
@@ -8,7 +8,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { DarkThemeContext } from "@/context/ThemeContext";
 
-const BookList = ({ title, books, className = "", content_classes, isMoreInfo = false }) => {
+const BookList = ({
+  title,
+  books,
+  className = "",
+  breakPoints,
+  content_classes,
+  isMoreInfo = false,
+}) => {
   const { darkMode } = useContext(DarkThemeContext);
 
   return (
@@ -24,15 +31,22 @@ const BookList = ({ title, books, className = "", content_classes, isMoreInfo = 
           </h1>
 
           <Swiper
-            spaceBetween={50}
-            slidesPerView={Math.min(books.length, 5)}
-            autoplay={{ delay: 2500 }}
-            modules={[Navigation]}
+            spaceBetween={20} // Default spacing
+            autoplay={{ delay: 2500, disableOnInteraction: false }}
+            loop={true}
+            centeredSlides={false}
             navigation={{ clickable: true }}
+            modules={[Navigation, Autoplay]}
+            breakpoints={breakPoints}
           >
             {books?.map((book) => (
-              <SwiperSlide>
-                <BookCard book={book} className={className} isMoreInfo={isMoreInfo} content_classes={content_classes} />
+              <SwiperSlide key={book.id || book.title}>
+                <BookCard
+                  book={book}
+                  className={className}
+                  isMoreInfo={isMoreInfo}
+                  content_classes={content_classes}
+                />
               </SwiperSlide>
             ))}
           </Swiper>

@@ -13,7 +13,7 @@ const Banner = ({
   return (
     <>
       <div
-        className={`banner relative rounded-[10px] ${className}`}
+        className={`banner relative rounded-[25px] ${className}`}
         style={{
           background: `url('${image}')`,
           backgroundSize: "cover",
@@ -28,7 +28,7 @@ const Banner = ({
           {title?.map((word) => (
             <h1 className="text-4xl font-bold text-white font-serif">{word} </h1>
           ))}
-          {isBtn && <button className={`${btnClasses} rounded-[5px]`}>{btnTitle}</button>}
+          {isBtn && <button className={`${btnClasses} rounded-[25px]`}>{btnTitle}</button>}
         </div>
       </div>
     </>

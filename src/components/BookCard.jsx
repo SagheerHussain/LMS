@@ -2,6 +2,7 @@ import { DarkThemeContext } from "@/context/ThemeContext";
 import { Rating } from "@mui/material";
 import React, { useContext } from "react";
 import { FaEye } from "react-icons/fa6";
+import { Button } from "./index";
 
 const BookCard = ({
   book,
@@ -19,13 +20,14 @@ const BookCard = ({
     <>
       <>
         <div className={`book_card ${className}`}>
-          <div className="group cursor-pointer book_image relative overflow-hidden min-w-[300px]">
+          <div className="group cursor-pointer book_image relative overflow-hidden min-w-[275px]">
             <img
               src={cover}
-              className="w-full h-[400px] object-cover object-left-top"
+              className="w-full h-[500px] lg:h-[400px] object-cover object-left-top rounded-[25px]"
               alt={title}
+              loading="lazy"
             />
-            <div className="group-hover:bottom-0 transition-all duration-300 book_eye_icon absolute bottom-[-20%] flex justify-center items-center w-full bg-[#111111ca] text-white py-2">
+            <div className="group-hover:bottom-0  transition-all duration-300 book_eye_icon absolute bottom-[-20%] flex justify-center items-center w-full bg-[#111111ca] text-white py-2">
               <FaEye className="cursor-pointer hover:text-[#ddd]" size={20} />
             </div>
           </div>
@@ -63,7 +65,7 @@ const BookCard = ({
                 </h3>
               </>
             )}
-            <button className="text-[#111] rounded-[5px] hover:bg-[#111] hover:text-zinc-300 transition-all duration-300 uppercase text-[.8rem] font-semibold border-2 border-[#111] px-4 py-2 mt-4">Borrowing Now</button>
+            <Button label="Borrowing Now" />
           </div>
         </div>
       </>

@@ -1,3 +1,4 @@
+import Button from "./ui/Button";
 import BookList from "./BookList";
 import BookCard from "./BookCard";
 import BookOverview from "./BookOverview";
@@ -9,6 +10,7 @@ import Logo from "./Logo";
 import NavMenus from "./NavMenus";
 
 export {
+    Button,
     BookList,
     BookCard,
     BookOverview,

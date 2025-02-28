@@ -25,7 +25,13 @@ const HeroSection = () => {
           {[sliderOne, sliderTwo, sliderThree, sliderFour].map(
             (slide, index) => (
               <SwiperSlide>
-                <img src={slide} className="w-full rounded-[10px]" alt="" />
+                <div className="min-h-200">
+                  <img
+                    src={slide}
+                    className="w-full rounded-[25px] h-full min-h-[120px] object-cover object-top"
+                    alt=""
+                  />
+                </div>
               </SwiperSlide>
             )
           )}

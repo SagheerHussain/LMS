@@ -24,18 +24,18 @@ const HomePage = () => {
       const soldPercentage = (soldCopies / book.total_copies) * 100;
       return soldPercentage >= 90; // Filter books that have 90% or more sales
     });
-  
+
     setBooksOfTheMonth(filteredBooks);
-  }, [])
+  }, []);
 
   return (
     <>
       <Layout>
         <HeroSection />
         <div className="container mx-auto">
-          <div className=" flex items-center my-10">
+          <div className="md:flex items-center my-10">
             <Banner
-              className="w-[33%] h-[400px]"
+              className="md:w-[33%] h-[400px]"
               title={["New", "Release."]}
               btnClasses={
                 "bg-[#8f2224] hover:bg-[#8f2224] text-white px-6 py-2 font-semibold mt-4"
@@ -44,7 +44,7 @@ const HomePage = () => {
               image={"/Images/Banners/banner (1).webp"}
             />
             <Banner
-              className=" w-[33%] mx-4 h-[400px]"
+              className="md:w-[33%] md:my-0 my-10 md:mx-4 h-[400px]"
               title={["Pre Order", "Now."]}
               btnClasses={
                 "bg-[#2c8a6b] hover:bg-[#2c8a6b] text-white px-6 py-2 font-semibold mt-4"
@@ -53,7 +53,7 @@ const HomePage = () => {
               image={"/Images/Banners/banner (3).webp"}
             />
             <Banner
-              className=" w-[33%] h-[400px]"
+              className="md:w-[33%] h-[400px]"
               title={["Top", "Rated."]}
               btnClasses={
                 "bg-[#3076d2] hover:bg-[#3076d2] text-white px-6 py-2 font-semibold mt-4"
@@ -76,9 +76,34 @@ const HomePage = () => {
             image={"/Images/Banners/banner (4).jpg"}
           />
         </div>
-        <BookList title="New Releases" className="flex flex-col" books={newReleasesBooks} />
-        <BookList title="Popular Books" isMoreInfo={true} content_classes="ms-6 mt-4" className="flex flex-row" books={booksOfTheMonth.slice(0, 2)} />
-        
+        <BookList
+          title="New Releases"
+          breakPoints={{
+            320: { slidesPerView: 1, spaceBetween: 20 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 30 },
+            1280: { slidesPerView: 4, spaceBetween: 20 },
+            1538: { slidesPerView: 5, spaceBetween: 50 },
+          }}
+          className="flex flex-col"
+          books={newReleasesBooks}
+        />
+        <BookList
+          title="Popular Books"
+          isMoreInfo={true}
+          breakPoints={{
+            320: { slidesPerView: 1, spaceBetween: 20 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 2, spaceBetween: 50 },
+            1280: { slidesPerView: 2, spaceBetween: 50 },
+            1538: { slidesPerView: 2, spaceBetween: 50 },
+          }}
+          content_classes="ms-6 mt-4"
+          className="flex lg:flex-row flex-col"
+          books={booksOfTheMonth.slice(0, 2)}
+        />
       </Layout>
     </>
   );
