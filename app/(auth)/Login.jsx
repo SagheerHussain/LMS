@@ -36,7 +36,6 @@ const LoginForm = () => {
         <div className="mb-4">
           <TextField
             fullWidth
-            className="w-[300px]"
             label="Email"
             variant="outlined"
             {...register("email", {
