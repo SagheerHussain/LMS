@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BookCard } from "./index";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { DarkThemeContext } from "@/context/ThemeContext";
 
 const BookList = ({
@@ -20,12 +21,11 @@ const BookList = ({
 
   return (
     <>
-      <section className="books my-20">
+      <section className="books py-10">
         <div className="container mx-auto">
           <h1
-            className={`${
-              darkMode ? "text-zinc-300" : "text-zinc-800"
-            } text-3xl font-semibold mb-6 font-serif`}
+            className={`${darkMode ? "text-zinc-300" : "text-zinc-800"
+              } text-3xl font-semibold mb-6`}
           >
             {title}
           </h1>
@@ -36,7 +36,8 @@ const BookList = ({
             loop={true}
             centeredSlides={false}
             navigation={{ clickable: true }}
-            modules={[Navigation, Autoplay]}
+            modules={[Navigation, Autoplay, Pagination]}
+            pagination={{ clickable: true }}
             breakpoints={breakPoints}
           >
             {books?.map((book) => (

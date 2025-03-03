@@ -23,14 +23,17 @@ export default {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
   			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
+  			primary: "#041C32",
+  			secondary: "#04293A",
+			hover_color: "#081e338c",
+			yellow_color: "#e99d31",
+			hover_yellow: "#ea9d31",
+			light_text: "#ffffff",
+			dark_text: "#000000",
+			light_theme_primary: "#3d705f",
+			light_theme_secondary: "#3d705f",
+			light_theme_light_mode: "#d6f1dd",
+			light_theme_hover_mode: "#c2f0ce",
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'

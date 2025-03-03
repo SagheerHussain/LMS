@@ -30,8 +30,52 @@ const HomePage = () => {
 
   return (
     <>
-      <Layout>
+      <Layout className="pb-20">
         <HeroSection />
+        {/* <BookList
+          title="New Releases"
+          breakPoints={{
+            320: { slidesPerView: 1, spaceBetween: 20 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 2, spaceBetween: 30 },
+            1280: { slidesPerView: 3, spaceBetween: 20 },
+            1538: { slidesPerView: 3, spaceBetween: 10 },
+            }}
+            className="flex lg:flex-row flex-col"
+            books={newReleasesBooks.slice(0, 3)}
+            /> */}
+        <BookList
+          title="New Releases"
+          isMoreInfo={true}
+          breakPoints={{
+            320: { slidesPerView: 1, spaceBetween: 20 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 2, spaceBetween: 50 },
+            1280: { slidesPerView: 2, spaceBetween: 50 },
+            1538: { slidesPerView: 3, spaceBetween: 10 },
+          }}
+          content_classes=""
+          className="flex lg:flex-row flex-col"
+          books={newReleasesBooks}
+          label="NEW"
+        />
+        {/* <BookList
+          title="Popular Books"
+          isMoreInfo={true}
+          breakPoints={{
+            320: { slidesPerView: 1, spaceBetween: 20 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 2, spaceBetween: 50 },
+            1280: { slidesPerView: 2, spaceBetween: 50 },
+            1538: { slidesPerView: 3, spaceBetween: 10 },
+          }}
+          content_classes=""
+          className="flex lg:flex-row flex-col"
+          books={booksOfTheMonth}
+        /> */}
         <div className="container mx-auto">
           <div className="md:flex items-center my-10">
             <Banner
@@ -62,6 +106,23 @@ const HomePage = () => {
               image={"/Images/Banners/banner (2).webp"}
             />
           </div>
+        </div>
+        {/* <BookList
+          title="Children Books"
+          isMoreInfo={true}
+          breakPoints={{
+            320: { slidesPerView: 1, spaceBetween: 20 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 2, spaceBetween: 50 },
+            1280: { slidesPerView: 2, spaceBetween: 50 },
+            1538: { slidesPerView: 3, spaceBetween: 10 },
+          }}
+          content_classes=""
+          className="flex lg:flex-row flex-col"
+          books={booksOfTheMonth.slice(0, 7).reverse()}
+        /> */}
+        <div className="container mx-auto">
           <Banner
             className="h-[300px] mb-6"
             title={["20% Off Select Books"]}
@@ -76,34 +137,6 @@ const HomePage = () => {
             image={"/Images/Banners/banner (4).jpg"}
           />
         </div>
-        <BookList
-          title="New Releases"
-          breakPoints={{
-            320: { slidesPerView: 1, spaceBetween: 20 },
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 3, spaceBetween: 30 },
-            1280: { slidesPerView: 4, spaceBetween: 20 },
-            1538: { slidesPerView: 5, spaceBetween: 50 },
-          }}
-          className="flex flex-col"
-          books={newReleasesBooks}
-        />
-        <BookList
-          title="Popular Books"
-          isMoreInfo={true}
-          breakPoints={{
-            320: { slidesPerView: 1, spaceBetween: 20 },
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 2, spaceBetween: 50 },
-            1280: { slidesPerView: 2, spaceBetween: 50 },
-            1538: { slidesPerView: 2, spaceBetween: 50 },
-          }}
-          content_classes="ms-6 mt-4"
-          className="flex lg:flex-row flex-col"
-          books={booksOfTheMonth.slice(0, 2)}
-        />
       </Layout>
     </>
   );

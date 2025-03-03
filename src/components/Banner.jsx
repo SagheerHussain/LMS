@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from ".";
 
 const Banner = ({
   className = " ",
@@ -15,7 +16,7 @@ const Banner = ({
       <div
         className={`banner relative rounded-[25px] ${className}`}
         style={{
-          background: `url('${image}')`,
+          background: `linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)) , url('${image}')`,
           backgroundSize: "cover",
           backgroundPosition: "right",
           backgroundRepeat: "no-repeat",
@@ -23,12 +24,16 @@ const Banner = ({
       >
         <div className={`banner_content ${bannerContent}`}>
           {isBannerSideTitle && (
-            <h6 className="text-sm font-bold text-white">More Bang for Your Book</h6>
+            <h6 className="text-sm font-bold text-light_text">
+              More Bang for Your Book
+            </h6>
           )}
           {title?.map((word) => (
-            <h1 className="text-4xl font-bold text-white font-serif">{word} </h1>
+            <h1 className="text-4xl font-bold text-white font-serif">
+              {word}{" "}
+            </h1>
           ))}
-          {isBtn && <button className={`${btnClasses} rounded-[25px]`}>{btnTitle}</button>}
+          {isBtn && <Button label={btnTitle}></Button>}
         </div>
       </div>
     </>

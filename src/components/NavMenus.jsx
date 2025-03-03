@@ -11,7 +11,20 @@ const NavMenus = () => {
       label: "All Categories",
       slug: "/",
       subMenus: [
-        { id: 1, label: "Fantasy", slug: "/fantasy" },
+        {
+          id: 1,
+          label: "Fantasy",
+          slug: "/fantasy",
+          subMenus: [
+            { label: "Fantasy", slug: "/fantasy" },
+            { label: "Fantasy", slug: "/fantasy" },
+            { label: "Fantasy", slug: "/fantasy" },
+            { label: "Fantasy", slug: "/fantasy" },
+            { label: "Fantasy", slug: "/fantasy" },
+            { label: "Fantasy", slug: "/fantasy" },
+            { label: "Fantasy", slug: "/fantasy" },
+          ],
+        },
         { id: 2, label: "Fiction", slug: "/fiction" },
         { id: 3, label: "Mystery", slug: "/mystery" },
         { id: 4, label: "Thriller", slug: "/thriller" },
@@ -70,38 +83,40 @@ const NavMenus = () => {
                   className={`${
                     id === 2
                       ? `${
-                          darkMode ? "bg-[#222]" : "bg-[#3076d2]"
-                        }  text-zinc-100  flex items-center px-8 py-2 rounded-[25px] hover:text-zinc-100`
-                      : "sm:inline-block hidden"
-                  } ${
-                    darkMode ? "text-zinc-300" : ""
-                  } text-sm px-6 py-2 font-medium uppercase group relative  transition-all duration-200`}
+                          darkMode
+                            ? "bg-secondary text-light_text"
+                            : "bg-light_theme_primary text-light_text hover:text-light_text"
+                        }   flex items-center px-8 py-2 rounded-[25px]`
+                      : `${
+                          darkMode
+                            ? "text-zinc-300 hover:text-light_theme_primary"
+                            : "text-primary hover:hover:text-light_theme_primary"
+                        } sm:inline-block hidden`
+                  }  text-base px-6 py-2 font-medium capitalize group relative  transition-all duration-200`}
                 >
                   {id === 2 && (
                     <RiMenu2Line
                       size={20}
-                      className="text-white font-bold me-4"
+                      className={`${darkMode ? "text-light_text" : "text-light_text"} font-bold me-4`}
                     />
                   )}
                   {label}
                   {subMenus && (
                     <div
-                      className={`opacity-0 rounded-[25px] invisible group-hover:opacity-100 group-hover:visible group-hover:top-[120%] transition-all duration-300 linear absolute top-[150%] left-0 capitalize  z-[90] flex flex-col border-2 ${
+                      className={`opacity-0 w-full invisible group-hover:opacity-100 group-hover:visible group-hover:top-[120%] transition-all duration-300 linear absolute top-[150%] left-0 capitalize  z-[90] flex flex-col border-2 ${
                         id === 2
-                          ? `w-full ${
-                              darkMode
-                                ? "border-t-[#3076d2] border-r-0 border-l-0 border-b-0"
-                                : "border-[#ddd] bg-[#fff]"
-                            }`
-                          : `w-[200%] border-t-[#3076d2] border-r-0 border-l-0 border-b-0`
+                          ? `w-full border-t-light_theme_primary border-r-0 border-l-0 border-b-0`
+                          : `min-w-[250px] border-t-light_theme_primary border-r-0 border-l-0 border-b-0`
                       } ${
                         darkMode
-                          ? "bg-[#222] text-zinc-300"
+                          ? "bg-primary text-zinc-300"
                           : "bg-[#fff] text-zinc-800"
                       } pt-4 px-8 text-sm`}
                     >
                       <div
-                        className={`absolute ${id === 2 ? "-top-[3%]" : "-top-[5%]"} bg-[#3076d2]  left-[20%] w-[10px] h-[10px]`}
+                        className={`absolute ${
+                          id === 2 ? "-top-[3%]" : "-top-[5%]"
+                        } bg-light_theme_primary  left-[20%] w-[10px] h-[10px]`}
                         style={{
                           clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
                         }}
@@ -110,7 +125,7 @@ const NavMenus = () => {
                       {subMenus?.map((subMenu) => (
                         <Link
                           to={`${subMenu.slug}`}
-                          className="pb-4 hover:text-[#3076d2] transition-all duration-300 linear inline-block"
+                          className="pb-4 hover:text-light_theme_primary transition-all duration-300 linear inline-block relative group"
                           key={subMenu.slug}
                         >
                           {subMenu.label}

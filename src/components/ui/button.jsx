@@ -6,7 +6,7 @@ const Button = ({ className = "", label = "" }) => {
   return (
     <>
       <button
-        className={`${className} ${darkMode ? "dark-mode-btn" : "primary-button"}  rounded-[5px] transition-all duration-300 uppercase text-[.8rem] font-semibold px-4 py-2 mt-4`}
+        className={`${className} primary-button transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
       >
         {label}
       </button>
