@@ -3,7 +3,7 @@ export const sampleBooks = [
     id: 1,
     title: "The Midnight Library",
     author: "Matt Haig",
-    category: "Fantasy / Fiction",
+    category: "Fiction",
     publishedYear: 2025,
     rating: 4.2,
     total_copies: 20,
@@ -21,7 +21,7 @@ export const sampleBooks = [
     title: "Atomic Habits",
     author: "James Clear",
     publishedYear: 2024,
-    category: "Self-Help / Productivity",
+    category: "Productivity",
     rating: 4.9,
     total_copies: 99,
     available_copies: 50,
@@ -38,7 +38,7 @@ export const sampleBooks = [
     title: "You Don't Know JS: Scope & Closures",
     author: "Kyle Simpson",
     publishedYear: 2023,
-    category: "Computer Science / JavaScript",
+    category: "Computer Science",
     rating: 4.7,
     total_copies: 9,
     available_copies: 5,
@@ -56,7 +56,7 @@ export const sampleBooks = [
     title: "The Alchemist",
     author: "Paulo Coelho",
     publishedYear: 2023,
-    category: "Philosophy / Adventure",
+    category: "Philosophy",
     rating: 4.5,
     total_copies: 78,
     available_copies: 50,
@@ -74,7 +74,7 @@ export const sampleBooks = [
     title: "Deep Work",
     author: "Cal Newport",
     publishedYear: 2024,
-    category: "Self-Help / Productivity",
+    category: "Productivity",
     rating: 4.7,
     total_copies: 23,
     available_copies: 23,
@@ -127,7 +127,7 @@ export const sampleBooks = [
     title: "The Psychology of Money",
     author: "Morgan Housel",
     publishedYear: 2025,
-    category: "Finance / Self-Help",
+    category: "Finance",
     rating: 4.8,
     total_copies: 10,
     available_copies: 1,
@@ -145,7 +145,7 @@ export const sampleBooks = [
     title: "The Psychology of Money",
     author: "Morgan Housel",
     publishedYear: 2025,
-    category: "Finance / Self-Help",
+    category: "Finance",
     rating: 4.8,
     total_copies: 10,
     available_copies: 1,
@@ -163,7 +163,7 @@ export const sampleBooks = [
     title: "The Psychology of Money",
     author: "Morgan Housel",
     publishedYear: 2025,
-    category: "Finance / Self-Help",
+    category: "Finance",
     rating: 4.8,
     total_copies: 10,
     available_copies: 1,
@@ -181,7 +181,7 @@ export const sampleBooks = [
     title: "The Psychology of Money",
     author: "Morgan Housel",
     publishedYear: 2025,
-    category: "Finance / Self-Help",
+    category: "Finance",
     rating: 4.2,
     total_copies: 10,
     available_copies: 1,
@@ -195,3 +195,62 @@ export const sampleBooks = [
       "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
   },
 ];
+
+export const categories = [
+  {
+    id: 1,
+    name: "Fiction"
+  },
+  {
+    id: 2,
+    name: "Productivity"
+  },
+  {
+    id: 3,
+    name: "Computer Science"
+  },
+  {
+    id: 4,
+    name: "Philosophy"
+  },
+  {
+    id: 5,
+    name: "Finance"
+  },
+];
+
+export const authors = [
+  {
+    id: 1,
+    name: "Matt Haig"
+  },
+  {
+    id: 2,
+    name: "James Clear"
+  },
+  {
+    id: 3,
+    name: "Kyle Simpson"
+  },
+  {
+    id: 4,
+    name: "Paulo Coelho"
+  },
+  {
+    id: 5,
+    name: "Cal Newport"
+  },
+  {
+    id: 6,
+    name: "Robert C. Martin"
+  },
+  {
+    id: 7,
+    name: "Andrew Hunt & David Thomas"
+  },
+  {
+    id: 8,
+    name: "Morgan Housel"
+  }
+];
+

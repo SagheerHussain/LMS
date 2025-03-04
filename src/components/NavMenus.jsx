@@ -1,3 +1,4 @@
+import { authors, categories } from "@/constants/data";
 import { DarkThemeContext } from "@/context/ThemeContext";
 import React, { useContext } from "react";
 import { RiMenu2Line } from "react-icons/ri";
@@ -10,30 +11,7 @@ const NavMenus = () => {
       id: 2,
       label: "All Categories",
       slug: "/",
-      subMenus: [
-        {
-          id: 1,
-          label: "Fantasy",
-          slug: "/fantasy",
-          subMenus: [
-            { label: "Fantasy", slug: "/fantasy" },
-            { label: "Fantasy", slug: "/fantasy" },
-            { label: "Fantasy", slug: "/fantasy" },
-            { label: "Fantasy", slug: "/fantasy" },
-            { label: "Fantasy", slug: "/fantasy" },
-            { label: "Fantasy", slug: "/fantasy" },
-            { label: "Fantasy", slug: "/fantasy" },
-          ],
-        },
-        { id: 2, label: "Fiction", slug: "/fiction" },
-        { id: 3, label: "Mystery", slug: "/mystery" },
-        { id: 4, label: "Thriller", slug: "/thriller" },
-        { id: 5, label: "Romance", slug: "/romance" },
-        { id: 6, label: "Self-help", slug: "/self-help" },
-        { id: 7, label: "Business", slug: "/business" },
-        { id: 8, label: "Finance", slug: "/finance" },
-        { id: 9, label: "Psychology", slug: "/psychology" },
-      ],
+      subMenus: categories,
       isActive: true,
     },
     {
@@ -47,14 +25,7 @@ const NavMenus = () => {
       label: "Authors",
       slug: "/",
       isActive: true,
-      subMenus: [
-        { id: 1, label: "Sehar Rehman", slug: "/sehar-rehman" },
-        { id: 2, label: "Naeem Ahmad", slug: "/naeem-ahmad" },
-        { id: 3, label: "Hassan Raza", slug: "/hassan-raza" },
-        { id: 4, label: "Sara Ali", slug: "/sara-ali" },
-        { id: 5, label: "Zain Ul Abideen", slug: "/zain-ul-abideen" },
-        { id: 6, label: "Sara Ali", slug: "/sara-ali" },
-      ],
+      subMenus: authors,
     },
     {
       id: 4,
@@ -115,7 +86,7 @@ const NavMenus = () => {
                     >
                       <div
                         className={`absolute ${
-                          id === 2 ? "-top-[3%]" : "-top-[5%]"
+                          id === 2 ? "-top-[10px]" : "-top-[10px]"
                         } bg-light_theme_primary  left-[20%] w-[10px] h-[10px]`}
                         style={{
                           clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
@@ -124,11 +95,11 @@ const NavMenus = () => {
 
                       {subMenus?.map((subMenu) => (
                         <Link
-                          to={`${subMenu.slug}`}
+                          to={`/filtered-books/${subMenu.name}`}
                           className="pb-4 hover:text-light_theme_primary transition-all duration-300 linear inline-block relative group"
-                          key={subMenu.slug}
+                          
                         >
-                          {subMenu.label}
+                          {subMenu.name}
                         </Link>
                       ))}
                     </div>

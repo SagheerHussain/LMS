@@ -27,37 +27,37 @@ const Footer = () => {
               } font-medium text-sm`}
             >
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Help Center
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Shipping FAQs
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Pick up in Store
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Order Status
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Product Recalls
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Corrections & Updates
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Gift Cards
                 </a>
               </li>
@@ -77,27 +77,27 @@ const Footer = () => {
               } font-medium text-sm`}
             >
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Contact Us
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Track Your Order
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Returns Policy
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Delivery Information
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Loyalty Program
                 </a>
               </li>
@@ -117,37 +117,37 @@ const Footer = () => {
               } font-medium text-sm`}
             >
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Coupons
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   RX Prescription
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Scholarship Program
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Brand Directory
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   E-Catalogs/Requests
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Order Form
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:text-secondary">
+                <a href="#" className={`${darkMode ? "hover:text-light_theme_light_mode" : "hover:text-secondary"}`}>
                   Blog
                 </a>
               </li>

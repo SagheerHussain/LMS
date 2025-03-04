@@ -2,11 +2,14 @@ import { HeroSection, Banner, BookList } from "@/components/index";
 import Layout from "/app/(root)/Layout";
 import React, { useEffect, useState } from "react";
 import { sampleBooks } from "@/constants/data";
+import { useMediaQuery } from "@mui/material";
 
 const HomePage = () => {
   // State Variables
   const [newReleasesBooks, setNewReleasesBooks] = useState([]);
   const [booksOfTheMonth, setBooksOfTheMonth] = useState([]);
+
+  const isMatch = useMediaQuery('(min-width:820px)');
 
   // Filter Books
   useEffect(() => {
@@ -32,24 +35,12 @@ const HomePage = () => {
     <>
       <Layout className="pb-20">
         <HeroSection />
-        {/* <BookList
-          title="New Releases"
-          breakPoints={{
-            320: { slidesPerView: 1, spaceBetween: 20 },
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 2, spaceBetween: 30 },
-            1280: { slidesPerView: 3, spaceBetween: 20 },
-            1538: { slidesPerView: 3, spaceBetween: 10 },
-            }}
-            className="flex lg:flex-row flex-col"
-            books={newReleasesBooks.slice(0, 3)}
-            /> */}
         <BookList
           title="New Releases"
           isMoreInfo={true}
           breakPoints={{
-            320: { slidesPerView: 1, spaceBetween: 20 },
+            280: { slidesPerView: 1, spaceBetween: 20 },
+            510: { slidesPerView: 2, spaceBetween: 20 },
             640: { slidesPerView: 2, spaceBetween: 20 },
             768: { slidesPerView: 2, spaceBetween: 20 },
             1024: { slidesPerView: 2, spaceBetween: 50 },
@@ -57,15 +48,16 @@ const HomePage = () => {
             1538: { slidesPerView: 3, spaceBetween: 10 },
           }}
           content_classes=""
-          className="flex lg:flex-row flex-col"
+          className={`flex ${isMatch ? "flex-row" : "flex-col"}`}
           books={newReleasesBooks}
           label="NEW"
         />
-        {/* <BookList
+        <BookList
           title="Popular Books"
           isMoreInfo={true}
           breakPoints={{
-            320: { slidesPerView: 1, spaceBetween: 20 },
+            280: { slidesPerView: 1, spaceBetween: 20 },
+            510: { slidesPerView: 2, spaceBetween: 20 },
             640: { slidesPerView: 2, spaceBetween: 20 },
             768: { slidesPerView: 2, spaceBetween: 20 },
             1024: { slidesPerView: 2, spaceBetween: 50 },
@@ -75,7 +67,7 @@ const HomePage = () => {
           content_classes=""
           className="flex lg:flex-row flex-col"
           books={booksOfTheMonth}
-        /> */}
+        />
         <div className="container mx-auto">
           <div className="md:flex items-center my-10">
             <Banner
@@ -107,11 +99,12 @@ const HomePage = () => {
             />
           </div>
         </div>
-        {/* <BookList
+        <BookList
           title="Children Books"
           isMoreInfo={true}
           breakPoints={{
-            320: { slidesPerView: 1, spaceBetween: 20 },
+            280: { slidesPerView: 1, spaceBetween: 20 },
+            510: { slidesPerView: 2, spaceBetween: 20 },
             640: { slidesPerView: 2, spaceBetween: 20 },
             768: { slidesPerView: 2, spaceBetween: 20 },
             1024: { slidesPerView: 2, spaceBetween: 50 },
@@ -121,7 +114,7 @@ const HomePage = () => {
           content_classes=""
           className="flex lg:flex-row flex-col"
           books={booksOfTheMonth.slice(0, 7).reverse()}
-        /> */}
+        />
         <div className="container mx-auto">
           <Banner
             className="h-[300px] mb-6"

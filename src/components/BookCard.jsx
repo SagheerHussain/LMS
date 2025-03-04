@@ -1,5 +1,5 @@
 import { DarkThemeContext } from "@/context/ThemeContext";
-import { Rating } from "@mui/material";
+import { Rating, useMediaQuery } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa6";
 import { Button } from "./index";
@@ -15,6 +15,10 @@ const BookCard = ({
 }) => {
   // Context
   const { darkMode } = useContext(DarkThemeContext);
+
+  // media Query
+  const isMatch = useMediaQuery("(max-width:820px)");
+  const smDevice = useMediaQuery("(max-width:510px)");
 
   // State Variables
   const [year, setYear] = useState(null);
@@ -43,18 +47,18 @@ const BookCard = ({
     <>
       <Link to={`/book-overview/${id}`} key={id}>
         <div
-          className={`book_card ${className} w-full hover:shadow-lg cursor-pointer relative`}
+          className={`book_card ${className} w-full hover:shadow-lg cursor-pointer relative ${smDevice && "text-center"}`}
         >
           <div
             className={`cursor-pointer book_image ${
-              location.pathname === "/" ? "scale-[.8]" : "scale-[1]"
-            }  max-h-[300px] max-w-[200px]`}
+              location.pathname === "/" ? `${isMatch ? "scale-[1]" : "scale-[.8]"}` : "scale-[1]"
+            }  max-h-[300px] max-w-[200px] ${smDevice && "mx-auto"}`}
           >
             <img
               src={cover}
               className={`w-full ${
                 location.pathname === "/" ? "h-full" : "h-[300px]"
-              } object-cover object-left-top rounded-[25px]`}
+              } object-cover object-left-top rounded-[25px] `}
               alt={title}
               loading="lazy"
             />
@@ -99,7 +103,7 @@ const BookCard = ({
                 </h3>
               </>
             )}
-            <div className="flex items-center">
+            <div className={`flex items-center ${smDevice && "justify-center"}`}>
               <Button label="Borrowing Now" />
               <IoMdHeartEmpty
                 size={24}
