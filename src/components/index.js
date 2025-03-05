@@ -1,4 +1,4 @@
-import Button from "./ui/Button";
+import Button from "./Button";
 import BookList from "./BookList";
 import BookCard from "./BookCard";
 import BookOverview from "./BookOverview";
