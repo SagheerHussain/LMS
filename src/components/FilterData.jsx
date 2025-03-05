@@ -1,5 +1,6 @@
+import { DarkThemeContext } from "@/context/ThemeContext";
 import { Rating } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 
 const FilterData = ({
   filteredProducts,
@@ -8,6 +9,9 @@ const FilterData = ({
   updateAuthors,
   updateRatings,
 }) => {
+
+  const {darkMode} = useContext(DarkThemeContext);
+
   return (
     <>
       {filteredProducts && filteredProducts[0]?.category ? (
@@ -83,7 +87,7 @@ const FilterData = ({
       )}
 
 
-      <h6 className="text-light_text mb-2">Rating</h6>
+      <h6 className={`text-light_text mb-2`}>Rating</h6>
       <hr className="bg-[#ddd] mb-3" />
       <div className="ratings">
         {filterData
@@ -104,7 +108,7 @@ const FilterData = ({
                 />
                 <label htmlFor={rating} className="ms-2 flex items-center py-1">
                   <h6
-                    className="me-2 text-light_text"
+                    className={`me-2 text-light_text`}
                     style={{ fontSize: ".85rem" }}
                   >
                     {Math.floor(rating)} Stars

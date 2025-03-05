@@ -65,7 +65,7 @@ const HomePage = () => {
             1538: { slidesPerView: 3, spaceBetween: 10 },
           }}
           content_classes=""
-          className="flex lg:flex-row flex-col"
+          className={`flex ${isMatch ? "flex-row" : "flex-col"}`}
           books={booksOfTheMonth}
         />
         <div className="container mx-auto">
@@ -112,8 +112,8 @@ const HomePage = () => {
             1538: { slidesPerView: 3, spaceBetween: 10 },
           }}
           content_classes=""
-          className="flex lg:flex-row flex-col"
-          books={booksOfTheMonth.slice(0, 7).reverse()}
+          className={`flex ${isMatch ? "flex-row" : "flex-col"}`}
+          books={sampleBooks.slice(4, 8)}
         />
         <div className="container mx-auto">
           <Banner

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -21,8 +21,12 @@ import { RxCross2 } from "react-icons/rx";
 import { sampleBooks } from "@/constants/data";
 import { BorrowedBookCard } from "./index";
 import FilterData from "./FilterData";
+import { DarkThemeContext } from "@/context/ThemeContext";
 
 const FilterBooks = () => {
+  const { darkMode } = useContext(DarkThemeContext);
+
+  // State Variable
   const [loading, setLoading] = useState(true);
   const [filterData, setFilterData] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -135,19 +139,26 @@ const FilterBooks = () => {
             <h5 className="mb-4 font-bold flex items-center text-light_text">
               Filters <IoFilterSharp className="ms-2" />
             </h5>
-            <FilterData
-              filteredProducts={filteredProducts}
-              filterData={filterData}
-              updateBrands={filteredByCategories}
-              updateAuthors={filteredByAuthors}
-              updateRatings={filteredByRatings}
-            />
+            <div className={`${darkMode ? "bg-secondary" : "bg-light_theme_primary"} py-6 px-3`}>
+              <FilterData
+                filteredProducts={filteredProducts}
+                filterData={filterData}
+                updateBrands={filteredByCategories}
+                updateAuthors={filteredByAuthors}
+                updateRatings={filteredByRatings}
+              />
+            </div>
           </div>
 
           <div className="w-full lg:w-[75%] lg:ms-[5%]">
             <div className="flex items-center justify-between">
               <div className="pb-3">
-                <p style={{ fontSize: ".9rem" }} className="text-light_text">
+                <p
+                  style={{ fontSize: ".9rem" }}
+                  className={`${
+                    darkMode ? "text-light_text" : "text-dark_text"
+                  }`}
+                >
                   {length} items found for
                   <span style={{ color: "orangered" }}></span>
                 </p>
@@ -159,7 +170,7 @@ const FilterBooks = () => {
                     style={{
                       fontSize: "1.8rem",
                       marginTop: "-1.5rem",
-                      color: "#fff",
+                      color: `${darkMode ? "#fff" : "#000"}`,
                     }}
                   />
                 </Button>
@@ -167,18 +178,22 @@ const FilterBooks = () => {
                   <Box
                     sx={{
                       width: 300,
-                      background: "#04293A",
+                      background: `${darkMode ? "#04293A" : "#3d705f"}`,
                       padding: "2rem 1rem",
                     }}
                     role="presentation"
                   >
                     <div className="flex justify-end mb-3">
                       <RxCross2
-                        style={{ fontSize: "2.2rem", cursor: "pointer", color: "#fff" }}
+                        style={{
+                          fontSize: "2.2rem",
+                          cursor: "pointer",
+                          color: "#fff",
+                        }}
                         onClick={toggleDrawer(false)}
                       />
                     </div>
-                    <h5 className="fw-bold mb-4">Filters</h5>
+                    <h5 className="fw-bold mb-4 text-light_text">Filters</h5>
                     <FilterData
                       filteredProducts={filteredProducts}
                       updateBrands={setSelectedBrands}

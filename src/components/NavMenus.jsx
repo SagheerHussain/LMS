@@ -10,7 +10,7 @@ const NavMenus = () => {
     {
       id: 2,
       label: "All Categories",
-      slug: "/",
+      slug: "",
       subMenus: categories,
       isActive: true,
     },
@@ -31,7 +31,7 @@ const NavMenus = () => {
       id: 4,
       label: "Request a book",
       slug: "/",
-      isActive: true,
+      isActive: false,
     },
   ];
 

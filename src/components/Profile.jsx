@@ -16,13 +16,13 @@ const Profile = () => {
                 darkMode ? "bg-secondary" : "bg-light_theme_hover_mode"
               }  p-10 rounded-[25px] w-full lg:w-[49%] h-full`}
             >
-              <div className="profile_pic flex">
+              <div className="profile_pic sm:flex">
                 <img
                   src="https://play-lh.googleusercontent.com/2zorpA9peRFcwZM5SLSAx80gLCA3YrknRXQwPW-Hz2AJyBcvBJiO9vuP6DvlX3FRZXMv=w526-h296-rw"
                   className="w-full rounded-full max-w-[150px]"
                   alt=""
                 />
-                <div className="profile_name ms-4">
+                <div className="profile_name sm:mt-0 mt-4 sm:ms-4">
                   <h3
                     className={`${
                       darkMode ? "text-light_text" : "text-dark_text"

@@ -5,14 +5,17 @@ import { useContext } from "react";
 import payment from "/Images/payment.png";
 import { IoSearch } from "react-icons/io5";
 import { FaEnvelope } from "react-icons/fa";
+import { useMediaQuery } from "@mui/material";
 
 const Footer = () => {
   const { darkMode } = useContext(DarkThemeContext);
 
+  const isMatch = useMediaQuery(`(max-width: 420px)`);
+
   return (
     <footer class={` ${darkMode ? "bg-[#04293A]" : "bg-light_theme_secondary"} `}>
       <div class="mx-auto w-full container">
-        <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
+        <div class={`grid ${isMatch ? "grid-cols-1" : "grid-cols-2"} md:grid-cols-3 gap-8 px-4 py-6 lg:py-8 lg:grid-cols-4`}>
           <div>
             <h2
               class={`mb-6 text-sm font-bold ${
@@ -178,7 +181,7 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                class={`absolute top-[50%] -translate-y-[50%] right-[6px] ${darkMode ? "bg-primary hover:bg-hover_color text-light_text" : "bg-light_theme_light_mode hover:bg-light_theme_hover_mode text-light_theme_primary"} focus:outline-none font-medium rounded-[25px] text-sm px-4 py-2`}
+                class={`sm:absolute top-[50%] ${isMatch && "w-full"} translate-y-2 sm:-translate-y-[50%] right-[6px] ${darkMode ? "bg-primary hover:bg-hover_color text-light_text" : "bg-light_theme_light_mode hover:bg-light_theme_hover_mode text-light_theme_primary"} focus:outline-none font-medium rounded-[25px] text-sm px-4 py-2`}
               >
                 Subscribe
               </button>
@@ -188,16 +191,16 @@ const Footer = () => {
         <div
           class={`px-4 py-6 ${
             darkMode ? "bg-[#04293A]" : "bg-light_theme_secondary"
-          } md:flex md:items-center md:justify-between`}
+          } lg:flex lg:items-center lg:justify-between`}
         >
-          <span
+          <p
             class={`text-sm ${
               darkMode ? "text-light_text" : "text-light_theme_light_mode"
-            } sm:text-center`}
+            } sm:text-center lg:mb-0 mb-3`}
           >
             © copyright 2025 <a href="https://skynetsilicon.com/" className={`${darkMode ? "text-yellow_color" : "text-green-300"} `} target="_blank">Skynet Silicon</a>. All
             Rights Reserved.
-          </span>
+          </p>
           <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
             <img src={payment} loading="lazy" alt="" />
           </div>
