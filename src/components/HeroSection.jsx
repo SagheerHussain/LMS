@@ -28,7 +28,7 @@ const HeroSection = () => {
               <div className="min-h-200">
                 <img
                   src={slide}
-                  className="w-full h-full min-h-[120px] object-cover object-top"
+                  className="w-full h-full min-h-[120px] object-cover object-top -z-[1]"
                   alt=""
                 />
               </div>

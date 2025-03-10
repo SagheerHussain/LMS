@@ -84,14 +84,14 @@ const NavMenus = () => {
                             ? "text-zinc-300 hover:text-light_theme_primary"
                             : "text-primary hover:hover:text-light_theme_primary"
                         } sm:inline-block hidden`
-                  }  text-base px-6 py-2 font-medium capitalize group relative  transition-all duration-200`}
+                  } ${id === 3 ? "-z-[1]" : ""} nav_menu_link text-base px-6 py-2 font-medium capitalize group relative  transition-all duration-200`}
                 >
                   {id === 2 && (
                     <RiMenu2Line
                       size={20}
                       className={`${
                         darkMode ? "text-light_text" : "text-light_text"
-                      } font-bold me-4`}
+                      }  font-bold me-4`}
                     />
                   )}
                   {label}
@@ -118,7 +118,7 @@ const NavMenus = () => {
 
                       {subMenus?.map((subMenu) => (
                         <Link
-                          to={`/filtered-books/${subMenu.name}`}
+                          to={`/filtered-books/${subMenu.slug}`}
                           className="pb-4 hover:text-light_theme_primary transition-all duration-300 linear inline-block relative group"
                         >
                           {subMenu.name}

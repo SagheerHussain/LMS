@@ -12,6 +12,8 @@ import Logo from "./Logo";
 import NavMenus from "./NavMenus";
 import Profile from "./Profile";
 import RelatedBooks from "./RelatedBooks";
+import SearchBar from "./SearchBar";
+import SearchResults from "./SearchResults";
 
 export {
     Button,
@@ -27,5 +29,7 @@ export {
     Logo,
     NavMenus,
     Profile,
-    RelatedBooks
+    RelatedBooks,
+    SearchBar,
+    SearchResults
 }

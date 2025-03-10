@@ -22,6 +22,13 @@ import { sampleBooks } from "@/constants/data";
 import { BorrowedBookCard } from "./index";
 import FilterData from "./FilterData";
 import { DarkThemeContext } from "@/context/ThemeContext";
+import { getCategories } from "../../services/categoryService";
+import {
+  getBooksByAuthors,
+  getBooksByCategories,
+} from "../../services/bookService";
+import { ClimbingBoxLoader, PacmanLoader, PropagateLoader } from "react-spinners";
+import { getAuthors } from "../../services/authorService";
 
 const FilterBooks = () => {
   const { darkMode } = useContext(DarkThemeContext);
@@ -37,20 +44,33 @@ const FilterBooks = () => {
   const [totalPages, setTotalPages] = useState(null);
   const [length, setLength] = useState(null);
   const [open, setOpen] = useState(false);
+  const [isAttCategory, setIsAttCategory] = useState(false);
+  const [isAttAuthor, setIsAttAuthor] = useState(false);
 
   const { attribute } = useParams();
-  console.log("attribute", attribute);
 
   const getData = async () => {
     setLoading(true);
-    // const data = sampleBooks.some((book) => book.author === attribute)
-    //   ? sampleBooks.filter((book) => book.author === attribute)
-    //   : sampleBooks;
-    const data = sampleBooks;
-    setFilterData(data);
-    setTotalPages(Math.ceil(data.length / 10));
-    setLength(data.length);
-    setLoading(false);
+    const categories = await getCategories();
+    const authors = await getAuthors();
+    const isCategoryExist = categories.some(
+      (category) => category.slug === attribute
+    );
+    const isAuthorExist = authors.some(
+      (author) => author.slug === attribute
+    );
+    setIsAttCategory(isCategoryExist);
+    setIsAttAuthor(isAuthorExist);
+    const { message } = isCategoryExist
+      ? await getBooksByCategories(attribute)
+      : await getBooksByAuthors(attribute);
+
+    if (message.length > 0) {
+      setFilterData(message);
+      setTotalPages(Math.ceil(message.length / 10));
+      setLength(message.length);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -97,13 +117,13 @@ const FilterBooks = () => {
 
     if (selectedBrands.length) {
       filtered = filtered.filter((product) =>
-        selectedBrands.includes(product.category)
+        selectedBrands.includes(product.category.name)
       );
     }
 
     if (selectedAuthors.length) {
       filtered = filtered.filter((product) =>
-        selectedAuthors.includes(product.author)
+        selectedAuthors.includes(product.author.name)
       );
     }
 
@@ -131,6 +151,8 @@ const FilterBooks = () => {
     setOpen(newOpen);
   };
 
+  console.log("filteredProducts", filteredProducts);
+
   return (
     <>
       <div className="mx-auto container py-5">
@@ -139,13 +161,19 @@ const FilterBooks = () => {
             <h5 className="mb-4 font-bold flex items-center text-light_text">
               Filters <IoFilterSharp className="ms-2" />
             </h5>
-            <div className={`${darkMode ? "bg-secondary" : "bg-light_theme_primary"} py-6 px-3`}>
+            <div
+              className={`${
+                darkMode ? "bg-secondary" : "bg-light_theme_primary"
+              } py-6 px-3`}
+            >
               <FilterData
                 filteredProducts={filteredProducts}
                 filterData={filterData}
                 updateBrands={filteredByCategories}
                 updateAuthors={filteredByAuthors}
                 updateRatings={filteredByRatings}
+                isCategory={isAttCategory}
+                isAuthor={isAttAuthor}
               />
             </div>
           </div>
@@ -207,6 +235,8 @@ const FilterBooks = () => {
             </div>
 
             <Divider style={{ backgroundColor: "#ddd" }} className="mb-2" />
+
+            {loading && <div className="flex justify-center pt-10"><PacmanLoader color={`${darkMode ? "#e99d31" : "#3d705f"}`} size={20} /></div>}
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
               {filteredProducts.length > 0 ? (

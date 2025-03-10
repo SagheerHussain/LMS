@@ -18,7 +18,7 @@ const BorrowedBookCard = ({ book }) => {
             className={`cursor-pointer book_image max-h-[370px] max-w-full`}
           >
             <img
-              src={book.cover}
+              src={book.image}
               className={`w-full h-[370px] object-cover object-left-top rounded-[25px] `}
               alt={book.title}
               loading="lazy"
@@ -28,7 +28,7 @@ const BorrowedBookCard = ({ book }) => {
         <h1 className={`${darkMode ? "text-light_text" : "text-dark_text"}  text-xl pt-4 font-semibold`}>
           {book.title}
         </h1>
-        <h4 className={`${darkMode ? "text-light_text" : "text-dark_text"} pt-4 font-medium`}>{book.category}</h4>
+        <h4 className={`${darkMode ? "text-light_text" : "text-dark_text"} pt-4 font-medium`}>{book.category.name}</h4>
         <h6 className={`${darkMode ? "text-light_text" : "text-dark_text"} flex items-center pt-2`}>
           <FiBookOpen className="mt-1 me-2" /> Borrowed On Dec 31
         </h6>

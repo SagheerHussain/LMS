@@ -11,6 +11,7 @@ import { DarkThemeContext } from "@/context/ThemeContext";
 // Import Services
 import { getCategories } from "../../services/categoryService";
 import { getBooks } from "../../services/bookService";
+import { PacmanLoader, PropagateLoader } from "react-spinners";
 
 const BookList = ({
   className = "",
@@ -56,7 +57,11 @@ const BookList = ({
     <>
       <section className="books py-10">
         <div className="container mx-auto">
-          {loading && <div className="text-white">Loading...</div>}
+          {loading && (
+            <div className="flex justify-center pt-10">
+              <PacmanLoader color={`${darkMode ? "#e99d31" : "#3d705f"}`} size={20} />
+            </div>
+          )}
           {error && <div className="text-white">Error fetching books</div>}
 
           {categories?.map((category) => (
@@ -81,16 +86,18 @@ const BookList = ({
                 pagination={{ clickable: true }}
                 breakpoints={breakPoints}
               >
-                {bookLists?.filter((book) => book.category.name === category.name).map((book) => (
-                  <SwiperSlide key={book.id || book.title}>
-                    <BookCard
-                      book={book}
-                      className={className}
-                      isMoreInfo={isMoreInfo}
-                      content_classes={content_classes}
-                    />
-                  </SwiperSlide>
-                ))}
+                {bookLists
+                  ?.filter((book) => book.category.name === category.name)
+                  .map((book) => (
+                    <SwiperSlide key={book.id || book.title}>
+                      <BookCard
+                        book={book}
+                        className={className}
+                        isMoreInfo={isMoreInfo}
+                        content_classes={content_classes}
+                      />
+                    </SwiperSlide>
+                  ))}
               </Swiper>
             </>
           ))}

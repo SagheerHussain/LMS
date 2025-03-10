@@ -8,21 +8,23 @@ const FilterData = ({
   updateBrands,
   updateAuthors,
   updateRatings,
+  isCategory,
+  isAuthor
 }) => {
 
   const {darkMode} = useContext(DarkThemeContext);
 
   return (
     <>
-      {filteredProducts && filteredProducts[0]?.category ? (
+      {filteredProducts && filteredProducts[0]?.category.name && !isCategory ? (
         <>
           <h6 className="text-light_text mb-2">Categories</h6>
           <hr className="bg-[#ddd] mb-3" />
           <div className="mb-4">
             {filterData
               .reduce((uniqueBrands, product) => {
-                if (!uniqueBrands.includes(product.category)) {
-                  uniqueBrands.push(product.category);
+                if (!uniqueBrands.includes(product.category.name)) {
+                  uniqueBrands.push(product.category.name);
                 }
                 return uniqueBrands;
               }, [])
@@ -50,15 +52,15 @@ const FilterData = ({
         <></>
       )}
 
-      {filteredProducts[0]?.author ? (
+      {filteredProducts[0]?.author.name && !isAuthor ? (
         <>
           <h6 className="text-light_text mb-2">Authors</h6>
           <hr className="bg-[#ddd] mb-3" />
           <div className="mb-4">
             {filterData
               .reduce((uniqueBrands, product) => {
-                if (!uniqueBrands.includes(product.author)) {
-                  uniqueBrands.push(product.author);
+                if (!uniqueBrands.includes(product.author.name)) {
+                  uniqueBrands.push(product.author.name);
                 }
                 return uniqueBrands;
               }, [])

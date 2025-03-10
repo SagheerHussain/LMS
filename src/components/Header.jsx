@@ -4,7 +4,7 @@ import { FaRegUser, FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
 import { MdCall, MdEmail } from "react-icons/md";
-import { Logo, NavMenus } from "../components/index";
+import { Logo, NavMenus, SearchBar, SearchResults } from "../components/index";
 import { DarkThemeContext } from "@/context/ThemeContext";
 import { Link } from "react-router-dom";
 import { RiMenu5Line } from "react-icons/ri";
@@ -37,23 +37,23 @@ const Header = () => {
     document.body.style.backgroundColor = darkMode ? "#041C32" : "#d6f1dd";
   }, [darkMode]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
 
-      if (currentScrollY > 10) {
-        setIsFixed(true); // Fix navbar when scrolled past 100px
-        setIsScrollingUp(currentScrollY < lastScrollY); // Check scroll direction
-      } else {
-        setIsFixed(false); // Reset when at the top
-      }
+  //     if (currentScrollY > 10) {
+  //       setIsFixed(true); // Fix navbar when scrolled past 100px
+  //       setIsScrollingUp(currentScrollY < lastScrollY); // Check scroll direction
+  //     } else {
+  //       setIsFixed(false); // Reset when at the top
+  //     }
 
-      setLastScrollY(currentScrollY);
-    };
+  //     setLastScrollY(currentScrollY);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [lastScrollY]);
 
   // Drawer List
   const [open, setOpen] = React.useState(false);
@@ -88,17 +88,14 @@ const Header = () => {
                     <Typography component="span">{text}</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    {
-                      authors.map((author) => (
-                        <Link
-                          to={`/filtered-books/${author.name}`}
-                          className="pb-4 hover:text-light_theme_light_mode transition-all duration-300 linear block relative group"
-                          
-                        >
-                          {author.name}
-                        </Link>
-                      ))
-                    }
+                    {authors.map((author) => (
+                      <Link
+                        to={`/filtered-books/${author.name}`}
+                        className="pb-4 hover:text-light_theme_light_mode transition-all duration-300 linear block relative group"
+                      >
+                        {author.name}
+                      </Link>
+                    ))}
                   </AccordionDetails>
                 </Accordion>
               ) : (
@@ -139,7 +136,7 @@ const Header = () => {
               </>
             ) : (
               <>
-              <h4 className={`text-light_text me-3`}>Dark Mode</h4>
+                <h4 className={`text-light_text me-3`}>Dark Mode</h4>
                 <IoMoonOutline size={24} onClick={() => setDarkMode(true)} />
               </>
             )}
@@ -155,7 +152,7 @@ const Header = () => {
         id="header"
         className={`${
           darkMode ? "bg-primary" : "var(--primary-color)"
-        } relative`}
+        } relative z-[999]`}
       >
         <div id="top_navigation" className={`pt-3 pb-4 sm:block hidden`}>
           <div className={`container mx-auto py-2 px-6`}>
@@ -223,7 +220,7 @@ const Header = () => {
             darkMode ? "bg-secondary" : "bg-light_theme_primary"
           } ${
             isFixed
-              ? `fixed top-0 left-0 w-full transition-all duration-300 shadow-md linear ${
+              ? `w-full transition-all duration-300 shadow-md linear ${
                   darkMode ? "bg-secondary" : "bg-light_theme_primary shadow"
                 } `
               : ""
@@ -241,30 +238,14 @@ const Header = () => {
               <Logo />
             </div>
             {/* Center - Search Box */}
-            <div className="navbar_search_field relative lg:w-[40%] lg:block hidden xl:w-1/2">
-              <input
-                type="text"
-                placeholder="Search books..."
-                className={`w-full py-3 pl-4 rounded-[25px] pr-2 bg-transparent border ${
-                  darkMode
-                    ? "border-[#ffffff2c] focus:border-[#ffffff32] text-light_text placeholder:text-light_text"
-                    : "border-[#ffffff2c] focus:border-[#ffffff2c] text-light_text placeholder:text-light_text"
-                } focus:outline-none focus:shadow-none `}
-              />
-              <button
-                className={`absolute right-[5px] rounded-[25px] top-1/2 transform -translate-y-1/2 ${
-                  darkMode
-                    ? "bg-primary hover:bg-hover_color text-light_text"
-                    : "bg-light_theme_light_mode text-dark_text hover:bg-light_theme_hover_mode"
-                } px-2 py-2`}
-              >
-                <IoSearch size={24} className="font-semibold" />
-              </button>
+            <div className="navbar_search_field relative lg:w-[40%] lg:block hidden xl:w-1/2 z-[9999]">
+              <SearchBar />
+              <SearchResults />
             </div>
 
             {/* Right Side - Profile & Logout Icons */}
             <div
-              className={`navbar_menus items-center gap-3 sm:flex hidden desktop_only `}
+              className={`navbar_menus items-center gap-3 sm:flex hidden desktop_only`}
             >
               <Link
                 to={`/profile`}
