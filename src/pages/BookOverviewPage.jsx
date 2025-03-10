@@ -13,7 +13,7 @@ const BookOverviewPage = () => {
   return (
     <>
       <Layout>
-        <BookOverview book={sampleBooks[id]} darkMode={darkMode} />
+        <BookOverview id={id} darkMode={darkMode} />
       </Layout>
     </>
   );

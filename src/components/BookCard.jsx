@@ -25,8 +25,8 @@ const BookCard = ({
 
   // Book Data
   const {
-    id,
-    cover,
+    _id,
+    image,
     title,
     author,
     description,
@@ -45,7 +45,7 @@ const BookCard = ({
 
   return (
     <>
-      <Link to={`/book-overview/${id}`} key={id}>
+      <Link to={`/book-overview/${_id}`} key={_id}>
         <div
           className={`book_card ${className} w-full hover:shadow-lg cursor-pointer relative ${smDevice && "text-center"}`}
         >
@@ -55,9 +55,9 @@ const BookCard = ({
             }  max-h-[300px] max-w-[200px] ${smDevice && "mx-auto"}`}
           >
             <img
-              src={cover}
+              src={image}
               className={`w-full ${
-                location.pathname === "/" ? "h-full" : "h-[300px]"
+                location.pathname === "/" ? "min-h-[300px] min-w-[200px]" : "h-[300px]"
               } object-cover object-left-top rounded-[25px] `}
               alt={title}
               loading="lazy"
@@ -76,14 +76,14 @@ const BookCard = ({
                 darkMode ? "text-zinc-300" : "text-zinc-700"
               } text-sm pt-2`}
             >
-              By: {author}
+              By: {author.name}
             </h4>
             <h3
               className={`${
                 darkMode ? "text-zinc-300" : "text-dark_text"
               } text-lg`}
             >
-              {title}
+              {title?.slice(0, 50)}...
             </h3>
             {isMoreInfo && (
               <>
@@ -99,7 +99,7 @@ const BookCard = ({
                     darkMode ? "text-zinc-300" : "text-zinc-800"
                   } text-sm pt-3`}
                 >
-                  Category: {category}
+                  Category: {category.name}
                 </h3>
               </>
             )}

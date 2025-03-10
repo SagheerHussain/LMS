@@ -1,10 +1,31 @@
-import { authors, categories } from "@/constants/data";
 import { DarkThemeContext } from "@/context/ThemeContext";
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { RiMenu2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { getCategories } from "../../services/categoryService";
+import { getAuthors } from "../../services/authorService";
 
 const NavMenus = () => {
+  // State Variables
+  const [categories, setCategories] = useState([]);
+  const [authors, setAuthors] = useState([]);
+
+  // Fetching Data
+  const fetchingData = useCallback(async () => {
+    try {
+      const categories = await getCategories();
+      setCategories(categories);
+      const authors = await getAuthors();
+      setAuthors(authors);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchingData();
+  }, [fetchingData]);
+
   // Menus
   const menus = [
     {
@@ -68,7 +89,9 @@ const NavMenus = () => {
                   {id === 2 && (
                     <RiMenu2Line
                       size={20}
-                      className={`${darkMode ? "text-light_text" : "text-light_text"} font-bold me-4`}
+                      className={`${
+                        darkMode ? "text-light_text" : "text-light_text"
+                      } font-bold me-4`}
                     />
                   )}
                   {label}
@@ -97,7 +120,6 @@ const NavMenus = () => {
                         <Link
                           to={`/filtered-books/${subMenu.name}`}
                           className="pb-4 hover:text-light_theme_primary transition-all duration-300 linear inline-block relative group"
-                          
                         >
                           {subMenu.name}
                         </Link>

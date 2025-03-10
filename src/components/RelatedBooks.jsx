@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -17,6 +17,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { getBooksByAuthors, getBooksByCategories } from "../../services/bookService";
 
 // Define Light and Dark Themes
 const lightTheme = {
@@ -63,16 +64,34 @@ const StyledTabPanel = styled(TabPanel)`
 `;
 
 const RelatedBooks = ({ book }) => {
+  // Context
   const { darkMode } = useContext(DarkThemeContext);
-  const [value, setValue] = useState("1");
 
+  // State Variables
+  const [value, setValue] = useState("1");
+  const [recommended, setRecommended] = useState([]);
+  const [authorRelated, setAuthorRelated] = useState([]);
+
+  // Handle Tab Change
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  // Fetching Books By Categories
+  const fetchingData = useCallback(async () => {
+    try {
+      const recommendations = await getBooksByCategories(book.category.slug);
+      const authorRelatedBooks = await getBooksByAuthors(book.author.slug);
+      setRecommended(recommendations.message);
+      setAuthorRelated(authorRelatedBooks.message);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [book.category.slug, book.author.name]);
+
   useEffect(() => {
-    console.log(book);
-  }, []);
+    fetchingData();
+  }, [fetchingData]);
 
   return (
     <>
@@ -106,7 +125,7 @@ const RelatedBooks = ({ book }) => {
                   1538: { slidesPerView: 4, spaceBetween: 10 },
                 }}
               >
-                {sampleBooks.slice(5, 9)?.map((book) => (
+                {authorRelated?.map((book) => (
                   <SwiperSlide key={book.id || book.title}>
                     <BookCard book={book} />
                   </SwiperSlide>
@@ -130,7 +149,7 @@ const RelatedBooks = ({ book }) => {
                   1538: { slidesPerView: 4, spaceBetween: 10 },
                 }}
               >
-                {sampleBooks.slice(0, 4)?.map((book) => (
+                {recommended?.map((book) => (
                   <SwiperSlide key={book.id || book.title}>
                     <BookCard book={book} />
                   </SwiperSlide>

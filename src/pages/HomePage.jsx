@@ -31,12 +31,13 @@ const HomePage = () => {
     setBooksOfTheMonth(filteredBooks);
   }, []);
 
+  
+
   return (
     <>
       <Layout className="pb-20">
         <HeroSection />
         <BookList
-          title="New Releases"
           isMoreInfo={true}
           breakPoints={{
             280: { slidesPerView: 1, spaceBetween: 20 },
@@ -49,72 +50,8 @@ const HomePage = () => {
           }}
           content_classes=""
           className={`flex ${isMatch ? "flex-row" : "flex-col"}`}
-          books={newReleasesBooks}
-          label="NEW"
         />
-        <BookList
-          title="Popular Books"
-          isMoreInfo={true}
-          breakPoints={{
-            280: { slidesPerView: 1, spaceBetween: 20 },
-            510: { slidesPerView: 2, spaceBetween: 20 },
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 2, spaceBetween: 50 },
-            1280: { slidesPerView: 2, spaceBetween: 50 },
-            1538: { slidesPerView: 3, spaceBetween: 10 },
-          }}
-          content_classes=""
-          className={`flex ${isMatch ? "flex-row" : "flex-col"}`}
-          books={booksOfTheMonth}
-        />
-        <div className="container mx-auto">
-          <div className="md:flex items-center my-10">
-            <Banner
-              className="md:w-[33%] h-[400px]"
-              title={["New", "Release."]}
-              btnClasses={
-                "bg-[#8f2224] hover:bg-[#8f2224] text-white px-6 py-2 font-semibold mt-4"
-              }
-              bannerContent={"absolute bottom-[5%] left-[8%]"}
-              image={"/Images/Banners/banner (1).webp"}
-            />
-            <Banner
-              className="md:w-[33%] md:my-0 my-10 md:mx-4 h-[400px]"
-              title={["Pre Order", "Now."]}
-              btnClasses={
-                "bg-[#2c8a6b] hover:bg-[#2c8a6b] text-white px-6 py-2 font-semibold mt-4"
-              }
-              bannerContent={"absolute bottom-[5%] left-[8%]"}
-              image={"/Images/Banners/banner (3).webp"}
-            />
-            <Banner
-              className="md:w-[33%] h-[400px]"
-              title={["Top", "Rated."]}
-              btnClasses={
-                "bg-[#3076d2] hover:bg-[#3076d2] text-white px-6 py-2 font-semibold mt-4"
-              }
-              bannerContent={"absolute bottom-[5%] left-[8%]"}
-              image={"/Images/Banners/banner (2).webp"}
-            />
-          </div>
-        </div>
-        <BookList
-          title="Children Books"
-          isMoreInfo={true}
-          breakPoints={{
-            280: { slidesPerView: 1, spaceBetween: 20 },
-            510: { slidesPerView: 2, spaceBetween: 20 },
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 2, spaceBetween: 50 },
-            1280: { slidesPerView: 2, spaceBetween: 50 },
-            1538: { slidesPerView: 3, spaceBetween: 10 },
-          }}
-          content_classes=""
-          className={`flex ${isMatch ? "flex-row" : "flex-col"}`}
-          books={sampleBooks.slice(4, 8)}
-        />
+
         <div className="container mx-auto">
           <Banner
             className="h-[300px] mb-6"

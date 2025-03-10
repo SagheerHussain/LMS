@@ -61,10 +61,6 @@ const BookOverviewDetails = ({ book }) => {
     setValue(newValue);
   };
 
-  useEffect(() => {
-    console.log(book);
-  }, []);
-
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <div className="w-full mt-6">
@@ -141,7 +137,7 @@ const BookOverviewDetails = ({ book }) => {
                       darkMode ? "text-light_text" : "text-dark_text"
                     } capitalize text-sm`}
                   >
-                    100
+                    {book.totalPages}
                   </h3>
                 </div>
               </div>
@@ -161,7 +157,7 @@ const BookOverviewDetails = ({ book }) => {
                       darkMode ? "text-light_text" : "text-dark_text"
                     } capitalize text-sm`}
                   >
-                    Black
+                    {book.binding}
                   </h3>
                 </div>
               </div>
@@ -181,7 +177,7 @@ const BookOverviewDetails = ({ book }) => {
                       darkMode ? "text-light_text" : "text-dark_text"
                     } capitalize text-sm`}
                   >
-                    9780007278770
+                    {book.ISBN}
                   </h3>
                 </div>
               </div>
@@ -201,7 +197,7 @@ const BookOverviewDetails = ({ book }) => {
                       darkMode ? "text-light_text" : "text-dark_text"
                     } capitalize text-sm`}
                   >
-                    {book.category}
+                    {book.category.name}
                   </h3>
                 </div>
               </div>
@@ -221,7 +217,7 @@ const BookOverviewDetails = ({ book }) => {
                   name="read-only"
                   className="mx-2"
                   sx={{ fontSize: ".8rem !important" }}
-                  value={4}
+                  value={2}
                   readOnly
                 />
               </div>
