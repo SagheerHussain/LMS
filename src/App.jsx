@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -10,8 +10,15 @@ import SignUp from "../app/(auth)/SignUp";
 import ResendEmail from "../app/(auth)/ResendEmail";
 import ResetPassword from "../app/(auth)/ResetPassword";
 import Authentication from "./components/Authentication";
+import { getStudentDetails } from "../services/studentService";
+import { useQuery } from "@tanstack/react-query";
+
+
 
 function App() {
+
+  
+
   return (
     <>
       <Routes>
@@ -23,8 +30,8 @@ function App() {
           <Route path="/resend-email" element={<ResendEmail />} />
           <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );

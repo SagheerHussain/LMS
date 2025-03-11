@@ -1,3 +1,4 @@
+import axios from "axios";
 // Get All Borrowed Books
 export const getBorrowedBooks = async () => {
     try {
@@ -44,7 +45,7 @@ export const getBorrowedHistory = async () => {
 }
 
 // Get Borrowed Request by ID
-export const getBorrowedRequestById = async (id) => {
+export const getBorrowedRequestById = async (id, token) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/borrowed/borrowed-requests/${id}`, {
             headers: {
@@ -59,7 +60,7 @@ export const getBorrowedRequestById = async (id) => {
 }
 
 // Get Borrowed Books by User ID
-export const getBorrowedBooksById = async (id) => {
+export const getBorrowedBooksById = async (id, token) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/borrowed/borrowed-books/${id}`, {
             headers: {
@@ -74,7 +75,7 @@ export const getBorrowedBooksById = async (id) => {
 }
 
 // Get Borrowed History by ID
-export const getBorrowedHistoryById = async (id) => {
+export const getBorrowedHistoryById = async (id, token) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/borrowed/borrowed-history/${id}`, {
             headers: {
@@ -89,7 +90,7 @@ export const getBorrowedHistoryById = async (id) => {
 }
 
 // Create Borrowed Request
-export const createBorrowedRequest = async (data) => {
+export const createBorrowedRequest = async (data, token) => {
     try {
         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/borrowed`, data, {
             headers: {

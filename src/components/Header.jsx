@@ -34,6 +34,8 @@ const Header = () => {
   const [isFixed, setIsFixed] = useState(false);
   const [search, setSearch] = useState("");
 
+  const student = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     document.body.style.backgroundColor = darkMode ? "#041C32" : "#d6f1dd";
   }, [darkMode]);
@@ -257,7 +259,7 @@ const Header = () => {
               >
                 <FaUser size={20} />
                 <label htmlFor="" className="ms-2 cursor-pointer text-sm">
-                  Hello, Shayan
+                  {student.name}
                 </label>
               </Link>
 

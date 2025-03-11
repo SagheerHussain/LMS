@@ -11,7 +11,7 @@ import { DarkThemeContext } from "@/context/ThemeContext";
 // Import Services
 import { getCategories } from "../../services/categoryService";
 import { getBooks } from "../../services/bookService";
-import { PacmanLoader, PropagateLoader } from "react-spinners";
+import { ClipLoader, PacmanLoader, PropagateLoader } from "react-spinners";
 
 const BookList = ({
   className = "",
@@ -59,7 +59,7 @@ const BookList = ({
         <div className="container mx-auto">
           {loading && (
             <div className="flex justify-center pt-10">
-              <PacmanLoader color={`${darkMode ? "#e99d31" : "#3d705f"}`} size={20} />
+              <ClipLoader color={`${darkMode ? "#fff" : "#000"}`} size={36} />
             </div>
           )}
           {error && <div className="text-white">Error fetching books</div>}
@@ -101,36 +101,6 @@ const BookList = ({
               </Swiper>
             </>
           ))}
-
-          {/* <h1
-            className={`${
-              darkMode ? "text-zinc-300" : "text-zinc-800"
-            } text-3xl font-semibold mb-6`}
-          >
-            {title}
-          </h1>
-
-          <Swiper
-            spaceBetween={20} // Default spacing
-            autoplay={{ delay: 2500, disableOnInteraction: false }}
-            loop={true}
-            centeredSlides={false}
-            navigation={{ clickable: true }}
-            modules={[Navigation, Autoplay, Pagination]}
-            pagination={{ clickable: true }}
-            breakpoints={breakPoints}
-          >
-            {books?.map((book) => (
-              <SwiperSlide key={book.id || book.title}>
-                <BookCard
-                  book={book}
-                  className={className}
-                  isMoreInfo={isMoreInfo}
-                  content_classes={content_classes}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper> */}
         </div>
       </section>
     </>

@@ -30,6 +30,7 @@ import {
 } from "../../services/bookService";
 import {
   ClimbingBoxLoader,
+  ClipLoader,
   PacmanLoader,
   PropagateLoader,
 } from "react-spinners";
@@ -253,9 +254,9 @@ const FilterBooks = () => {
 
             {loading && (
               <div className="flex justify-center pt-10">
-                <PacmanLoader
-                  color={`${darkMode ? "#e99d31" : "#3d705f"}`}
-                  size={20}
+                <ClipLoader
+                  color={`${darkMode ? "#fff" : "#000"}`}
+                  size={36}
                 />
               </div>
             )}

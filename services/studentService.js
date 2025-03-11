@@ -38,7 +38,7 @@ export const loginAccount = async (data) => {
 // Get Student Details
 export const getStudentDetails = async (id, token) => {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/api/students/student/${id}`,
       {
         method: "GET",
@@ -55,7 +55,7 @@ export const getStudentDetails = async (id, token) => {
 // Get All Students
 export const getAllStudents = async (token) => {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/api/students`
     );
     return response.data;
