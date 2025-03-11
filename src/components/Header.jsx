@@ -32,6 +32,7 @@ const Header = () => {
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     document.body.style.backgroundColor = darkMode ? "#041C32" : "#d6f1dd";
@@ -239,8 +240,7 @@ const Header = () => {
             </div>
             {/* Center - Search Box */}
             <div className="navbar_search_field relative lg:w-[40%] lg:block hidden xl:w-1/2 z-[9999]">
-              <SearchBar />
-              <SearchResults />
+              <SearchBar search={search} setSearch={setSearch} />
             </div>
 
             {/* Right Side - Profile & Logout Icons */}
@@ -289,7 +289,7 @@ const Header = () => {
           </div>
         </nav>
 
-        <NavMenus />
+        <NavMenus search={search} />
       </header>
     </>
   );

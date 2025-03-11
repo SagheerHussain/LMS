@@ -26,8 +26,13 @@ import { getCategories } from "../../services/categoryService";
 import {
   getBooksByAuthors,
   getBooksByCategories,
+  getBooksBySearches,
 } from "../../services/bookService";
-import { ClimbingBoxLoader, PacmanLoader, PropagateLoader } from "react-spinners";
+import {
+  ClimbingBoxLoader,
+  PacmanLoader,
+  PropagateLoader,
+} from "react-spinners";
 import { getAuthors } from "../../services/authorService";
 
 const FilterBooks = () => {
@@ -56,20 +61,30 @@ const FilterBooks = () => {
     const isCategoryExist = categories.some(
       (category) => category.slug === attribute
     );
-    const isAuthorExist = authors.some(
-      (author) => author.slug === attribute
-    );
+    const isAuthorExist = authors.some((author) => author.slug === attribute);
     setIsAttCategory(isCategoryExist);
     setIsAttAuthor(isAuthorExist);
-    const { message } = isCategoryExist
-      ? await getBooksByCategories(attribute)
-      : await getBooksByAuthors(attribute);
 
-    if (message.length > 0) {
-      setFilterData(message);
-      setTotalPages(Math.ceil(message.length / 10));
-      setLength(message.length);
-      setLoading(false);
+    if (isCategoryExist || isAuthorExist) {
+      const { message } = isCategoryExist
+        ? await getBooksByCategories(attribute)
+        : await getBooksByAuthors(attribute);
+
+      if (message.length > 0) {
+        setFilterData(message);
+        setTotalPages(Math.ceil(message.length / 10));
+        setLength(message.length);
+        setLoading(false);
+      }
+    } else {
+      const data = await getBooksBySearches(attribute);
+
+      if (data.length > 0) {
+        setFilterData(data);
+        setTotalPages(Math.ceil(data.length / 10));
+        setLength(data.length);
+        setLoading(false);
+      }
     }
   };
 
@@ -236,9 +251,16 @@ const FilterBooks = () => {
 
             <Divider style={{ backgroundColor: "#ddd" }} className="mb-2" />
 
-            {loading && <div className="flex justify-center pt-10"><PacmanLoader color={`${darkMode ? "#e99d31" : "#3d705f"}`} size={20} /></div>}
+            {loading && (
+              <div className="flex justify-center pt-10">
+                <PacmanLoader
+                  color={`${darkMode ? "#e99d31" : "#3d705f"}`}
+                  size={20}
+                />
+              </div>
+            )}
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-4">
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((book) => <BorrowedBookCard book={book} />)
               ) : (

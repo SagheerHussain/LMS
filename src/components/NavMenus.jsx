@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { getCategories } from "../../services/categoryService";
 import { getAuthors } from "../../services/authorService";
 
-const NavMenus = () => {
+const NavMenus = ({ search }) => {
   // State Variables
   const [categories, setCategories] = useState([]);
   const [authors, setAuthors] = useState([]);
@@ -84,7 +84,9 @@ const NavMenus = () => {
                             ? "text-zinc-300 hover:text-light_theme_primary"
                             : "text-primary hover:hover:text-light_theme_primary"
                         } sm:inline-block hidden`
-                  } ${id === 3 ? "-z-[1]" : ""} nav_menu_link text-base px-6 py-2 font-medium capitalize group relative  transition-all duration-200`}
+                  } ${
+                    id === 3 ? `${search ? "-z-[1]" : "z-[0]"}` : ""
+                  } nav_menu_link text-base px-6 py-2 font-medium capitalize group relative  transition-all duration-200`}
                 >
                   {id === 2 && (
                     <RiMenu2Line

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // Create Student
 export const createStudent = async (data) => {
   try {
@@ -8,6 +10,7 @@ export const createStudent = async (data) => {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error adding student:", error);

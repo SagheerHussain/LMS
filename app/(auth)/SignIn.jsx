@@ -1,28 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthLayout from "./AuthLayout";
 import { Logo } from "@/components/index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import "./auth.css";
+import { loginAccount } from "../../services/studentService";
+import { ClipLoader } from "react-spinners";
 
 const SignIn = () => {
+  // React Form
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const handleSignIn = (data) => {
-    if (!data.email && !data.password) {
+  // State Variables
+  const [loading, setLoading] = useState(false);
+
+  // Navigate 
+  const navigate = useNavigate();
+
+  // Login Form
+  const handleSignIn = async (data) => {
+    setLoading(true);
+    try {
+      const { success, user, token } = await loginAccount(data);
+      if (success) {
+        Swal.fire({
+          title: "Login Successfully",
+          timer: 2000,
+          icon: "success",
+        });
+        setLoading(false);
+        // Stored User in Local Storage
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", JSON.stringify(token));
+        // navigate
+        setTimeout(() => {
+          navigate("/")
+        }, 3000);
+      }
+    } catch (error) {
       Swal.fire({
+        title: "Something went wrong",
         icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-        footer: '<a href="#">Why do I have this issue?</a>',
       });
+      console.log(error);
     }
-    console.log("Form Data:", data);
   };
 
   return (
@@ -80,7 +106,7 @@ const SignIn = () => {
               </p>
             )}
             <button className="w-full bg-light_theme_primary text-white py-2 rounded mt-4">
-              Login
+              {loading ? <ClipLoader color="#fff" /> : "Login Account"}
             </button>
 
             <p className="mt-4 text-light_text">
