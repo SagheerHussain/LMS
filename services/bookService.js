@@ -30,6 +30,7 @@ export const getBooksBySearches = async (search) => {
     const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/api/books/search?keyword=${search}`
     );
+    console.log("search books", response)
     return response.data;
   } catch (error) {
     console.error("Error fetching books:", error);
@@ -42,6 +43,7 @@ export const getBooksByCategories = async (category) => {
     const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/api/books/category/${category}`
     );
+    console.log("category books", response)
     return response.data;
   } catch (error) {
     console.error("Error fetching books:", error);
@@ -54,6 +56,7 @@ export const getBooksByAuthors = async (author) => {
     const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/api/books/author/${author}`
     );
+    console.log("authors books", response)
     return response.data;
   } catch (error) {
     console.error("Error fetching books:", error);

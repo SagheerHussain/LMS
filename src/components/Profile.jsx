@@ -20,10 +20,10 @@ const Profile = ({ student, loading, error }) => {
                   darkMode ? "bg-secondary" : "bg-light_theme_hover_mode"
                 }  p-10 rounded-[25px] w-full lg:w-[49%] h-full`}
               >
-                <div className="profile_pic sm:flex">
+                <div className="profile_pic sm:flex ">
                   <img
                     src={student.profilePicture}
-                    className="w-full rounded-full max-w-[150px]"
+                    className="rounded-full object-center object-cover w-[200px] h-[200px]"
                     alt=""
                   />
                   <div className="profile_name sm:mt-0 mt-4 sm:ms-4">

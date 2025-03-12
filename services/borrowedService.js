@@ -55,7 +55,6 @@ export const getBorrowedRequestById = async (id, token) => {
         return response.data;
     } catch (error) {
         console.error("Error fetching borrowed request by ID:", error);
-        alert("Failed to fetch borrowed request by ID");
     }
 }
 
@@ -70,7 +69,6 @@ export const getBorrowedBooksById = async (id, token) => {
         return response.data;
     } catch (error) {
         console.error("Error fetching borrowed requests by user ID:", error);
-        alert("Failed to fetch borrowed requests by user ID");
     }
 }
 

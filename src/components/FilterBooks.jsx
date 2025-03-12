@@ -19,7 +19,7 @@ import { Link, useParams } from "react-router-dom";
 import { IoFilterSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { sampleBooks } from "@/constants/data";
-import { BorrowedBookCard } from "./index";
+import { BorrowedBookCard, FilterBookCard } from "./index";
 import FilterData from "./FilterData";
 import { DarkThemeContext } from "@/context/ThemeContext";
 import { getCategories } from "../../services/categoryService";
@@ -29,10 +29,7 @@ import {
   getBooksBySearches,
 } from "../../services/bookService";
 import {
-  ClimbingBoxLoader,
   ClipLoader,
-  PacmanLoader,
-  PropagateLoader,
 } from "react-spinners";
 import { getAuthors } from "../../services/authorService";
 
@@ -62,6 +59,7 @@ const FilterBooks = () => {
     const isCategoryExist = categories.some(
       (category) => category.slug === attribute
     );
+  
     const isAuthorExist = authors.some((author) => author.slug === attribute);
     setIsAttCategory(isCategoryExist);
     setIsAttAuthor(isAuthorExist);
@@ -71,6 +69,8 @@ const FilterBooks = () => {
         ? await getBooksByCategories(attribute)
         : await getBooksByAuthors(attribute);
 
+      console.log("message", message)
+
       if (message.length > 0) {
         setFilterData(message);
         setTotalPages(Math.ceil(message.length / 10));
@@ -79,6 +79,8 @@ const FilterBooks = () => {
       }
     } else {
       const data = await getBooksBySearches(attribute);
+
+      console.log("dara", data)
 
       if (data.length > 0) {
         setFilterData(data);
@@ -151,12 +153,6 @@ const FilterBooks = () => {
     setFilteredProducts(filtered);
   };
 
-  // Discount Percentage
-  const calculateDiscountedPrice = (originalPrice, discount) => {
-    const discountedPrice = originalPrice - originalPrice * (discount / 100);
-    return discountedPrice;
-  };
-
   // Handle Pagination
   const handlePageChange = (e, value) => {
     setPage(value);
@@ -167,12 +163,11 @@ const FilterBooks = () => {
     setOpen(newOpen);
   };
 
-  console.log("filteredProducts", filteredProducts);
-
   return (
     <>
       <div className="mx-auto container py-5">
         <div className="flex justify-between">
+
           <div className="lg:w-[25%] lg:block hidden">
             <h5 className="mb-4 font-bold flex items-center text-light_text">
               Filters <IoFilterSharp className="ms-2" />
@@ -263,7 +258,7 @@ const FilterBooks = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-4">
               {filteredProducts.length > 0 ? (
-                filteredProducts.map((book) => <BorrowedBookCard book={book} />)
+                filteredProducts.map((book) => <FilterBookCard book={book} />)
               ) : (
                 <p className="text-center">Sorry No Products Found</p>
               )}
@@ -284,6 +279,7 @@ const FilterBooks = () => {
               </div>
             )} */}
           </div>
+
         </div>
       </div>
     </>

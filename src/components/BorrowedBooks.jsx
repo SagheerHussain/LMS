@@ -3,7 +3,12 @@ import { DarkThemeContext } from "@/context/ThemeContext";
 import { sampleBooks } from "../constants/data";
 
 import { BorrowedBookCard } from "./index";
-import { getBorrowedBooksById, getBorrowedRequestById } from "../../services/borrowedService";
+import {
+  getBorrowedBooksById,
+  getBorrowedHistoryById,
+  getBorrowedRequestById,
+} from "../../services/borrowedService";
+import { ClipLoader } from "react-spinners";
 
 const BorrowedBooks = () => {
   // Context
@@ -11,6 +16,7 @@ const BorrowedBooks = () => {
 
   // State Variables
   const [borrowedBooks, setBorrowedBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Token
   const token = JSON.parse(localStorage.getItem("token"));
@@ -18,18 +24,27 @@ const BorrowedBooks = () => {
 
   // Fetching Borrow Records
   const fetchingData = async (e) => {
+    setLoading(true);
     try {
-       const data = e === "borrow-books" ? await getBorrowedBooksById(user._id, token) : e === "borrow-request" ? await getBorrowedRequestById(user._id, token) : await getBorrowedHistoryById(user._id, token)
-       setBorrowedBooks(data)
+      const { data, message } =
+        e === "borrow-books"
+          ? await getBorrowedBooksById(user._id, token)
+          : e === "borrow-request"
+          ? await getBorrowedRequestById(user._id, token)
+          : await getBorrowedHistoryById(user._id, token);
+      setBorrowedBooks(data);
+      setLoading(false);
+      console.log(data)
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     fetchingData("borrow-books");
-  }, [])
- 
+  }, []);
+
   return (
     <>
       <div className="flex items-center justify-between mb-6">
@@ -40,17 +55,68 @@ const BorrowedBooks = () => {
         >
           Borrowed Books
         </h4>
-        <select name="" onChange={(e) => fetchingData(e.target.value)} id="" className="cursor-pointer focus:outline-none bg-transparent text-light_text border-2 border-[#ffffff23] px-4 py-3">
-          <option value="borrow-books" className="bg-primary">Borrowed Books</option>
-          <option value="borrow-request" className="bg-primary">Borrowed Request</option>
-          <option value="borrow-history" className="bg-primary">Borrowed History</option>
+        <select
+          name=""
+          onChange={(e) => fetchingData(e.target.value)}
+          id=""
+          className={`cursor-pointer focus:outline-none bg-transparent ${
+            darkMode
+              ? "text-light_text border-[#ffffff23]"
+              : "text-primary border-[#0a0a0a46]"
+          } border-2  px-2 py-3`}
+        >
+          <option
+            value="borrow-books"
+            className={`${
+              darkMode ? "bg-primary" : "bg-light_theme_light_mode"
+            }`}
+          >
+            Borrowed Books
+          </option>
+          <option
+            value="borrow-request"
+            className={`${
+              darkMode ? "bg-primary" : "bg-light_theme_light_mode"
+            }`}
+          >
+            Borrowed Request
+          </option>
+          <option
+            value="borrow-history"
+            className={`${
+              darkMode ? "bg-primary" : "bg-light_theme_light_mode"
+            }`}
+          >
+            Borrowed History
+          </option>
         </select>
       </div>
-      <div className="borrowed_books grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {sampleBooks.slice(0, 4)?.map((book) => {
-          return <BorrowedBookCard book={book} />;
-        })}
-      </div>
+
+      {loading && <div className="text-center"> <ClipLoader size={32} color={`${darkMode ? "#fff" : "#000"}`} /> </div>}
+
+      {borrowedBooks.length > 0 && !loading ? (
+        <div className="borrowed_books grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {borrowedBooks?.map((book) => {
+            return (
+              <BorrowedBookCard
+                book={book.book}
+                borrowedDate={book.borrowedDate}
+                dueDate={book.dueDate}
+                status={book.status}
+                requestDate={book.requestDate}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        !loading && <p
+          className={`${
+            darkMode ? "text-light_text" : "text-dark_text"
+          } text-sm text-center`}
+        >
+          No Records Found.
+        </p>
+      )}
     </>
   );
 };
