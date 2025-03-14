@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"; // For navigation
 import Swal from "sweetalert2";
 import GridTable from "../GridTable";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { getAuthors } from "../../../../services/authorService";
+import { deleteAuthor, getAuthors } from "../../../../services/authorService";
 
 const ViewAuthor = () => {
   const [rows, setRows] = useState([]);
@@ -28,11 +28,33 @@ const ViewAuthor = () => {
 
   // Handle Single Edit
   const handleEdit = () => {
+    navigate(`/dashboard/edit-author/${selectedId}`);
     handleMenuClose();
   };
 
   // Handle Single Delete
-  const handleDelete = async () => {};
+  const handleDelete = async () => {
+    handleMenuClose();
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to delete this author? This action cannot be undone.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteAuthor(selectedId);
+        Swal.fire("Deleted!", "The author has been deleted.", "success");
+        setRows(rows.filter((row) => row.id !== selectedId));
+      } catch (error) {
+        console.error("Error deleting author:", error);
+      }
+    }
+  };
 
   // Handle Bulk Delete
   const handleBulkDelete = async () => {};

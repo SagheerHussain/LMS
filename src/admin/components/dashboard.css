@@ -26,8 +26,8 @@
     color: rgb(255 255 255 / 87%) !important;
     border-radius: 0px !important;
 }
-.css-1tktgsa-MuiPaper-root-MuiPopover-paper-MuiMenu-paper:hover {
-    background-color: #111111 !important;
+.MuiMenuItem-gutters:hover {
+    background-color: #052644 !important;
 }
 .MuiDataGrid-columnHeaderTitle,
 .MuiDataGrid-cell--textLeft {

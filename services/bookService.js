@@ -73,6 +73,7 @@ export const createBook = async (data) => {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
+    console.log("created book", response)
     return response.data;
   } catch (error) {
     console.error("Error creating book:", error);

@@ -5,7 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Swal from "sweetalert2";
 // import { MoreVert } from '@mui/icons-material';
 import GridTable from "../GridTable";
-import { getBooks } from "../../../../services/bookService";
+import { deleteBook, getBooks } from "../../../../services/bookService";
 
 const ViewBooks = () => {
   const [rows, setRows] = useState([]);
@@ -111,10 +111,32 @@ const ViewBooks = () => {
   // Handle Single Edit
   const handleEdit = () => {
     handleMenuClose();
+    navigate(`/dashboard/edit-book/${selectedId}`);
   };
 
   // Handle Single Delete
-  const handleDelete = async () => {};
+  const handleDelete = async () => {
+    handleMenuClose();
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to delete this book? This action cannot be undone.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteBook(selectedId);
+        Swal.fire("Deleted!", "The book has been deleted.", "success");
+        setRows(rows.filter((row) => row.id !== selectedId));
+      } catch (error) {
+        console.error("Error deleting book:", error);
+      }
+    }
+  };
 
   // Handle Bulk Delete
   const handleBulkDelete = async () => {};

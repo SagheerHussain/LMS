@@ -52,8 +52,33 @@ export const getStudentDetails = async (id, token) => {
   }
 };
 
+export const getAccountRequests = async () => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/api/students/account-requests`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching account requests:", error);
+    alert("Failed to fetch account requests");
+  }
+}
+
+export const updateAccountRequestStatus = async (id, data) => {
+  try {
+    const response = await axios.put(
+      `${import.meta.env.VITE_BASE_URL}/api/students/update-status/${id}`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating account request status:", error);
+    alert("Failed to update account request status");
+  }
+}
+
 // Get All Students
-export const getAllStudents = async (token) => {
+export const getStudents = async () => {
   try {
     const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/api/students`
@@ -68,7 +93,7 @@ export const getAllStudents = async (token) => {
 // Update Student Details
 export const updateStudentDetails = async (id, data) => {
   try {
-    const response = await axios.post(
+    const response = await axios.put(
       `${import.meta.env.VITE_BASE_URL}/api/students/update/${id}`,
       data,
       {
@@ -78,7 +103,6 @@ export const updateStudentDetails = async (id, data) => {
     return response.data;
   } catch (error) {
     console.error("Error updating student:", error);
-    alert("Failed to update student");
   }
 };
 

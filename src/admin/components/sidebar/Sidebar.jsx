@@ -249,7 +249,7 @@ const Sidebar = () => {
               </div>
             </div>
 
-            {/* Borrowed Requests */}
+            {/* Account Requests */}
             <ListItem
               disablePadding
               className="my-[.75rem] border-1 border-transparent border-b-[#ffffff24]"
@@ -259,7 +259,7 @@ const Sidebar = () => {
                   <ListItemIcon className="-mr-4">
                     <MdOutlineVerifiedUser className="text-light_text text-xl" />
                   </ListItemIcon>
-                  <Link className="text-light_text" to={`/dashboard`}>
+                  <Link className="text-light_text" to={`/dashboard/account-requests`}>
                     Account Requests
                   </Link>
                 </ListItemButton>
@@ -276,7 +276,7 @@ const Sidebar = () => {
                   <ListItemIcon className="-mr-4">
                     <IoBookOutline className="text-light_text text-xl" />
                   </ListItemIcon>
-                  <Link className="text-light_text" to={`/dashboard`}>
+                  <Link className="text-light_text" to={`/dashboard/borrowed-requests`}>
                     Borrowed Requests
                   </Link>
                 </ListItemButton>

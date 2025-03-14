@@ -1,6 +1,6 @@
 import axios from "axios";
 // Get All Borrowed Books
-export const getBorrowedBooks = async () => {
+export const getBorrowedBooks = async (token) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/borrowed/borrowed-books`, {
             headers: {
@@ -10,12 +10,11 @@ export const getBorrowedBooks = async () => {
         return response.data;
     } catch (error) {
         console.error("Error fetching borrowed books:", error);
-        alert("Failed to fetch borrowed books");
     }
 }
 
 // Get All Borrowed Request
-export const getBorrowedRequests = async () => {
+export const getBorrowedRequests = async (token) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/borrowed/borrowed-requests`, {
             headers: {
@@ -25,12 +24,11 @@ export const getBorrowedRequests = async () => {
         return response.data;
     } catch (error) {
         console.error("Error fetching borrowed requests:", error);
-        alert("Failed to fetch borrowed requests");
     }
 }
 
 // Get Borrowed History
-export const getBorrowedHistory = async () => {
+export const getBorrowedHistory = async (token) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/borrowed/borrowed-history`, {
             headers: {
@@ -40,7 +38,6 @@ export const getBorrowedHistory = async () => {
         return response.data;
     } catch (error) {
         console.error("Error fetching borrowed history:", error);
-        alert("Failed to fetch borrowed history");
     }
 }
 
@@ -83,7 +80,6 @@ export const getBorrowedHistoryById = async (id, token) => {
         return response.data;
     } catch (error) {
         console.error("Error fetching borrowed history by ID:", error);
-        alert("Failed to fetch borrowed history by ID");
     }
 }
 
@@ -99,22 +95,19 @@ export const createBorrowedRequest = async (data, token) => {
         return response.data;
     } catch (error) {
         console.error("Error creating borrowed request:", error);
-        alert("Failed to create borrowed request");
     }
 }
 
 // Update Borrowed Request
-export const updateBorrowedRequestStatus = async (id, data) => {
+export const updateBorrowedRequestStatus = async (id, data, token) => {
     try {
         const response = await axios.put(`${import.meta.env.VITE_BASE_URL}/api/borrowed/update/${id}`, data, {
             headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json"
+                "Authorization": `Bearer ${token}`
             }
         });
         return response.data;
     } catch (error) {
         console.error("Error updating borrowed request:", error);
-        alert("Failed to update borrowed request");
     }
 }

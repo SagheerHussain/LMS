@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "../dashboard.css";
 
 const Navbar = () => {
-  const [token, setToken] = useState("");
-  const [user, setUser] = useState(null);
+  // Storage
+  const user = JSON.parse(localStorage.getItem("user"));
 
   // Navigate
   const navigate = useNavigate();
@@ -20,6 +20,12 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    // Redirect to login page
+    window.location.href = "/signin";
+  }
 
   return (
     <>
@@ -42,10 +48,10 @@ const Navbar = () => {
               >
                 <div className="profile_menu_icon w-[30px] h-[30px] bg-[#fff] rounded-full flex items-center justify-center me-2">
                   <span className="text-sky-500 font-semibold text-lg">
-                    M
+                    {user?.name[0]}
                   </span>
                 </div>
-                <span className="text-white">{user?.username}</span>
+                <span className="text-white">{user?.name}</span>
               </Button>
               <Menu
                 id="basic-menu"
@@ -57,7 +63,7 @@ const Navbar = () => {
                 }}
                 className="navbar-dropdown-menu"
               >
-                <MenuItem className="w-full">Logout</MenuItem>
+                <MenuItem className="w-full" onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
         </div>

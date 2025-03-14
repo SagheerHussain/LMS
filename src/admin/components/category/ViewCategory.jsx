@@ -5,7 +5,7 @@ import { IconButton, Menu, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; // For navigation
 import Swal from 'sweetalert2';
 import GridTable from '../GridTable';
-import { getCategories } from '../../../../services/categoryService';
+import { deleteCategory, getCategories } from '../../../../services/categoryService';
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 const ViewCategory = () => {
@@ -28,13 +28,32 @@ const ViewCategory = () => {
 
     // Handle Single Edit
     const handleEdit = () => {
-       
+        navigate(`/dashboard/edit-category/${selectedId}`);
         handleMenuClose();
     };
 
     // Handle Single Delete
     const handleDelete = async () => {
-        
+        handleMenuClose();
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "Do you really want to delete this category? This action cannot be undone.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await deleteCategory(selectedId);
+                Swal.fire("Deleted!", "The category has been deleted.", "success");
+                setRows(rows.filter(row => row.id !== selectedId));
+            } catch (error) {
+                console.error("Error deleting category:", error);
+            }
+        }
     };
 
     // Handle Bulk Delete
