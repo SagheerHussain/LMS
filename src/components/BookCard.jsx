@@ -4,7 +4,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import { IoMdHeartEmpty } from "react-icons/io";
-import { createBorrowedRequest, getBorrowedBooks, getBorrowedRequests } from "../../services/borrowedService";
+import {
+  createBorrowedRequest,
+  getBorrowedBooks,
+  getBorrowedBooksById,
+  getBorrowedRequestById,
+  getBorrowedRequests,
+} from "../../services/borrowedService";
 import Swal from "sweetalert2";
 
 const BookCard = ({
@@ -80,18 +86,18 @@ const BookCard = ({
   // Get All Borrow Books
   const getBorrowBooks = async () => {
     try {
-      const borrowBooks = await getBorrowedBooks(token);
-      const borowRequest = await getBorrowedRequests(token);
-      setBorrowBooks(borrowBooks);
-      setBorrowRequest(borowRequest);
+      const borrowBooks = await getBorrowedBooksById(user._id, token);
+      const borrowRequest = await getBorrowedRequestById(user._id, token);
+      setBorrowBooks(borrowBooks.data);
+      setBorrowRequest(borrowRequest.data);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     getBorrowBooks();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -163,19 +169,24 @@ const BookCard = ({
             )}
           </Link>
           <div className={`flex items-center ${smDevice && "justify-center"}`}>
-            {
-              borrowBooks?.some((b) => b.book._id === book._id) || borrowRequest?.some((b) => b.book._id === book._id) ? <button
-              className={`text-dark_text rounded-[25px] bg-yellow_color transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
-            >
-              Already Borrow
-            </button> : <button
-              onClick={() => handleBorrowedRequest(_id)}
-              className={`primary-button transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
-            >
-              Borrowing Now
-            </button>
-            }
-            
+            {(borrowBooks &&
+              borrowRequest &&
+              borrowBooks?.some((b) => b.book._id === book._id)) ||
+            borrowRequest?.some((b) => b.book._id === book._id) ? (
+              <button
+                className={`text-dark_text rounded-[25px] bg-yellow_color transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
+              >
+                Already Borrow
+              </button>
+            ) : (
+              <button
+                onClick={() => handleBorrowedRequest(_id)}
+                className={`primary-button transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
+              >
+                Borrowing Now
+              </button>
+            )}
+
             <IoMdHeartEmpty
               size={24}
               className={`${
