@@ -3,7 +3,7 @@ import { IoSearch, IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 import { FaRegUser, FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
-import { MdCall, MdEmail } from "react-icons/md";
+import { MdCall, MdDashboard, MdEmail } from "react-icons/md";
 import { Logo, NavMenus, SearchBar, SearchResults } from "../components/index";
 import { DarkThemeContext } from "@/context/ThemeContext";
 import { Link } from "react-router-dom";
@@ -144,6 +144,16 @@ const Header = () => {
               </>
             )}
           </div>
+          <Link
+            to={`/dashboard`}
+            className={`${
+              darkMode
+                ? "hover:bg-hover_color text-light_text"
+                : "hover:bg-light_theme_hover_mode text-light_text hover:text-primary"
+            } px-3 py-3 rounded-full flex items-center`}
+          >
+            Dashboard <MdDashboard className="ms-3" size={24} color="#fff" />
+          </Link>
         </div>
       </List>
     </Box>
@@ -279,6 +289,16 @@ const Header = () => {
                   <IoMoonOutline size={24} onClick={() => setDarkMode(true)} />
                 )}
               </div>
+              <Link
+                to={`/dashboard`}
+                className={`${
+                  darkMode
+                    ? "hover:bg-hover_color text-light_text"
+                    : "hover:bg-light_theme_hover_mode text-light_text hover:text-primary"
+                } px-3 py-3 rounded-full`}
+              >
+                <MdDashboard className="ms-0" size={24} color="#fff" />
+              </Link>
             </div>
 
             {/* Hamburger Icon for Mobile */}

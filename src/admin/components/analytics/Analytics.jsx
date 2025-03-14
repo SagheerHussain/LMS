@@ -12,7 +12,7 @@ const Analytics = () => {
       <section id="analytics" className="h-[88vh]">
         <div className="container-fluid p-10">
           {/* <BreadCrumb page={"Dashboard"} color='text-white' category={""} /> */}
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
             <AnalyticsCard number={150} title="Total Books" icon={<FaBook color={"#fa0032"} size={48} />} />
             <AnalyticsCard number={63} title="Total Students" icon={<PiStudentBold color={"#ffa828"} size={48} />} />
             <AnalyticsCard number={22} title="Account Requests" icon={<RiMapPinUserFill color={"#2c8a6b"} size={48} />} />
