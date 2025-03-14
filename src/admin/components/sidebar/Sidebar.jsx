@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../../../components/Logo";
+import logoSrc from "/Images/logo.webp";
 import {
   Collapse,
   List,
@@ -47,7 +47,9 @@ const Sidebar = () => {
     <>
       <aside id="sidebar" className="sidebar bg-primary h-full py-10">
         <div className="sidbar_logo flex justify-center mb-4">
-          <Logo />
+          <Link to="/dashboard">
+            <img src={logoSrc} className={`max-w-[200px]`} alt="" />
+          </Link>
         </div>
         <div className="sidebar_menus">
           <List>
@@ -204,7 +206,7 @@ const Sidebar = () => {
             </div>
 
             {/* Authors */}
-            <div className="text-light_text border-1 border-transparent border-b-[#ffffff24] mb-[.75rem]"> 
+            <div className="text-light_text border-1 border-transparent border-b-[#ffffff24] mb-[.75rem]">
               <div className="px-[.75rem]">
                 <ListItemButton
                   onClick={handleAuthors}
@@ -259,7 +261,10 @@ const Sidebar = () => {
                   <ListItemIcon className="-mr-4">
                     <MdOutlineVerifiedUser className="text-light_text text-xl" />
                   </ListItemIcon>
-                  <Link className="text-light_text" to={`/dashboard/account-requests`}>
+                  <Link
+                    className="text-light_text"
+                    to={`/dashboard/account-requests`}
+                  >
                     Account Requests
                   </Link>
                 </ListItemButton>
@@ -276,13 +281,15 @@ const Sidebar = () => {
                   <ListItemIcon className="-mr-4">
                     <IoBookOutline className="text-light_text text-xl" />
                   </ListItemIcon>
-                  <Link className="text-light_text" to={`/dashboard/borrowed-requests`}>
+                  <Link
+                    className="text-light_text"
+                    to={`/dashboard/borrowed-requests`}
+                  >
                     Borrowed Requests
                   </Link>
                 </ListItemButton>
               </div>
             </ListItem>
-
           </List>
         </div>
       </aside>

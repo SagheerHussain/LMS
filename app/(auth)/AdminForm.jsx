@@ -41,16 +41,14 @@ const AdminForm = () => {
           icon: "success",
         });
         setLoading(false);
-        // Stored User in Local Storage
-        localStorage.setItem("admin", JSON.stringify(admin));
-        localStorage.setItem("token", JSON.stringify(token));
         // navigate
         setTimeout(() => {
-          navigate("/")
-        }, 3000);
+          navigate("/signin")
+        }, 1000);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 

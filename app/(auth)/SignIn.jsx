@@ -19,7 +19,7 @@ const SignIn = () => {
   // State Variables
   const [loading, setLoading] = useState(false);
 
-  // Navigate 
+  // Navigate
   const navigate = useNavigate();
 
   // Login Form
@@ -37,10 +37,15 @@ const SignIn = () => {
         // Stored User in Local Storage
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", JSON.stringify(token));
-        // navigate
+
         setTimeout(() => {
-          navigate("/")
-        }, 3000);
+          const user = JSON.parse(localStorage.getItem("user"));
+          if (user.role === "Admin") {
+            navigate("/dashboard");
+          } else {
+            navigate("/");
+          }
+        }, 1500);
       }
     } catch (error) {
       Swal.fire({
@@ -48,6 +53,7 @@ const SignIn = () => {
         icon: "error",
       });
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -55,7 +61,7 @@ const SignIn = () => {
     <>
       <AuthLayout>
         <div
-          className="auth_form p-10 flex flex-col items-center justify-center min-h-screen"
+          className="auth_form p-10 flex flex-col items-center justify-center min-h-full"
           style={{ backgroundColor: "#12141d" }}
         >
           <Logo />

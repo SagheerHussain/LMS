@@ -5,14 +5,23 @@ import BorrowedBooks from "./BorrowedBooks";
 import { GoUnverified } from "react-icons/go";
 import { ClipLoader } from "react-spinners";
 
-const Profile = ({ student, loading, error }) => {
+const Profile = ({ student, loading, error,  }) => {
   const { darkMode } = useContext(DarkThemeContext);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/signin";
+  }
 
   return (
     <>
-      {loading && <div className="flex items-center justify-center"><ClipLoader color={"#fff"} /></div>}
-      {student && (
-        <section id="profile" className="py-20">
+      {loading && (
+        <div className="flex items-center justify-center">
+          <ClipLoader size={40} color={"#fff"} />
+        </div>
+      )}
+      <section id="profile" className="py-20 min-h-screen">
+        {student && (
           <div className="container mx-auto">
             <div className="lg:flex justify-between">
               <div
@@ -22,7 +31,7 @@ const Profile = ({ student, loading, error }) => {
               >
                 <div className="profile_pic sm:flex ">
                   <img
-                    src={student.profilePicture}
+                    src={student?.profilePicture}
                     className="rounded-full object-center object-cover w-[200px] h-[200px]"
                     alt=""
                   />
@@ -32,7 +41,7 @@ const Profile = ({ student, loading, error }) => {
                         darkMode ? "text-light_text" : "text-dark_text"
                       } flex items-center`}
                     >
-                      {student.isVerified ? (
+                      {student?.isVerified ? (
                         <>
                           <MdVerified className="text-sky-700 me-1" />
                           Verified Student
@@ -49,14 +58,14 @@ const Profile = ({ student, loading, error }) => {
                         darkMode ? "text-light_text" : "text-dark_text"
                       } text-2xl font-bold py-3`}
                     >
-                      {student.name}
+                      {student?.name}
                     </h2>
                     <p
                       className={`${
                         darkMode ? "text-light_text" : "text-dark_text"
                       } `}
                     >
-                      {student.email}
+                      {student?.email}
                     </p>
                   </div>
                 </div>
@@ -73,7 +82,7 @@ const Profile = ({ student, loading, error }) => {
                       darkMode ? "text-light_text" : "text-dark_text"
                     }  text-2xl font-semibold`}
                   >
-                    {student.universityName}
+                    {student?.universityName}
                   </h5>
                 </div>
                 <div className="profile_uni py-4">
@@ -87,9 +96,12 @@ const Profile = ({ student, loading, error }) => {
                   <div className="profile_uni_card pt-4">
                     <img
                       className="w-full"
-                      src={student.universityIdCardImage}
+                      src={student?.universityIdCardImage}
                       alt=""
                     />
+                  </div>
+                  <div className="logout">
+                    <button onClick={handleLogout} className="bg-primary mt-6 hover:bg-hover_color text-light_text px-3 py-2">logout Account</button>
                   </div>
                 </div>
               </div>
@@ -98,8 +110,8 @@ const Profile = ({ student, loading, error }) => {
               </div>
             </div>
           </div>
-        </section>
-      )}
+        )}
+      </section>
     </>
   );
 };

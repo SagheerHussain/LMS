@@ -34,9 +34,9 @@ const Navbar = () => {
         className="bg-primary lg:w-[75vw] xl:w-[80vw] 2xl:w-[85vw] lg:h-[10vh] xl:h-[7vh] flex items-center px-4"
       >
           <div className="navbar_content flex justify-between w-[100%] items-center">
-            <div className="navbar_menu ">
+            {/* <div className="navbar_menu ">
               <IoMenu className="text-3xl text-[#fff]" />
-            </div>
+            </div> */}
 
             <div className="navbar_logout">
               <Button
