@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import { IoMdHeartEmpty } from "react-icons/io";
-import { createBorrowedRequest } from "../../services/borrowedService";
+import { createBorrowedRequest, getBorrowedBooks, getBorrowedRequests } from "../../services/borrowedService";
 import Swal from "sweetalert2";
 
 const BookCard = ({
@@ -27,6 +27,8 @@ const BookCard = ({
 
   // State Variables
   const [year, setYear] = useState(null);
+  const [borrowBooks, setBorrowBooks] = useState([]);
+  const [borrowRequest, setBorrowRequest] = useState([]);
 
   // Book Data
   const {
@@ -61,6 +63,7 @@ const BookCard = ({
             icon: "success",
           });
           console.log(data);
+          getBorrowBooks();
         }
       } else {
         Swal.fire({
@@ -73,6 +76,22 @@ const BookCard = ({
       console.log(error);
     }
   };
+
+  // Get All Borrow Books
+  const getBorrowBooks = async () => {
+    try {
+      const borrowBooks = await getBorrowedBooks(token);
+      const borowRequest = await getBorrowedRequests(token);
+      setBorrowBooks(borrowBooks);
+      setBorrowRequest(borowRequest);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getBorrowBooks();
+  }, [])
 
   return (
     <>
@@ -144,12 +163,19 @@ const BookCard = ({
             )}
           </Link>
           <div className={`flex items-center ${smDevice && "justify-center"}`}>
-            <button
+            {
+              borrowBooks?.some((b) => b.book._id === book._id) || borrowRequest?.some((b) => b.book._id === book._id) ? <button
+              className={`text-dark_text rounded-[25px] bg-yellow_color transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
+            >
+              Already Borrow
+            </button> : <button
               onClick={() => handleBorrowedRequest(_id)}
               className={`primary-button transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
             >
               Borrowing Now
             </button>
+            }
+            
             <IoMdHeartEmpty
               size={24}
               className={`${
