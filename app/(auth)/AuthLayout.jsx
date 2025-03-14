@@ -7,7 +7,7 @@ const AuthLayout = ({ children }) => {
     <>
       <div
         className="auth_layout grid grid-cols-2 justify-between items-center"
-        style={{ backgroundColor: "#070a13", maxHeight: "100vh" }}
+        style={{ backgroundColor: "#070a13", minHeight: "100vh" }}
       >
         {/* Left: Auth Form */}
         <div className="auth_children p-8" style={{ margin: "0 auto" }}>
@@ -20,7 +20,7 @@ const AuthLayout = ({ children }) => {
             src={authImage}
             alt="Auth Illustration"
             className="w-full"
-            style={{ maxHeight: "100vh" }}
+            style={{ height: "100vh" }}
           />
         </div>
       </div>

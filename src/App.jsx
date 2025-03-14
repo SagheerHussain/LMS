@@ -27,6 +27,7 @@ import {
   EditCategory,
   EditStudent,
 } from "./admin/components/index";
+import AdminForm from "../app/(auth)/AdminForm";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         {/* Auth Routes */}
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/admin" element={<AdminForm />} />
         {/* Admin Routes */}
         <Route path="/dashboard" element={<AnalyticsPage />} />
         <Route path="/dashboard/add-book" element={<AddBook />} />

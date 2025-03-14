@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const createAdminAccount = async (data) => {
     try {
         const response = await axios.post(
@@ -10,6 +12,5 @@ export const createAdminAccount = async (data) => {
         return response.data;
     } catch (error) {
         console.error("Error creating admin account:", error);
-        alert("Failed to create admin account");
     }
 }
