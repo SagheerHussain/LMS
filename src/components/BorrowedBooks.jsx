@@ -36,8 +36,7 @@ const BorrowedBooks = () => {
   // React Query Hook
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["borrowed-books", selectedType, user._id],
-    queryFn: fetchBooks,
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    queryFn: fetchBooks
   });
 
   return (
