@@ -19,7 +19,7 @@ const ResetPassword = () => {
   const resetPasswordVerification = async (data) => {
     setLoading(true);
     try {
-      const { success, message } = await resetPassword(data.password);
+      const { success, message } = await resetPassword(data);
       if (success) {
         Swal.fire({
           title: message,

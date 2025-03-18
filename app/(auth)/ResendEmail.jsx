@@ -19,7 +19,7 @@ const ResendEmail = () => {
   const resendEmailVerification = async (data) => {
     setLoading(true);
     try {
-      const { success, message } = await resendEmail(data.email);
+      const { success, message } = await resendEmail(data);
       if (success) {
         Swal.fire({
           title: message,

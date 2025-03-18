@@ -1,10 +1,8 @@
 import axios from "axios";
 
-export const resendEmail = async (email) => {
+export const resendEmail = async (data) => {
  try {
-  const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/forget-password`, {
-    email: email
-  });
+  const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/forget-password`, data);
   return response.data;
  } catch (error) {
    console.error("Error resending verification email:", error);
@@ -12,11 +10,9 @@ export const resendEmail = async (email) => {
  } 
 }
 
-export const resetPassword = async (token, password) => {
+export const resetPassword = async (token, data) => {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/reset-password/${token}`, {
-      password: password
-    });
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/reset-password/${token}`, data);
     return response.data;
   } catch (error) {
     console.error("Error resetting password:", error);
