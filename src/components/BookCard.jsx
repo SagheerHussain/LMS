@@ -73,9 +73,9 @@ const BookCard = ({
         }
       } else {
         Swal.fire({
-          title: "Your account is not verified",
-          html: "Your account will be verified by the admin. <br>For inquiries, contact: <b>03313908443</b>",
-          icon: "error",
+          title: "Your account is awaiting approval",
+          html: "We appreciate your interest Our team is currently reviewing your account details. Once verified by the admin, you'll be able to borrow books. <br /> <b>You can check your account status in your profile</b>",
+          icon: "info",
           confirmButtonText: "OK",
         });
       }
