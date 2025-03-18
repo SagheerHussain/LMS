@@ -51,22 +51,6 @@ const HomePage = () => {
           content_classes=""
           className={`flex ${isMatch ? "flex-row" : "flex-col"}`}
         />
-
-        <div className="container mx-auto">
-          <Banner
-            className="h-[300px] mb-6"
-            title={["20% Off Select Books"]}
-            btnClasses={
-              "bg-[#111] hover:bg-[#111] text-white px-6 py-2 font-semibold mt-4"
-            }
-            btnTitle="Shop Now"
-            isBannerSideTitle={true}
-            bannerContent={
-              "absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-center scale-[1.2]"
-            }
-            image={"/Images/Banners/banner (4).jpg"}
-          />
-        </div>
       </Layout>
     </>
   );

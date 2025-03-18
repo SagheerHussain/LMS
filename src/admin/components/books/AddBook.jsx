@@ -99,7 +99,7 @@ const AddBook = () => {
   return (
     <>
       <Layout>
-        <section id="addBook" className={`h-full py-6`}>
+        <section id="addBook" className={`min-h-[90vh] py-6`}>
           <div className="container py-4">
             <h1 className="text-[#fff] text-4xl font-bold mb-5">
               Add New Book

@@ -26,6 +26,7 @@ import Typography from "@mui/material/Typography";
 import { MdOutlineExpandMore } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { authors } from "@/constants/data";
+import { IoIosLogOut } from "react-icons/io";
 
 const Header = () => {
   const { darkMode, setDarkMode } = useContext(DarkThemeContext);
@@ -40,23 +41,28 @@ const Header = () => {
     document.body.style.backgroundColor = darkMode ? "#041C32" : "#d6f1dd";
   }, [darkMode]);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const currentScrollY = window.scrollY;
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/signin";
+  };
 
-  //     if (currentScrollY > 10) {
-  //       setIsFixed(true); // Fix navbar when scrolled past 100px
-  //       setIsScrollingUp(currentScrollY < lastScrollY); // Check scroll direction
-  //     } else {
-  //       setIsFixed(false); // Reset when at the top
-  //     }
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-  //     setLastScrollY(currentScrollY);
-  //   };
+      if (currentScrollY > 10) {
+        setIsFixed(true); // Fix navbar when scrolled past 100px
+        setIsScrollingUp(currentScrollY < lastScrollY); // Check scroll direction
+      } else {
+        setIsFixed(false); // Reset when at the top
+      }
 
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [lastScrollY]);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   // Drawer List
   const [open, setOpen] = React.useState(false);
@@ -279,6 +285,16 @@ const Header = () => {
                   <IoMoonOutline size={24} onClick={() => setDarkMode(true)} />
                 )}
               </div>
+              <button
+                onClick={handleLogout}
+                className={`flex items-center text-light_text ${
+                  darkMode
+                    ? "hover:bg-hover_color text-light_text"
+                    : "hover:bg-light_theme_hover_mode text-light_text hover:text-primary"
+                } rounded-[25px] px-3 py-2`}
+              >
+                logout <IoIosLogOut className="mt-[2px] ms-2" size={18} />
+              </button> 
             </div>
 
             {/* Hamburger Icon for Mobile */}

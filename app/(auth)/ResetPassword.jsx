@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./auth.css";
+import { resetPassword } from "./../../services/authService";
+import Swal from "sweetalert2";
+import { ClipLoader } from "react-spinners";
 
 const ResetPassword = () => {
   const {
@@ -9,6 +12,31 @@ const ResetPassword = () => {
     formState: { errors },
   } = useForm();
 
+  // State Variables
+  const [loading, setLoading] = useState(false);
+
+  // Verify Email
+  const resetPasswordVerification = async (data) => {
+    setLoading(true);
+    try {
+      const { success, message } = await resetPassword(data.password);
+      if (success) {
+        Swal.fire({
+          title: message,
+          timer: 2000,
+          icon: "success",
+        });
+        setLoading(false);
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Something went wrong",
+        icon: "error",
+      });
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <div
@@ -16,6 +44,7 @@ const ResetPassword = () => {
         style={{ backgroundColor: "#070a13", height: "100vh", width: "100vw" }}
       >
         <form
+          onSubmit={handleSubmit(resetPasswordVerification)}
           className="verification_email_form"
           style={{
             minWidth: "600px",
@@ -40,8 +69,15 @@ const ResetPassword = () => {
               {errors.password.message}
             </p>
           )}
-          <button className="w-full bg-light_theme_primary text-white py-2 rounded">
-            Reset Your Password
+          <button
+            disabled={loading}
+            className={`w-full bg-light_theme_primary text-white py-2 rounded`}
+          >
+            {loading ? (
+              <ClipLoader color="#fff" size={20} />
+            ) : (
+              "Reset Your Password"
+            )}
           </button>
         </form>
       </div>

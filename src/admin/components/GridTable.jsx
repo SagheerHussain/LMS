@@ -14,7 +14,7 @@ const GridTable = ({
   return (
     <>
       <Layout>
-        <section id="table" className="h-full min-h-[88vh]">
+        <section id="table" className="h-full min-h-[90vh]">
           <Box className="lg:w-[75vw] xl:w-[80vw] 2xl:w-[85vw] p-4">
             {/* Bulk Delete Button */}
             {selectedRows.length > 0 && (

@@ -38,7 +38,7 @@ const Navbar = () => {
               <IoMenu className="text-3xl text-[#fff]" />
             </div> */}
 
-            <div className="navbar_logout">
+            <div className="navbar_logout w-full flex justify-end">
               <Button
                 id="basic-button"
                 aria-controls={open ? "basic-menu" : undefined}

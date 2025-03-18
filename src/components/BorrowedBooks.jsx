@@ -59,11 +59,11 @@ const BorrowedBooks = () => {
           name=""
           onChange={(e) => fetchingData(e.target.value)}
           id=""
-          className={`cursor-pointer focus:outline-none bg-transparent ${
+          className={`cursor-pointer focus:outline-none bg-transparent rounded-[25px] ${
             darkMode
               ? "text-light_text border-[#ffffff23]"
               : "text-primary border-[#0a0a0a46]"
-          } border-2  px-2 py-3`}
+          } border-2  px-3 py-3`}
         >
           <option
             value="borrow-books"

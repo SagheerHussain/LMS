@@ -8,11 +8,6 @@ import { ClipLoader } from "react-spinners";
 const Profile = ({ student, loading, error,  }) => {
   const { darkMode } = useContext(DarkThemeContext);
 
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = "/signin";
-  }
-
   return (
     <>
       {loading && (
@@ -95,13 +90,10 @@ const Profile = ({ student, loading, error,  }) => {
                   </h4>
                   <div className="profile_uni_card pt-4">
                     <img
-                      className="w-full"
+                      className="w-full rounded-[25px]"
                       src={student?.universityIdCardImage}
                       alt=""
                     />
-                  </div>
-                  <div className="logout">
-                    <button onClick={handleLogout} className="bg-primary mt-6 hover:bg-hover_color text-light_text px-3 py-2">logout Account</button>
                   </div>
                 </div>
               </div>

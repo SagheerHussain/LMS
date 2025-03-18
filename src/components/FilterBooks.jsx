@@ -28,9 +28,7 @@ import {
   getBooksByCategories,
   getBooksBySearches,
 } from "../../services/bookService";
-import {
-  ClipLoader,
-} from "react-spinners";
+import { ClipLoader } from "react-spinners";
 import { getAuthors } from "../../services/authorService";
 
 const FilterBooks = () => {
@@ -59,7 +57,7 @@ const FilterBooks = () => {
     const isCategoryExist = categories.some(
       (category) => category.slug === attribute
     );
-  
+
     const isAuthorExist = authors.some((author) => author.slug === attribute);
     setIsAttCategory(isCategoryExist);
     setIsAttAuthor(isAuthorExist);
@@ -69,7 +67,7 @@ const FilterBooks = () => {
         ? await getBooksByCategories(attribute)
         : await getBooksByAuthors(attribute);
 
-      console.log("message", message)
+      console.log("message", message);
 
       if (message.length > 0) {
         setFilterData(message);
@@ -80,7 +78,7 @@ const FilterBooks = () => {
     } else {
       const data = await getBooksBySearches(attribute);
 
-      console.log("dara", data)
+      console.log("dara", data);
 
       if (data.length > 0) {
         setFilterData(data);
@@ -93,7 +91,7 @@ const FilterBooks = () => {
 
   useEffect(() => {
     getData();
-  }, [page]);
+  }, [page, attribute]);
 
   useEffect(() => {
     applyFilter();
@@ -167,15 +165,18 @@ const FilterBooks = () => {
     <>
       <div className="mx-auto container py-5">
         <div className="flex justify-between">
-
           <div className="lg:w-[25%] lg:block hidden">
-            <h5 className="mb-4 font-bold flex items-center text-light_text">
+            <h5
+              className={`mb-4 font-bold flex items-center ${
+                darkMode ? "text-light_text" : "text-dark_text"
+              }`}
+            >
               Filters <IoFilterSharp className="ms-2" />
             </h5>
             <div
               className={`${
                 darkMode ? "bg-secondary" : "bg-light_theme_primary"
-              } py-6 px-3`}
+              } py-6 px-4 rounded-[25px]`}
             >
               <FilterData
                 filteredProducts={filteredProducts}
@@ -189,7 +190,11 @@ const FilterBooks = () => {
             </div>
           </div>
 
-          <div className="w-full lg:w-[75%] lg:ms-[5%]">
+          <div
+            className={`w-full lg:w-[75%] lg:ms-[5%] ${
+              loading ? "min-h-[50vh]" : " h-full"
+            } `}
+          >
             <div className="flex items-center justify-between">
               <div className="pb-3">
                 <p
@@ -249,10 +254,7 @@ const FilterBooks = () => {
 
             {loading && (
               <div className="flex justify-center pt-10">
-                <ClipLoader
-                  color={`${darkMode ? "#fff" : "#000"}`}
-                  size={36}
-                />
+                <ClipLoader color={`${darkMode ? "#fff" : "#000"}`} size={36} />
               </div>
             )}
 
@@ -260,7 +262,7 @@ const FilterBooks = () => {
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((book) => <FilterBookCard book={book} />)
               ) : (
-                <p className="text-center">Sorry No Products Found</p>
+                !loading && <p className="text-center">Sorry No Products Found</p>
               )}
             </div>
 
@@ -279,7 +281,6 @@ const FilterBooks = () => {
               </div>
             )} */}
           </div>
-
         </div>
       </div>
     </>

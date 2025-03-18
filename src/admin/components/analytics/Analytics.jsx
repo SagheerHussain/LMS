@@ -9,7 +9,7 @@ import { IoBookOutline } from "react-icons/io5";
 const Analytics = () => {
   return (
     <>
-      <section id="analytics" className="h-[88vh]">
+      <section id="analytics" className="min-h-[90vh]">
         <div className="container-fluid p-10">
           {/* <BreadCrumb page={"Dashboard"} color='text-white' category={""} /> */}
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">

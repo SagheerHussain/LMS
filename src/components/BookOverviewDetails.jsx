@@ -13,7 +13,7 @@ import { Button } from ".";
 const lightTheme = {
   background: "#ffffff",
   text: "#fff",
-  tabBg: "#fdfdfd",
+  tabBg: "#c2f0ce",
   tabText: "#000",
   selectedTab: "#3d705f",
 };
@@ -41,7 +41,7 @@ const StyledTab = styled(Tab)`
   }
 
   &[aria-selected="false"]:hover {
-    background-color: ${({ theme }) => theme.selectedTab} !important;
+    background-color: #529881 !important;
     color: #fff !important;
   }
 `;

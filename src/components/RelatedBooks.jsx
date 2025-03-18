@@ -23,7 +23,7 @@ import { getBooksByAuthors, getBooksByCategories } from "../../services/bookServ
 const lightTheme = {
   background: "#ffffff",
   text: "#fff",
-  tabBg: "#fdfdfd",
+  tabBg: "#c2f0ce",
   tabText: "#000",
   selectedTab: "#3d705f",
 };
@@ -51,7 +51,7 @@ const StyledTab = styled(Tab)`
   }
 
   &[aria-selected="false"]:hover {
-    background-color: ${({ theme }) => theme.selectedTab} !important;
+    background-color: #529881 !important;
     color: #fff !important;
   }
 `;
@@ -62,6 +62,7 @@ const StyledTabPanel = styled(TabPanel)`
   border-radius: 25px !important;
   margin-top: 0.5rem;
 `;
+
 
 const RelatedBooks = ({ book }) => {
   // Context

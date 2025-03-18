@@ -40,12 +40,12 @@ function App() {
           <Route path="/book-overview/:id" element={<BookOverviewPage />} />
           <Route path="/filtered-books/:attribute" element={<FilterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/resend-email" element={<ResendEmail />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
         {/* Auth Routes */}
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/resend-email" element={<ResendEmail />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/admin" element={<AdminForm />} />
         {/* Admin Routes */}
         <Route element={<AdmiNprotectedRoute />}>

@@ -73,9 +73,10 @@ const BookCard = ({
         }
       } else {
         Swal.fire({
-          title: "Your Account is not verified",
-          timer: 1500,
+          title: "Your account is not verified",
+          html: "Your account will be verified by the admin. <br>For inquiries, contact: <b>03313908443</b>",
           icon: "error",
+          confirmButtonText: "OK",
         });
       }
     } catch (error) {
@@ -102,7 +103,7 @@ const BookCard = ({
   return (
     <>
       <div
-        className={`book_card ${className} w-full hover:shadow-lg relative ${
+        className={`book_card ${className} w-full relative ${
           smDevice && "text-center"
         }`}
       >
@@ -131,7 +132,6 @@ const BookCard = ({
             name="read-only"
             className="text-[.8rem] mt-4"
             value={rating}
-            style={{ backgroundColor: "#e99d31 !important" }}
             readOnly
           />
           <h4
@@ -184,7 +184,7 @@ const BookCard = ({
                 className={`primary-button transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
               >
                 Borrowing Now
-              </button>
+              </button> 
             )}
 
             <IoMdHeartEmpty
