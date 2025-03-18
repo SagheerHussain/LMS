@@ -8,7 +8,7 @@ const AdmiNprotectedRoute = () => {
   return (
     <>
       {
-        user.role === "Admin" ? <Outlet /> : <Navigate to="/" />
+        user && user.role === "Admin" ? <Outlet /> : <Navigate to="/" />
       }
     </>
   )

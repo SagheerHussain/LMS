@@ -162,7 +162,7 @@ const SignUp = () => {
               style={{ backgroundColor: "#232839", borderRadius: "3px" }}
             />
 
-            <button disabled={loading} className={`${loading && "opacity-[.5]"} w-full bg-light_theme_primary text-white py-2 rounded mt-4`}>
+            <button disabled={loading} className={`${loading && "opacity-[.5]"} w-full bg-light_theme_primary text-white py-2 rounded-[25px] mt-4`}>
               {loading ? <ClipLoader color="#fff" /> : "Register Account"}
             </button>
 

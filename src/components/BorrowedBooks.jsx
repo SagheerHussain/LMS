@@ -1,49 +1,44 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { DarkThemeContext } from "@/context/ThemeContext";
-import { sampleBooks } from "../constants/data";
-
-import { BorrowedBookCard } from "./index";
 import {
   getBorrowedBooksById,
   getBorrowedHistoryById,
   getBorrowedRequestById,
+  checkIsBookExpire,
 } from "../../services/borrowedService";
+
+import { BorrowedBookCard } from "./index";
 import { ClipLoader } from "react-spinners";
 
 const BorrowedBooks = () => {
-  // Context
   const { darkMode } = useContext(DarkThemeContext);
 
-  // State Variables
-  const [borrowedBooks, setBorrowedBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  // Token
+  // Token & User
   const token = JSON.parse(localStorage.getItem("token"));
   const user = JSON.parse(localStorage.getItem("user"));
 
-  // Fetching Borrow Records
-  const fetchingData = async (e) => {
-    setLoading(true);
-    try {
-      const { data, message } =
-        e === "borrow-books"
-          ? await getBorrowedBooksById(user._id, token)
-          : e === "borrow-request"
-          ? await getBorrowedRequestById(user._id, token)
-          : await getBorrowedHistoryById(user._id, token);
-      setBorrowedBooks(data);
-      setLoading(false);
-      console.log(data)
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
+  const [selectedType, setSelectedType] = useState("borrow-books");
+
+  // Main Query Function
+  const fetchBooks = async () => {
+    let result;
+    if (selectedType === "borrow-books") {
+      result = await getBorrowedBooksById(user._id, token);
+    } else if (selectedType === "borrow-request") {
+      result = await getBorrowedRequestById(user._id, token);
+    } else {
+      result = await getBorrowedHistoryById(user._id, token);
     }
+    return result.data;
   };
 
-  useEffect(() => {
-    fetchingData("borrow-books");
-  }, []);
+  // React Query Hook
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["borrowed-books", selectedType, user._id],
+    queryFn: fetchBooks,
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  });
 
   return (
     <>
@@ -56,9 +51,11 @@ const BorrowedBooks = () => {
           Borrowed Books
         </h4>
         <select
-          name=""
-          onChange={(e) => fetchingData(e.target.value)}
-          id=""
+          value={selectedType}
+          onChange={(e) => {
+            setSelectedType(e.target.value);
+            refetch(); // manually refetch when selection changes
+          }}
           className={`cursor-pointer focus:outline-none bg-transparent rounded-[25px] ${
             darkMode
               ? "text-light_text border-[#ffffff23]"
@@ -92,30 +89,49 @@ const BorrowedBooks = () => {
         </select>
       </div>
 
-      {loading && <div className="text-center"> <ClipLoader size={32} color={`${darkMode ? "#fff" : "#000"}`} /> </div>}
-
-      {borrowedBooks.length > 0 && !loading ? (
-        <div className="borrowed_books grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {borrowedBooks?.map((book) => {
-            return (
-              <BorrowedBookCard
-                book={book.book}
-                borrowedDate={book.borrowedDate}
-                dueDate={book.dueDate}
-                status={book.status}
-                requestDate={book.requestDate}
-              />
-            );
-          })}
+      {/* Loading */}
+      {isLoading && (
+        <div className="text-center">
+          <ClipLoader size={32} color={`${darkMode ? "#fff" : "#000"}`} />
         </div>
-      ) : (
-        !loading && <p
+      )}
+
+      {/* Error */}
+      {isError && (
+        <p
           className={`${
             darkMode ? "text-light_text" : "text-dark_text"
           } text-sm text-center`}
         >
-          No Records Found.
+          Failed to fetch records.
         </p>
+      )}
+
+      {/* Records */}
+      {data && data.length > 0 && !isLoading ? (
+        <div className="borrowed_books grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {data.map((book) => (
+            <BorrowedBookCard
+              key={book._id}
+              book={book.book}
+              borrowedDate={book.borrowedDate}
+              dueDate={book.dueDate}
+              status={book.status}
+              requestDate={book.requestDate}
+            />
+          ))}
+        </div>
+      ) : (
+        !isLoading &&
+        !isError && (
+          <p
+            className={`${
+              darkMode ? "text-light_text" : "text-dark_text"
+            } text-sm text-center`}
+          >
+            No Records Found.
+          </p>
+        )
       )}
     </>
   );

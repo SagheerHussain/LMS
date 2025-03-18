@@ -18,6 +18,7 @@ const SignIn = () => {
 
   // State Variables
   const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
 
   // Navigate
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const SignIn = () => {
       }
     } catch (error) {
       Swal.fire({
-        title: "Something went wrong",
+        title: "Email or Password is incorrect",
         icon: "error",
       });
       console.log(error);
@@ -111,7 +112,7 @@ const SignIn = () => {
                 {errors.password.message}
               </p>
             )}
-            <button className="w-full bg-light_theme_primary text-white py-2 rounded mt-4">
+            <button className="w-full bg-light_theme_primary text-white py-2 rounded-[25px] mt-4">
               {loading ? <ClipLoader color="#fff" /> : "Login Account"}
             </button>
 

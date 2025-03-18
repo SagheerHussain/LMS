@@ -77,7 +77,7 @@ const ResendEmail = () => {
           )}
           <button
             disabled={loading}
-            className={`w-full bg-light_theme_primary text-white py-2 rounded`}
+            className={`w-full bg-light_theme_primary text-white py-2 rounded-[25px]`}
           >
             {loading ? (
               <ClipLoader color="#fff" size={20} />

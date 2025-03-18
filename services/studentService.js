@@ -14,7 +14,6 @@ export const createStudent = async (data) => {
     return response.data;
   } catch (error) {
     console.error("Error adding student:", error);
-    alert("Failed to add student");
   }
 };
 
@@ -31,7 +30,6 @@ export const loginAccount = async (data) => {
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
-    alert("Failed to log in");
   }
 };
 
@@ -48,7 +46,6 @@ export const getStudentDetails = async (id, token) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching students:", error);
-    alert("Failed to fetch students");
   }
 };
 
@@ -60,7 +57,6 @@ export const getAccountRequests = async () => {
     return response.data;
   } catch (error) {
     console.error("Error fetching account requests:", error);
-    alert("Failed to fetch account requests");
   }
 }
 
@@ -73,7 +69,6 @@ export const updateAccountRequestStatus = async (id, data) => {
     return response.data;
   } catch (error) {
     console.error("Error updating account request status:", error);
-    alert("Failed to update account request status");
   }
 }
 
@@ -86,7 +81,6 @@ export const getStudents = async () => {
     return response.data;
   } catch (error) {
     console.error("Error fetching students:", error);
-    alert("Failed to fetch students");
   }
 };
 
@@ -115,7 +109,6 @@ export const deleteStudent = async (id) => {
     return response.data;
   } catch (error) {
     console.error("Error deleting student:", error);
-    alert("Failed to delete student");
   }
 };
 

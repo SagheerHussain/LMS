@@ -4,6 +4,7 @@ import "./auth.css";
 import { resetPassword } from "./../../services/authService";
 import Swal from "sweetalert2";
 import { ClipLoader } from "react-spinners";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ResetPassword = () => {
   const {
@@ -15,18 +16,27 @@ const ResetPassword = () => {
   // State Variables
   const [loading, setLoading] = useState(false);
 
+  // Get Params
+  const { token } = useParams();
+
+  // navigate
+  const navigate = useNavigate();
+
   // Verify Email
   const resetPasswordVerification = async (data) => {
     setLoading(true);
     try {
-      const { success, message } = await resetPassword(data);
+      const { success, message } = await resetPassword(token, data);
       if (success) {
         Swal.fire({
           title: message,
-          timer: 2000,
+          timer: 1500,
           icon: "success",
         });
         setLoading(false);
+        setTimeout(() => {
+          navigate("/signin");
+        }, 2000);
       }
     } catch (error) {
       Swal.fire({
@@ -71,7 +81,7 @@ const ResetPassword = () => {
           )}
           <button
             disabled={loading}
-            className={`w-full bg-light_theme_primary text-white py-2 rounded`}
+            className={`w-full bg-light_theme_primary text-white py-2 rounded-[25px]`}
           >
             {loading ? (
               <ClipLoader color="#fff" size={20} />

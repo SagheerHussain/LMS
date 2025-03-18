@@ -9,6 +9,15 @@
 .auth_user_form {
   min-width: 500px;
 }
+.auth_user_form label,
+.verification_email_form label {
+  margin: 0 0 .9rem .5rem;
+}
+.auth_user_form input,
+.verification_email_form input {
+  border-radius: 25px !important;
+  padding: .5rem 1.4rem !important;
+}
 
 @media (max-width: 1280px) {
   .auth_form {
