@@ -84,6 +84,18 @@ export const getStudents = async () => {
   }
 };
 
+// Get Students Length
+export const getStudentsLength = async () => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/api/students/length`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching students length:", error);
+  }
+};
+
 // Update Student Details
 export const updateStudentDetails = async (id, data) => {
   try {
