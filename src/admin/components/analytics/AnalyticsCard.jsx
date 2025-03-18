@@ -7,7 +7,7 @@ const AnalyticsCard = ({
 }) => {
   return (
     <>
-      <div className="analytics_card bg-primary px-6 py-8">
+      <div className="analytics_card bg-primary px-6 py-8 rounded-[25px]">
         <div className="flex items-center justify-between">
           <div className="analytics">
             <h1 className="text-light_text text-4xl font-semibold">{number}</h1>
