@@ -186,13 +186,6 @@ const BookCard = ({
                 Borrowing Now
               </button> 
             )}
-
-            <IoMdHeartEmpty
-              size={24}
-              className={`${
-                darkMode ? "text-light_theme_primary" : "text-primary"
-              } ms-2 mt-4 cursor-pointer`}
-            />
           </div>
         </div>
         {label && (
