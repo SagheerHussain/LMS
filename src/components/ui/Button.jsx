@@ -9,7 +9,7 @@ const Button = ({ className = "", label = "" }) => {
     <>
       <button
         onClick={handleBorrowedRequest}
-        className={`${className} primary-button transition-all duration-300 uppercase text-[.8rem] font-semibold px-4 py-2 mt-4`}
+        className={`${className} ${darkMode ? "primary-dark-mode-button" : "primary-button"} transition-all duration-300 uppercase text-[.8rem] font-semibold px-4 py-2 mt-4`}
       >
         {label}
       </button>

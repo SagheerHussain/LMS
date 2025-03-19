@@ -97,13 +97,13 @@ const BookOverview = ({ id, darkMode }) => {
           </div>
         )}
         {bookData && (
-          <div className="container mx-auto">
-            <div className={`${matches ? "block" : "flex"}`}>
-              <div className="relative">
+          <div className="container  mx-auto">
+            <div className={`${matches ? "block" : "flex"} min-h-[90vh]`}>
+              <div className="w-[30%] h-full relative">
                 <BookCover className="z-[999]" image={bookData.image} />
               </div>
               <div
-                className={`book_overview sm:ps-6 ps-3 ${
+                className={`w-[70%] h-full book_overview sm:ps-6 ps-3 ${
                   matches ? "pt-6" : "pt-0"
                 }`}
               >
@@ -113,24 +113,24 @@ const BookOverview = ({ id, darkMode }) => {
                   {bookData.title}
                 </h1>
                 <div className="py-6">
-                  <h2 className={`md:text-lg lg::text-xl ${textColor}`}>
+                  <h2 className={`text-base ${textColor}`}>
                     By:{" "}
                     <span
                       className={`${
                         darkMode
-                          ? "text-light_theme_light_mode"
+                          ? "text-yellow_color"
                           : " text-primary"
                       } `}
                     >
                       {bookData.author.name}
                     </span>
                   </h2>
-                  <h2 className={`md:text-lg lg::text-xl py-4 ${textColor}`}>
+                  <h2 className={`text-base py-4 ${textColor}`}>
                     Category:{" "}
                     <span
                       className={`${
                         darkMode
-                          ? "text-light_theme_light_mode"
+                          ? "text-yellow_color"
                           : " text-primary"
                       } `}
                     >
@@ -152,7 +152,7 @@ const BookOverview = ({ id, darkMode }) => {
                     <span
                       className={`${
                         darkMode
-                          ? "text-light_theme_light_mode"
+                          ? "text-yellow_color"
                           : " text-primary"
                       } ms-2`}
                     >
@@ -166,13 +166,13 @@ const BookOverview = ({ id, darkMode }) => {
                     <span
                       className={`${
                         darkMode
-                          ? "text-light_theme_light_mode"
+                          ? "text-yellow_color"
                           : " text-primary"
                       } ms-2`}
                     >
                       {bookData.availableCopies}
                     </span>
-                    <span className="sm:inline-block hidden sm:text-xs md:text-sm text-light_text bg-light_theme_secondary px-3 py-1 ms-3">
+                    <span className={`sm:inline-block hidden sm:text-xs md:text-sm text-light_text ${darkMode ? "bg-secondary" : "bg-light_theme_secondary"}  px-3 py-1 ms-3`}>
                       Limited Stock
                     </span>
                   </h4>
@@ -186,14 +186,14 @@ const BookOverview = ({ id, darkMode }) => {
                     <button
                       className={`text-dark_text rounded-[25px] bg-yellow_color transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
                     >
-                      Already Borrow
+                      Borrowed
                     </button>
                   ) : (
                     <button
                       onClick={() => handleBorrowedRequest(bookData._id)}
-                      className={`primary-button transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
+                      className={`${darkMode ? "primary-dark-mode-button" : "primary-button"} transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
                     >
-                      Borrowing Now
+                      Borrow Now
                     </button>
                   )}
                 </div>

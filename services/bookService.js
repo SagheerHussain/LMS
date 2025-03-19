@@ -12,6 +12,18 @@ export const getBooks = async () => {
     }
 };
 
+// Get Books Length
+export const getBooksLength = async () => {  
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_BASE_URL}/api/books/length`
+        );
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching books length:", error);
+    }
+};
+
 // Get Book Details
 export const getBookDetails = async (id) => {  
     try {

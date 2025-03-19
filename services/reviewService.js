@@ -1,5 +1,7 @@
+import axios from "axios";
+
 // Get Reviews By Book
-export const getReviewsByBook = async (id) => {
+export const getReviewsByBook = async (id, token) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/reviews/review/${id}`, {
             headers: {
@@ -13,8 +15,22 @@ export const getReviewsByBook = async (id) => {
     }
 }
 
+// Get Approve Books
+export const getApprovedReviews = async (id, token) => {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/reviews/approved/review/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching approved reviews:", error);
+    }
+}
+
 // Create Review
-export const createReview = async (data) => {
+export const createReview = async (data, token) => {
     try {
         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/reviews`, data, {
             headers: {

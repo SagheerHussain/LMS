@@ -86,7 +86,7 @@ const EditAuthor = () => {
                 placeholder="Slug"
                 className="placeholder:text-[#ffffff58] w-full text-white bg-transparent focus:border-[#ffffff25] border-2 border-[#ffffff25] focus:shadow-none rounded-none mb-4 mt-1 px-3 py-2"
               />
-              <button className="w-full bg-light_theme_primary hover:bg-green-700 text-white py-2 rounded mt-4">
+              <button className="w-full bg-primary hover:bg-hover_color text-white py-2 rounded mt-4">
                 {loading ? <ClipLoader color="#fff" /> : "Edit Author"}
               </button>
             </form>

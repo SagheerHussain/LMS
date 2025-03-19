@@ -111,7 +111,7 @@ const BookCard = ({
           <div
             className={`cursor-pointer book_image ${
               location.pathname === "/"
-                ? `${isMatch ? "scale-[1]" : "scale-[.8]"}`
+                ? `${isMatch ? "scale-[1]" : "scale-[1]"}`
                 : "scale-[1]"
             }  max-h-[300px] max-w-[200px] ${smDevice && "mx-auto"}`}
           >
@@ -144,20 +144,14 @@ const BookCard = ({
           <h3
             className={`${
               darkMode ? "text-zinc-300" : "text-dark_text"
-            } text-lg`}
+            }`}
           >
-            {title?.slice(0, 50)}...
+            {title?.slice(0, 30)}...
           </h3>
           <Link to={`/book-overview/${_id}`} key={_id}>
             {isMoreInfo && (
               <>
-                <p
-                  className={`${
-                    darkMode ? "text-zinc-300" : "text-zinc-800"
-                  } text-sm pt-3`}
-                >
-                  {description.slice(0, 50)}...
-                </p>
+
                 <h3
                   className={`${
                     darkMode ? "text-zinc-300" : "text-zinc-800"
@@ -176,14 +170,14 @@ const BookCard = ({
               <button
                 className={`text-dark_text rounded-[25px] bg-yellow_color transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
               >
-                Already Borrow
+                Borrowed
               </button>
             ) : (
               <button
                 onClick={() => handleBorrowedRequest(_id)}
-                className={`primary-button transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
+                className={`${darkMode ? "primary-dark-mode-button" : "primary-button"} transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
               >
-                Borrowing Now
+                Borrow Now
               </button> 
             )}
           </div>

@@ -17,7 +17,10 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { getBooksByAuthors, getBooksByCategories } from "../../services/bookService";
+import {
+  getBooksByAuthors,
+  getBooksByCategories,
+} from "../../services/bookService";
 
 // Define Light and Dark Themes
 const lightTheme = {
@@ -26,6 +29,7 @@ const lightTheme = {
   tabBg: "#c2f0ce",
   tabText: "#000",
   selectedTab: "#3d705f",
+  hoverTabBg: "#529881",
 };
 
 const darkTheme = {
@@ -34,6 +38,7 @@ const darkTheme = {
   tabBg: "#0A192F",
   tabText: "#fff",
   selectedTab: "#04293A",
+  hoverTabBg: "#074a69",
 };
 
 // Styled Components for Tabs
@@ -51,7 +56,7 @@ const StyledTab = styled(Tab)`
   }
 
   &[aria-selected="false"]:hover {
-    background-color: #529881 !important;
+    background-color: ${({ theme }) => theme.hoverTabBg} !important;
     color: #fff !important;
   }
 `;
@@ -62,7 +67,6 @@ const StyledTabPanel = styled(TabPanel)`
   border-radius: 25px !important;
   margin-top: 0.5rem;
 `;
-
 
 const RelatedBooks = ({ book }) => {
   // Context
@@ -103,6 +107,7 @@ const RelatedBooks = ({ book }) => {
               <TabList
                 onChange={handleChange}
                 variant="scrollable"
+                className="mb-4"
                 aria-label="lab API tabs example"
               >
                 <StyledTab label="More From This Author" value="1" />
@@ -110,52 +115,56 @@ const RelatedBooks = ({ book }) => {
               </TabList>
             </Box>
             <StyledTabPanel value="1">
-              <Swiper
-                spaceBetween={20} // Default spacing
-                autoplay={{ delay: 2500, disableOnInteraction: false }}
-                loop={true}
-                centeredSlides={false}
-                navigation={{ clickable: true }}
-                modules={[Navigation, Autoplay]}
-                breakpoints={{
-                  320: { slidesPerView: 1, spaceBetween: 20 },
-                  640: { slidesPerView: 2, spaceBetween: 20 },
-                  768: { slidesPerView: 2, spaceBetween: 20 },
-                  1024: { slidesPerView: 2, spaceBetween: 50 },
-                  1280: { slidesPerView: 2, spaceBetween: 50 },
-                  1538: { slidesPerView: 4, spaceBetween: 10 },
-                }}
-              >
-                {authorRelated?.map((book) => (
-                  <SwiperSlide key={book.id || book.title}>
-                    <BookCard book={book} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              <div className="swiper-slides overflow-hidden">
+                <Swiper
+                  spaceBetween={20} // Default spacing
+                  autoplay={{ delay: 2500, disableOnInteraction: false }}
+                  loop={true}
+                  centeredSlides={false}
+                  navigation={{ clickable: true }}
+                  modules={[Navigation, Autoplay]}
+                  breakpoints={{
+                    320: { slidesPerView: 1, spaceBetween: 20 },
+                    640: { slidesPerView: 2, spaceBetween: 20 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 50 },
+                    1280: { slidesPerView: 2, spaceBetween: 50 },
+                    1538: { slidesPerView: 5, spaceBetween: 10 },
+                  }}
+                >
+                  {authorRelated?.map((book) => (
+                    <SwiperSlide key={book.id || book.title}>
+                      <BookCard book={book} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </StyledTabPanel>
             <StyledTabPanel value="2">
-              <Swiper
-                spaceBetween={20} // Default spacing
-                autoplay={{ delay: 2500, disableOnInteraction: false }}
-                loop={true}
-                centeredSlides={false}
-                navigation={{ clickable: true }}
-                modules={[Navigation, Autoplay]}
-                breakpoints={{
-                  320: { slidesPerView: 1, spaceBetween: 20 },
-                  640: { slidesPerView: 2, spaceBetween: 20 },
-                  768: { slidesPerView: 2, spaceBetween: 20 },
-                  1024: { slidesPerView: 2, spaceBetween: 50 },
-                  1280: { slidesPerView: 2, spaceBetween: 50 },
-                  1538: { slidesPerView: 4, spaceBetween: 10 },
-                }}
-              >
-                {recommended?.map((book) => (
-                  <SwiperSlide key={book.id || book.title}>
-                    <BookCard book={book} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              <div className="swiper-slides overflow-hidden">
+                <Swiper
+                  spaceBetween={20} // Default spacing
+                  autoplay={{ delay: 2500, disableOnInteraction: false }}
+                  loop={true}
+                  centeredSlides={false}
+                  navigation={{ clickable: true }}
+                  modules={[Navigation, Autoplay]}
+                  breakpoints={{
+                    320: { slidesPerView: 1, spaceBetween: 20 },
+                    640: { slidesPerView: 2, spaceBetween: 20 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 50 },
+                    1280: { slidesPerView: 2, spaceBetween: 50 },
+                    1538: { slidesPerView: 5, spaceBetween: 10 },
+                  }}
+                >
+                  {recommended?.map((book) => (
+                    <SwiperSlide key={book.id || book.title}>
+                      <BookCard book={book} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </StyledTabPanel>
           </TabContext>
         </div>

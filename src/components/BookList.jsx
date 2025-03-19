@@ -12,6 +12,7 @@ import { DarkThemeContext } from "@/context/ThemeContext";
 import { getCategories } from "../../services/categoryService";
 import { getBooks } from "../../services/bookService";
 import { ClipLoader, PacmanLoader, PropagateLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 const BookList = ({
   className = "",
@@ -65,41 +66,56 @@ const BookList = ({
           {error && <div className="text-white">Error fetching books</div>}
 
           {categories?.map((category) => (
-            <>
-              <div key={category._id}>
+            <div className="pb-12">
+              <div
+                key={category._id}
+                className="flex items-center justify-between "
+              >
                 <h1
                   className={`${
                     darkMode ? "text-zinc-300" : "text-zinc-800"
-                  } text-3xl font-semibold mt-10 mb-4`}
+                  } text-2xl font-serif italic pt-14 pb-5 `}
                 >
                   {category.name}
                 </h1>
+                <Link
+                  to={`/filtered-books/${category.slug}`}
+                  className={`${
+                    darkMode
+                      ? "text-light_text bg-secondary hover:bg-[#074a69]"
+                      : "text-light_text bg-light_theme_primary hover:bg-light_theme_secondary"
+                  } mt-10 text-sm px-3 py-1`}
+                >
+                  See All
+                </Link>
               </div>
 
-              <Swiper
-                spaceBetween={20} // Default spacing
-                // autoplay={{ delay: 2500, disableOnInteraction: false }}
-                loop={true}
-                centeredSlides={false}
-                navigation={{ clickable: true }}
-                modules={[Navigation, Pagination]}
-                pagination={{ clickable: true }}
-                breakpoints={breakPoints}
-              >
-                {bookLists
-                  ?.filter((book) => book.category.name === category.name)
-                  .map((book) => (
-                    <SwiperSlide key={book.id || book.title}>
-                      <BookCard
-                        book={book}
-                        className={className}
-                        isMoreInfo={isMoreInfo}
-                        content_classes={content_classes}
-                      />
-                    </SwiperSlide>
-                  ))}
-              </Swiper>
-            </>
+              <div className="swiper-slides overflow-hidden">
+                <Swiper
+                  spaceBetween={20} // Default spacing
+                  // autoplay={{ delay: 2500, disableOnInteraction: false }}
+                  loop={true}
+                  centeredSlides={false}
+                  navigation={{ clickable: true }}
+                  modules={[Navigation, Pagination]}
+                  pagination={{ clickable: true }}
+                  breakpoints={breakPoints}
+                >
+                  {bookLists
+                    ?.filter((book) => book.category.name === category.name)
+                    .map((book) => (
+                      <SwiperSlide key={book.id || book.title}>
+                        <BookCard
+                          book={book}
+                          className={className}
+                          isMoreInfo={isMoreInfo}
+                          content_classes={content_classes}
+                        />
+                      </SwiperSlide>
+                    ))}
+                </Swiper>
+              </div>
+            </div>
           ))}
         </div>
       </section>

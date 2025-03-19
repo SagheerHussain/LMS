@@ -304,7 +304,7 @@ const AddBook = () => {
                 placeholder="Image"
               />
 
-              <button className="w-full bg-light_theme_primary hover:bg-green-700 text-white py-2 rounded mt-4">
+              <button className="w-full bg-primary hover:bg-hover_color text-white py-2 rounded mt-4">
                 {loading ? <ClipLoader color="#fff" /> : "Add Book"}
               </button>
             </form>

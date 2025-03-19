@@ -197,7 +197,10 @@ const Header = () => {
                     } p-1 `}
                   />
                 </a>
-                <a href="#">
+                <a
+                  href="http://linkedin.com/company/skynetsilicon/people/"
+                  target="_blank"
+                >
                   <FaLinkedin
                     size={24}
                     className={`rounded-[50%] ${
@@ -269,22 +272,28 @@ const Header = () => {
                 </label>
               </Link>
 
-              <div
-                className={`navbar_dark_mode flex items-center cursor-pointer rounded-[25px] ${
-                  darkMode
-                    ? "hover:bg-hover_color text-light_text"
-                    : "hover:bg-light_theme_hover_mode text-light_text hover:text-primary"
-                } py-3 px-4`}
-              >
-                {darkMode ? (
-                  <IoSunnyOutline
-                    size={24}
-                    onClick={() => setDarkMode(false)}
-                  />
-                ) : (
-                  <IoMoonOutline size={24} onClick={() => setDarkMode(true)} />
-                )}
-              </div>
+              {darkMode ? (
+                <IoSunnyOutline
+                  className={`navbar_dark_mode flex items-center cursor-pointer rounded-[25px] ${
+                    darkMode
+                      ? "hover:bg-hover_color text-light_text"
+                      : "hover:bg-light_theme_hover_mode text-light_text hover:text-primary"
+                  } py-1 px-2`}
+                  size={40}
+                  onClick={() => setDarkMode(false)}
+                />
+              ) : (
+                <IoMoonOutline
+                  className={`navbar_dark_mode flex items-center cursor-pointer rounded-[25px] ${
+                    darkMode
+                      ? "hover:bg-hover_color text-light_text"
+                      : "hover:bg-light_theme_hover_mode text-light_text hover:text-primary"
+                  } py-1 px-2`}
+                  size={40}
+                  onClick={() => setDarkMode(true)}
+                />
+              )}
+
               <button
                 onClick={handleLogout}
                 className={`flex items-center text-light_text ${
@@ -294,7 +303,7 @@ const Header = () => {
                 } rounded-[25px] px-3 py-2`}
               >
                 logout <IoIosLogOut className="mt-[2px] ms-2" size={18} />
-              </button> 
+              </button>
             </div>
 
             {/* Hamburger Icon for Mobile */}

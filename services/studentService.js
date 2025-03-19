@@ -96,6 +96,18 @@ export const getStudentsLength = async () => {
   }
 };
 
+// Get Unverified Students length
+export const getUnverifiedStudentsLength = async () => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/api/students/unverified-length`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching unverified students length:", error);
+  }
+};
+
 // Update Student Details
 export const updateStudentDetails = async (id, data) => {
   try {

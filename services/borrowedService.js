@@ -33,6 +33,18 @@ export const getBorrowedRequests = async (token) => {
   }
 };
 
+// Get Borrowed Requests Length
+export const getBorrowedRequestsLength = async () => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/api/borrowed/borrowed-requests-length`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching borrowed requests length:", error);
+  }
+};
+
 // Get Borrowed History
 export const getBorrowedHistory = async (token) => {
   try {

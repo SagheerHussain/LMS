@@ -31,7 +31,7 @@ export default {
 			light_text: "#ffffff",
 			dark_text: "#000000",
 			light_theme_primary: "#3d705f",
-			light_theme_secondary: "#3d705f",
+			light_theme_secondary: "#44a182",
 			light_theme_light_mode: "#d6f1dd",
 			light_theme_hover_mode: "#c2f0ce",
   			muted: {

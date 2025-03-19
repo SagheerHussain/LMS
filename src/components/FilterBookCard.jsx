@@ -5,9 +5,12 @@ import { CiCalendarDate } from "react-icons/ci";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HiStatusOnline } from "react-icons/hi";
+import { Rating } from "@mui/material";
 
 const FilterBookCard = ({ book }) => {
   const { darkMode } = useContext(DarkThemeContext);
+
+  console.log(book);
 
   return (
     <>
@@ -21,7 +24,7 @@ const FilterBookCard = ({ book }) => {
             <div className={`cursor-pointer book_image flex justify-center`}>
               <img
                 src={book.image}
-                className={`w-[170px] h-[250px] object-cover object-left-top rounded-[25px] `}
+                className={`w-[200px] h-[250px] object-cover object-left-top rounded-[25px] `}
                 alt={book.title}
                 loading="lazy"
               />
@@ -32,21 +35,27 @@ const FilterBookCard = ({ book }) => {
                 darkMode ? "text-light_text" : "text-dark_text"
               }  text-[.95rem] pt-4 font-semibold`}
             >
-              {book.title.slice(0, 30)}...
+              {book.title.slice(0, 20)}...
             </h1>
-            <p
-              className={`${
-                darkMode ? "text-light_text" : "text-dark_text"
-              }  text-[.75rem] pt-4 font-semibold`}
-            >
-              {book.description.slice(0, 50)}...
-            </p>
+            <Rating
+              name="read-only"
+              className="text-[.8rem] pt-1"
+              value={book.rating}
+              readOnly
+            />
             <h4
               className={`${
                 darkMode ? "text-light_text" : "text-dark_text"
-              } pt-4 font-medium text-[.75rem]`}
+              } pt-1 text-[.75rem]`}
             >
               Category: {book.category.name}
+            </h4>
+            <h4
+              className={`${
+                darkMode ? "text-light_text" : "text-dark_text"
+              } pt-1 text-[.75rem]`}
+            >
+              Author: {book.author.name}
             </h4>
           </div>
         </Link>

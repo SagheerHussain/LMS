@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthLayout from "./AuthLayout";
 import { Logo } from "@/components/index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
 import { createStudent } from "../../services/studentService";
 import axios from "axios";
@@ -20,6 +20,9 @@ const SignUp = () => {
     universityIdCardImage: null,
     profilePicture: null,
   });
+
+  // navigate
+  const navigate = useNavigate();
 
   // Value Change
   const handleChange = (e) => {
@@ -48,9 +51,13 @@ const SignUp = () => {
       if (user.success) {
         Swal.fire({
           title: "Student Created Successfully",
-          icon: "success"
+          icon: "success",
+          timer: 1200
         });
         setLoading(false);
+        setTimeout(() => {
+          navigate("/signin");
+        }, 1700);
       }
     } catch (error) {
       console.log(error);

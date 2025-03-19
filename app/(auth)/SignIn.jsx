@@ -31,7 +31,7 @@ const SignIn = () => {
       if (success) {
         Swal.fire({
           title: "Login Successfully",
-          timer: 2000,
+          timer: 1200,
           icon: "success",
         });
         setLoading(false);
@@ -46,7 +46,7 @@ const SignIn = () => {
           } else {
             navigate("/");
           }
-        }, 1500);
+        }, 1700);
       }
     } catch (error) {
       Swal.fire({

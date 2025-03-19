@@ -30,39 +30,58 @@ p {
 /* Button */
 .primary-button {
   color: #fff;
-  background-color: #1f7357;
+  background-color: #3d705f;
   border-radius: 25px;
   font-size: .85rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
 }
 .primary-button:hover {
-  background-color: #3d705f;
-  color: #c2f0ce;
+  background-color: #44a182;
+}
+
+.primary-dark-mode-button {
+  color: #fff;
+  background-color: #04293A;
+  border-radius: 25px;
+  font-size: .85rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+}
+.primary-dark-mode-button:hover {
+  background-color: #074a69;
+}
+
+/* Swiper */
+.swiper {
+  overflow: visible !important;
 }
 
 /* Swiper Dots */
+.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: -30px !important;
+}
 .swiper-pagination .swiper-pagination-bullet {
   width: 9px;
   height: 9px;
-  background: #3d705f;
+  background: #e2911f;
   opacity: 0.3;
   margin: .3rem 0.3rem -.8rem !important;
 }
 .swiper-pagination .swiper-pagination-bullet-active {
-  background: #3d705f !important;
+  background: #e2911f !important;
   opacity: 0.9;
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-  background-color: #3d705f;
-  color: #fff;
+  background-color: #e99d31;
+  color: #000;
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px !important;
   padding: 1rem;
   font-size: .6rem !important;
   font-weight: bolder !important;
-  transform: translateY(-50%);
+  transform: translateY(30%);
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -73,7 +92,7 @@ p {
 
 .swiper-button-prev:hover:after,
 .swiper-button-next:hover:after {
-  background-color: #3d705f;
+  background-color: #e2911f;
 }
 
 /* Rating */

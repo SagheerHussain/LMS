@@ -163,7 +163,7 @@ const FilterBooks = () => {
 
   return (
     <>
-      <div className="mx-auto container py-5">
+      <div className="mx-auto container py-5 min-h-[90vh]">
         <div className="flex justify-between">
           <div className="lg:w-[25%] lg:block hidden">
             <h5

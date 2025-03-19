@@ -137,7 +137,7 @@ const Sidebar = () => {
                         <GoDot className="text-light_text" />
                       </ListItemIcon>
                       <Link
-                        className="text-light_text text-lg"
+                        className="text-light_text"
                         to={`/dashboard/add-student`}
                       >
                         Add Student
@@ -145,7 +145,7 @@ const Sidebar = () => {
                     </ListItemButton>
                     <ListItemButton sx={{ pl: 4 }}>
                       <ListItemIcon className="-mr-4">
-                        <GoDot className="text-light_text text-lg" />
+                        <GoDot className="text-light_text" />
                       </ListItemIcon>
                       <Link
                         className="text-light_text"
@@ -183,7 +183,7 @@ const Sidebar = () => {
                         <GoDot className="text-light_text" />
                       </ListItemIcon>
                       <Link
-                        className="text-light_text text-lg"
+                        className="text-light_text"
                         to={`/dashboard/add-category`}
                       >
                         Add Category
@@ -194,7 +194,7 @@ const Sidebar = () => {
                         <GoDot className="text-light_text" />
                       </ListItemIcon>
                       <Link
-                        className="text-light_text text-lg"
+                        className="text-light_text"
                         to={`/dashboard/view-category`}
                       >
                         View Categories
@@ -229,7 +229,7 @@ const Sidebar = () => {
                         <GoDot className="text-light_text" />
                       </ListItemIcon>
                       <Link
-                        className="text-light_text text-lg"
+                        className="text-light_text"
                         to={`/dashboard/add-author`}
                       >
                         Add Author
@@ -240,7 +240,7 @@ const Sidebar = () => {
                         <GoDot className="text-light_text" />
                       </ListItemIcon>
                       <Link
-                        className="text-light_text text-lg"
+                        className="text-light_text"
                         to={`/dashboard/view-authors`}
                       >
                         View Author

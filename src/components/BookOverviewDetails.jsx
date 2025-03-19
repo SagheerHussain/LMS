@@ -8,6 +8,8 @@ import TabPanel from "@mui/lab/TabPanel";
 import { DarkThemeContext } from "@/context/ThemeContext";
 import { Rating, TextField } from "@mui/material";
 import { Button } from ".";
+import Swal from "sweetalert2";
+import { createReview, getApprovedReviews } from "../../services/reviewService";
 
 // Define Light and Dark Themes
 const lightTheme = {
@@ -16,6 +18,7 @@ const lightTheme = {
   tabBg: "#c2f0ce",
   tabText: "#000",
   selectedTab: "#3d705f",
+  hoverTabBg: "#529881"
 };
 
 const darkTheme = {
@@ -24,6 +27,7 @@ const darkTheme = {
   tabBg: "#0A192F",
   tabText: "#fff",
   selectedTab: "#04293A",
+  hoverTabBg: "#074a69"
 };
 
 // Styled Components for Tabs
@@ -41,7 +45,7 @@ const StyledTab = styled(Tab)`
   }
 
   &[aria-selected="false"]:hover {
-    background-color: #529881 !important;
+    background-color: ${({ theme }) => theme.hoverTabBg} !important;
     color: #fff !important;
   }
 `;
@@ -54,12 +58,59 @@ const StyledTabPanel = styled(TabPanel)`
 `;
 
 const BookOverviewDetails = ({ book }) => {
+  // Context
   const { darkMode } = useContext(DarkThemeContext);
-  const [value, setValue] = useState("1");
 
+  // user
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  // State Variable
+  const [value, setValue] = useState("1");
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
+  const [studentReviews, setReviewStudents] = useState([]);
+
+  // Handle Tab Change
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  // Get Reviews By Book
+  const getReviews = async () => {
+    try {
+      const { reviews, success } = await getApprovedReviews(book._id, token);
+      if (success) {
+        setReviewStudents(reviews);
+        console.log(reviews);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Add New Review
+  const handleReview = async () => {
+    try {
+      const newReview = { student: user._id, book: book._id, review, rating };
+      const data = await createReview(newReview, token);
+      if (data.success) {
+        Swal.fire({
+          title: "Review Added Successfully. Waiting For Admin Approval",
+          timer: 1500,
+          icon: "success",
+        });
+        setReview("");
+        setRating(0);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getReviews();
+  }, []);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -69,6 +120,7 @@ const BookOverviewDetails = ({ book }) => {
             <TabList
               variant="scrollable"
               onChange={handleChange}
+              className="mb-4"
               aria-label="lab API tabs example"
             >
               <StyledTab label="Description" value="1" />
@@ -204,87 +256,49 @@ const BookOverviewDetails = ({ book }) => {
             </div>
           </StyledTabPanel>
           <StyledTabPanel value="3">
-            <div className="student_reviews pb-6">
-              <div className="flex items-center">
+            {studentReviews.length > 0 ? studentReviews.map((review) => (
+              <div className="student_reviews pb-6">
+                <div className="flex items-center">
+                  <h6
+                    className={`${
+                      darkMode ? "text-light_text" : "text-dark_text"
+                    } text-sm`}
+                  >
+                    By {review.student.name}
+                  </h6>
+                  <Rating
+                    name="read-only"
+                    className="mx-2"
+                    sx={{ fontSize: ".8rem !important" }}
+                    value={review.rating}
+                    readOnly
+                  />
+                </div>
                 <h6
+                  className={`${
+                    darkMode ? "text-light_text" : "text-dark_text"
+                  } text-sm py-2`}
+                >
+                  {review.createdAt?.split("T")[0]}
+                </h6>
+                <p
                   className={`${
                     darkMode ? "text-light_text" : "text-dark_text"
                   } text-sm`}
                 >
-                  By Glen
-                </h6>
-                <Rating
-                  name="read-only"
-                  className="mx-2"
-                  sx={{ fontSize: ".8rem !important" }}
-                  value={2}
-                  readOnly
-                />
+                  {review.review}
+                </p>
               </div>
-              <h6
-                className={`${
-                  darkMode ? "text-light_text" : "text-dark_text"
-                } text-sm py-2`}
-              >
-                March 02, 2025
-              </h6>
-              <p
-                className={`${
-                  darkMode ? "text-light_text" : "text-dark_text"
-                } text-sm`}
-              >
-                Islam - Understanding the religion behind the headlines by
-                Ruqaiyyah Waris Maqsood In this format 192 pages across 10
-                chapters of easily accessible information, supported by
-                interesting pictures and separate notes in the margins
-                supporting useful snippets and external links.
-              </p>
-            </div>
-            <div className="student_reviews pb-6">
-              <div className="flex items-center">
-                <h6
-                  className={`${
-                    darkMode ? "text-light_text" : "text-dark_text"
-                  } text-sm`}
-                >
-                  By Abdul Rehman
-                </h6>
-                <Rating
-                  name="read-only"
-                  className="mx-2"
-                  sx={{ fontSize: ".8rem !important" }}
-                  value={4}
-                  readOnly
-                />
-              </div>
-              <h6
-                className={`${
-                  darkMode ? "text-light_text" : "text-dark_text"
-                } text-sm py-2`}
-              >
-                March 02, 2025
-              </h6>
-              <p
-                className={`${
-                  darkMode ? "text-light_text" : "text-dark_text"
-                } text-sm`}
-              >
-                Islam - Understanding the religion behind the headlines by
-                Ruqaiyyah Waris Maqsood In this format 192 pages across 10
-                chapters of easily accessible information, supported by
-                interesting pictures and separate notes in the margins
-                supporting useful snippets and external links.
-              </p>
-            </div>
+            )) : <p className="text-center">No Reviews Yet</p>}
           </StyledTabPanel>
           <StyledTabPanel value="4">
             <div className="review_write">
               <Rating
                 name="simple-controlled"
-                value={0}
+                value={rating}
                 sx={{ fontSize: "1.2rem !important" }}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setRating(newValue);
                 }}
               />
               <h3
@@ -296,6 +310,8 @@ const BookOverviewDetails = ({ book }) => {
               </h3>
               <input
                 type="text"
+                onChange={(e) => setReview(e.target.value)}
+                value={review}
                 className={`w-full  bg-transparent ${
                   darkMode
                     ? "text-light_text border-[#ffffff46] focus:border-[#ffffff46] focus:outline-none placeholder:text-light_text"
@@ -303,7 +319,12 @@ const BookOverviewDetails = ({ book }) => {
                 } border px-4 rounded-[20px] py-2`}
                 placeholder="Write Review"
               />
-              <Button label="Submit Review" />
+              <button
+                onClick={handleReview}
+                className={`primary-button transition-all duration-300 uppercase text-[.8rem] font-semibold px-4 py-2 mt-4`}
+              >
+                Add Review
+              </button>
             </div>
           </StyledTabPanel>
         </TabContext>

@@ -4,24 +4,29 @@
 .MuiDataGrid-row--borderBottom {
     background: #041C32 !important;
 }
-.css-1r7svyj-MuiDataGrid-root .MuiDataGrid-columnSeparator,
-.css-1r7svyj-MuiDataGrid-root .MuiDataGrid-columnSeparator--sideRight {
+.MuiDataGrid-columnSeparator svg{
     display: none !important;
 }
-.css-1r7svyj-MuiDataGrid-root {
+.MuiDataGrid-root--noToolbar {
     border: 1px solid #c0c0c030 !important;
     border-radius: 0% !important;
 }
-.css-11cfq65-MuiTablePagination-displayedRows {
+.MuiTablePagination-displayedRows {
+    color: #fff !important;
+}
+.MuiDataGrid-menuIconButton svg {
     color: #fff !important;
 }
 
 /* Navbar Dropdown */
-.navbar-dropdown-menu .css-1tktgsa-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+.navbar-dropdown-menu .MuiPopover-paper {
     position: absolute !important;
     top: 67px !important;
 }
-.css-1tktgsa-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+.MuiMenu-paper {
+    border-radius: 0px !important;
+}
+.MuiMenu-list {
     background-color: #041C32 !important;
     color: rgb(255 255 255 / 87%) !important;
     border-radius: 0px !important;
