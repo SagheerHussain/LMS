@@ -19,6 +19,7 @@ import { GoDot } from "react-icons/go";
 import { MdOutlineBookmark } from "react-icons/md";
 import { IoBookOutline } from "react-icons/io5";
 import { MdOutlineVerifiedUser } from "react-icons/md";
+import { MdOutlineRateReview } from "react-icons/md";
 
 const Sidebar = () => {
   const [services, setServices] = useState(false);
@@ -286,6 +287,24 @@ const Sidebar = () => {
                     to={`/dashboard/borrowed-requests`}
                   >
                     Borrowed Requests
+                  </Link>
+                </ListItemButton>
+              </div>
+            </ListItem>
+            <ListItem
+              disablePadding
+              className="my-[.75rem] border-1 border-transparent border-b-[#ffffff24]"
+            >
+              <div className="px-[.75rem]">
+                <ListItemButton>
+                  <ListItemIcon className="-mr-4">
+                    <MdOutlineRateReview className="text-light_text text-xl" />
+                  </ListItemIcon>
+                  <Link
+                    className="text-light_text"
+                    to={`/dashboard/review-requests`}
+                  >
+                    Reviews Requests
                   </Link>
                 </ListItemButton>
               </div>

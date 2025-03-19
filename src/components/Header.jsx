@@ -202,7 +202,7 @@ const Header = () => {
                   target="_blank"
                 >
                   <FaLinkedin
-                    size={24}
+                    size={28}
                     className={`rounded-[50%] ${
                       darkMode
                         ? "bg-secondary hover:bg-hover_color text-light_text"

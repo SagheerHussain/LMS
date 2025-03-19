@@ -74,7 +74,7 @@ const ViewStudents = () => {
       editable: true,
       renderCell: (params) => (
         <span
-          className={`${params.value ? "bg-green-500 text-dark_text" : "bg-red-500 text-light_text"} px-2 py-1 text-center`}
+          className={`${params.value ? "bg-green-600 text-light_text" : "bg-red-600 text-light_text"} px-2 py-1 text-center`}
         >
           {params.value ? "Verified" : "Not Verified"}
         </span>

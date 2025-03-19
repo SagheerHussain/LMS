@@ -20,6 +20,7 @@ import {
   ViewAuthor,
   EditAuthor,
   AccountRequests,
+  ReviewRequest,
   AddStudent,
   ViewStudents,
   BorrowedRequests,
@@ -72,6 +73,10 @@ function App() {
           <Route
             path="/dashboard/borrowed-requests"
             element={<BorrowedRequests />}
+          />
+          <Route
+            path="/dashboard/review-requests"
+            element={<ReviewRequest />}
           />
         </Route>
       </Routes>

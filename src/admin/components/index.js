@@ -18,6 +18,7 @@ import ViewStudents from "./students/ViewStudents"
 import EditStudent from "./students/EditStudent"
 import AccountRequests from "./AccountRequests";
 import BorrowedRequests from "./BorrowedRequests";
+import ReviewRequest from "./ReviewRequest";
 
 export {
     Footer,
@@ -39,5 +40,6 @@ export {
     ViewStudents,
     EditStudent,
     AccountRequests,
-    BorrowedRequests
+    BorrowedRequests,
+    ReviewRequest
 }

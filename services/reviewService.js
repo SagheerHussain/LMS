@@ -1,6 +1,19 @@
 import axios from "axios";
 
 // Get Reviews By Book
+export const getReviews = async (token) => {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/reviews`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching reviews by book:", error);
+    }
+}
+
 export const getReviewsByBook = async (id, token) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/reviews/review/${id}`, {
@@ -11,7 +24,6 @@ export const getReviewsByBook = async (id, token) => {
         return response.data;
     } catch (error) {
         console.error("Error fetching reviews by book:", error);
-        alert("Failed to fetch reviews by book");
     }
 }
 
@@ -42,5 +54,21 @@ export const createReview = async (data, token) => {
     } catch (error) {
         console.error("Error creating review:", error);
         alert("Failed to create review");
+    }
+}
+
+// Update Review
+export const updateReview = async (id, data, token) => {
+    try {
+        const response = await axios.put(`${import.meta.env.VITE_BASE_URL}/api/reviews/update/${id}`, data, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error updating review:", error);
+        alert("Failed to update review");
     }
 }

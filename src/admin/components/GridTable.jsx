@@ -17,16 +17,16 @@ const GridTable = ({
         <section id="table" className="h-full min-h-[90vh]">
           <Box className="lg:w-[75vw] xl:w-[80vw] 2xl:w-[84vw] p-8">
             {/* Bulk Delete Button */}
-            {selectedRows.length > 0 && (
-              <div className="flex justify-end mb-2">
+            <div className="flex justify-end mb-2">
+    
                 <button
-                  className="bg-primary hover:bg-hover_color text-white p-3 text-sm hover:bg-primary_hover"
+                  className={`${selectedRows.length > 0 ? "opacity-100" : "opacity-0"} bg-primary hover:bg-hover_color text-white p-3 text-sm hover:bg-primary_hover`}
                   onClick={handleBulkDelete}
                 >
                   Delete Selected Rows ({selectedRows.length})
                 </button>
-              </div>
-            )}
+      
+            </div>
 
             <h1 className="text-white mb-5 text-4xl font-bold">{title}</h1>
 
