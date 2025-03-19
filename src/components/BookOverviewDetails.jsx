@@ -96,8 +96,7 @@ const BookOverviewDetails = ({ book }) => {
       const data = await createReview(newReview, token);
       if (data.success) {
         Swal.fire({
-          title: "Review Added Successfully. Waiting For Admin Approval",
-          timer: 1500,
+          title: "We appreciate your review! It will be published after admin approval.",
           icon: "success",
         });
         setReview("");
@@ -321,7 +320,7 @@ const BookOverviewDetails = ({ book }) => {
               />
               <button
                 onClick={handleReview}
-                className={`primary-button transition-all duration-300 uppercase text-[.8rem] font-semibold px-4 py-2 mt-4`}
+                className={`${darkMode ? "primary-dark-mode-button" : "primary-button"}  transition-all duration-300 text-[.8rem] font-semibold px-4 py-2 mt-4`}
               >
                 Add Review
               </button>

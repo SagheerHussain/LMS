@@ -54,12 +54,13 @@ p {
 
 /* Swiper */
 .swiper {
-  overflow: visible !important;
+  overflow: hidden !important;
+  padding: 0 0 40px 0 !important;
 }
 
 /* Swiper Dots */
 .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: -30px !important;
+  bottom: 10px !important;
 }
 .swiper-pagination .swiper-pagination-bullet {
   width: 9px;
@@ -169,3 +170,11 @@ p {
 .MuiAccordionDetails-root {
   padding: 8px 0 16px !important;
 }
+
+/* Hero Slider Arrow Button */
+section#hero_section .swiper-button-prev {
+  left: 30px
+ }
+ section#hero_section .swiper-button-next {
+  right: 30px
+ }

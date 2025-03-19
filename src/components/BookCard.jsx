@@ -1,9 +1,10 @@
 import { DarkThemeContext } from "@/context/ThemeContext";
-import { Rating, useMediaQuery } from "@mui/material";
+import { Popover, Rating, Typography, useMediaQuery } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa6";
-import { Link, useLocation } from "react-router-dom";
-import { IoMdHeartEmpty } from "react-icons/io";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { HiOutlineExternalLink } from "react-icons/hi";
+import { FaExclamation } from "react-icons/fa";
 import {
   createBorrowedRequest,
   getBorrowedBooks,
@@ -49,6 +50,7 @@ const BookCard = ({
   } = book;
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const currentDate = new Date().getFullYear();
@@ -100,6 +102,24 @@ const BookCard = ({
     getBorrowBooks();
   }, []);
 
+  // Popover
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
+  // Handle Navigate
+  const handleNavigateRequests = () => {
+    navigate("/profile");
+  };
+
   return (
     <>
       <div
@@ -141,44 +161,95 @@ const BookCard = ({
           >
             By: {author.name}
           </h4>
-          <h3
-            className={`${
-              darkMode ? "text-zinc-300" : "text-dark_text"
-            }`}
-          >
+          <h3 className={`${darkMode ? "text-zinc-300" : "text-dark_text"}`}>
             {title?.slice(0, 30)}...
           </h3>
           <Link to={`/book-overview/${_id}`} key={_id}>
             {isMoreInfo && (
               <>
-
                 <h3
                   className={`${
                     darkMode ? "text-zinc-300" : "text-zinc-800"
-                  } text-sm pt-3`}
+                  } text-sm pt-3 flex items-center justify-between`}
                 >
                   Category: {category.name}
                 </h3>
               </>
             )}
           </Link>
-          <div className={`flex items-center ${smDevice && "justify-center"}`}>
+          <div className={`flex items-center`}>
             {(borrowBooks &&
               borrowRequest &&
               borrowBooks?.some((b) => b.book._id === book._id)) ||
             borrowRequest?.some((b) => b.book._id === book._id) ? (
-              <button
-                className={`text-dark_text rounded-[25px] bg-yellow_color transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
-              >
-                Borrowed
-              </button>
+              <>
+              <div className="mt-4 flex items-center">
+                <button
+                  className={` text-light_text rounded-[25px] ${
+                    darkMode ? "bg-[#074a69]" : "bg-light_theme_secondary"
+                  }  transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2`}
+                >
+                  Borrowed
+                </button>
+                {borrowRequest?.some((b) => b.book._id === book._id) && (
+                  <>
+                    <span className="ms-4 me-2 ">
+                      <Typography
+                        aria-owns={open ? "mouse-over-popover" : undefined}
+                        aria-haspopup="true"
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+                        className="text-sm"
+                      >
+                        <FaExclamation
+                          size={20}
+                          className={`bg-yellow_color p-1 text-dark_text rounded-full`}
+                        />
+                      </Typography>
+                      <Popover
+                        id="mouse-over-popover"
+                        sx={{ pointerEvents: "none" }}
+                        open={open}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                          vertical: "bottom",
+                          horizontal: "left",
+                        }}
+                        transformOrigin={{
+                          vertical: "top",
+                          horizontal: "left",
+                        }}
+                        onClose={handlePopoverClose}
+                        disableRestoreFocus
+                      >
+                        <Typography
+                          sx={{
+                            p: 1,
+                            backgroundColor: "#ea9d31",
+                            color: "#000",
+                            fontSize: ".8rem",
+                          }}
+                        >
+                          Waiting For Approval.
+                        </Typography>
+                      </Popover>
+                    </span>
+                    <span>
+                      <HiOutlineExternalLink onClick={handleNavigateRequests} size={20} className={`text-yellow_color`} />
+                    </span>
+                  </>
+                )}
+                </div>
+              </>
             ) : (
               <button
                 onClick={() => handleBorrowedRequest(_id)}
-                className={`${darkMode ? "primary-dark-mode-button" : "primary-button"} transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
+                className={`${
+                  darkMode ? "primary-dark-mode-button" : "primary-button"
+                }  transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2 mt-4`}
               >
                 Borrow Now
-              </button> 
+              </button>
             )}
           </div>
         </div>

@@ -187,7 +187,7 @@ const Header = () => {
                 </Link>
               </div>
               <div className="client_social_icons flex items-center">
-                <a href="#">
+                {/* <a href="#">
                   <FaFacebookF
                     size={24}
                     className={`rounded-[50%] ${
@@ -196,7 +196,7 @@ const Header = () => {
                         : "text-dark_text bg-light_theme_light_mode border border-[#ddd] hover:bg-light_theme_hover_mode"
                     } p-1 `}
                   />
-                </a>
+                </a> */}
                 <a
                   href="http://linkedin.com/company/skynetsilicon/people/"
                   target="_blank"
@@ -210,7 +210,7 @@ const Header = () => {
                     } p-1 mx-2`}
                   />
                 </a>
-                <a href="#">
+                {/* <a href="#">
                   <FaTwitter
                     size={24}
                     className={`rounded-[50%] ${
@@ -219,7 +219,7 @@ const Header = () => {
                         : "text-dark_text bg-light_theme_light_mode border border-[#ddd] hover:bg-light_theme_hover_mode"
                     } p-1`}
                   />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

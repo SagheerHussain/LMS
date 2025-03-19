@@ -18,7 +18,7 @@ const BorrowedBooks = () => {
   const token = JSON.parse(localStorage.getItem("token"));
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const [selectedType, setSelectedType] = useState("borrow-books");
+  const [selectedType, setSelectedType] = useState("borrow-request");
 
   // Main Query Function
   const fetchBooks = async () => {
@@ -62,20 +62,20 @@ const BorrowedBooks = () => {
           } border-2  px-3 py-3`}
         >
           <option
-            value="borrow-books"
-            className={`${
-              darkMode ? "bg-primary" : "bg-light_theme_light_mode"
-            }`}
-          >
-            Borrowed Books
-          </option>
-          <option
             value="borrow-request"
             className={`${
               darkMode ? "bg-primary" : "bg-light_theme_light_mode"
             }`}
           >
             Borrowed Request
+          </option>
+          <option
+            value="borrow-books"
+            className={`${
+              darkMode ? "bg-primary" : "bg-light_theme_light_mode"
+            }`}
+          >
+            Borrowed Books
           </option>
           <option
             value="borrow-history"

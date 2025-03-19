@@ -141,7 +141,7 @@ const RelatedBooks = ({ book }) => {
               </div>
             </StyledTabPanel>
             <StyledTabPanel value="2">
-              <div className="swiper-slides overflow-hidden">
+
                 <Swiper
                   spaceBetween={20} // Default spacing
                   autoplay={{ delay: 2500, disableOnInteraction: false }}
@@ -164,7 +164,7 @@ const RelatedBooks = ({ book }) => {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-              </div>
+
             </StyledTabPanel>
           </TabContext>
         </div>

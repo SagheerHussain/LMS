@@ -90,7 +90,6 @@ const BookList = ({
                 </Link>
               </div>
 
-              <div className="swiper-slides overflow-hidden">
                 <Swiper
                   spaceBetween={20} // Default spacing
                   // autoplay={{ delay: 2500, disableOnInteraction: false }}
@@ -114,7 +113,7 @@ const BookList = ({
                       </SwiperSlide>
                     ))}
                 </Swiper>
-              </div>
+
             </div>
           ))}
         </div>
