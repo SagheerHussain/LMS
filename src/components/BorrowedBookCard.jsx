@@ -45,7 +45,7 @@ const BorrowedBookCard = ({
                 darkMode ? "text-light_text" : "text-dark_text"
               } pt-4 font-medium text-[.75rem]`}
             >
-              Category: {book.category}
+              Category: {book.category.name}
             </h4>
             {borrowedDate && (
               <h6
