@@ -42,10 +42,10 @@ const HomePage = () => {
           breakPoints={{
             280: { slidesPerView: 1, spaceBetween: 20 },
             510: { slidesPerView: 2, spaceBetween: 20 },
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 3, spaceBetween: 20 },
-            1024: { slidesPerView: 4, spaceBetween: 50 },
-            1280: { slidesPerView: 4, spaceBetween: 50 },
+            640: { slidesPerView: 3, spaceBetween: 20 },
+            768: { slidesPerView: 4, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 10 },
+            1280: { slidesPerView: 5, spaceBetween: 10 },
             1538: { slidesPerView: 5, spaceBetween: 10 },
           }}
           content_classes=""

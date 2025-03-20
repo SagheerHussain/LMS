@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"; // For navigation
 import Swal from "sweetalert2";
 import GridTable from "../GridTable";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { deleteAuthor, getAuthors } from "../../../../services/authorService";
+import { deleteAuthor, deleteManyAuthors, getAuthors } from "../../../../services/authorService";
 
 const ViewAuthor = () => {
   const [rows, setRows] = useState([]);
@@ -57,7 +57,43 @@ const ViewAuthor = () => {
   };
 
   // Handle Bulk Delete
-  const handleBulkDelete = async () => {};
+  const handleBulkDelete = async () => {
+    if (selectedRows.length === 0) {
+      Swal.fire(
+        "No Selection",
+        "Please select at least one author to delete.",
+        "warning"
+      );
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `Do you really want to delete ${selectedRows.length} categories? This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete them!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await deleteManyAuthors(selectedRows);
+        if (response.success) {
+          setRows(rows.filter((row) => !selectedRows.includes(row.id)));
+          setSelectedRows([]);
+          Swal.fire(
+            "Deleted!",
+            "The selected authors have been deleted.",
+            "success"
+          );
+        }
+      } catch (error) {
+        console.error("Error deleting authors:", error);
+      }
+    }
+  };
 
   const columns = [
     { field: "id", headerName: "ID", flex: 1, minWidth: 150 },

@@ -9,7 +9,7 @@ const BookCover = ({ image = "", className = "" }) => {
     <>
       <img
         src={image}
-        className={`${className} object-cover min-w-[400px] min-h-[400px] object-top z-[999] rounded-[25px]`}
+        className={`${className} object-cover w-full object-top z-[999] rounded-[25px]`}
         alt="Book cover"
         loading="lazy"
       />

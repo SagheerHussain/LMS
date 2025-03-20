@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Swal from "sweetalert2";
 import GridTable from "./GridTable";
-import { getBorrowedRequests, updateBorrowedRequestStatus } from "../../../services/borrowedService";
+import {
+  deleteManyBorrowedRequests,
+  getBorrowedRequests,
+  updateBorrowedRequestStatus,
+} from "../../../services/borrowedService";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 const BorrowedRequests = () => {
@@ -155,7 +159,11 @@ const BorrowedRequests = () => {
     handleMenuClose();
     try {
       const data = { status };
-      const updateStatus = await updateBorrowedRequestStatus(selectedId, data, token);
+      const updateStatus = await updateBorrowedRequestStatus(
+        selectedId,
+        data,
+        token
+      );
       if (updateStatus.success) {
         Swal.fire({
           icon: "success",
@@ -171,7 +179,43 @@ const BorrowedRequests = () => {
   };
 
   // Handle Bulk Delete
-  const handleBulkDelete = async () => {};
+  const handleBulkDelete = async () => {
+    if (selectedRows.length === 0) {
+      Swal.fire(
+        "No Selection",
+        "Please select at least one account request to delete.",
+        "warning"
+      );
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `Do you really want to delete ${selectedRows.length} categories? This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete them!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await deleteManyBorrowedRequests(selectedRows);
+        if (response.success) {
+          setRows(rows.filter((row) => !selectedRows.includes(row.id)));
+          setSelectedRows([]);
+          Swal.fire(
+            "Deleted!",
+            "The selected books have been deleted.",
+            "success"
+          );
+        }
+      } catch (error) {
+        console.error("Error deleting categories:", error);
+      }
+    }
+  };
 
   return (
     <GridTable

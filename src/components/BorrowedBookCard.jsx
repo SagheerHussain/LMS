@@ -27,7 +27,7 @@ const BorrowedBookCard = ({
             <div className={`cursor-pointer book_image flex justify-center`}>
               <img
                 src={book.image}
-                className={`w-[170px] h-[250px] object-cover object-left-top rounded-[25px] `}
+                className={`w-full h-[400px] object-cover object-left-top rounded-[25px] `}
                 alt={book.title}
                 loading="lazy"
               />

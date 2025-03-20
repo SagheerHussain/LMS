@@ -159,7 +159,43 @@ const AccountRequests = () => {
   };
 
   // Handle Bulk Delete
-  const handleBulkDelete = async () => {};
+  const handleBulkDelete = async () => {
+    if (selectedRows.length === 0) {
+      Swal.fire(
+        "No Selection",
+        "Please select at least one account request to delete.",
+        "warning"
+      );
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `Do you really want to delete ${selectedRows.length} categories? This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete them!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await deleteManyAccountRequests(selectedRows);
+        if (response.success) {
+          setRows(rows.filter((row) => !selectedRows.includes(row.id)));
+          setSelectedRows([]);
+          Swal.fire(
+            "Deleted!",
+            "The selected books have been deleted.",
+            "success"
+          );
+        }
+      } catch (error) {
+        console.error("Error deleting categories:", error);
+      }
+    }
+  };
 
   // Handle Status
   const handleStatus = async (status) => {

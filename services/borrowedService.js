@@ -165,3 +165,15 @@ export const updateBorrowedRequestStatus = async (id, data, token) => {
     console.error("Error updating borrowed request:", error);
   }
 };
+
+// Delete Many Books
+export const deleteManyBorrowedRequests = async (ids) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BASE_URL}/api/borrowed/borrowed-requests/delete-many?ids=${ids.join(",")}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting borrowed requests:", error);
+  }
+};

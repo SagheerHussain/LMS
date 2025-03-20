@@ -123,25 +123,15 @@ const BookCard = ({
   return (
     <>
       <div
-        className={`book_card ${className} w-full relative ${
+        className={`book_card ${className} w-full scale-[.95] relative ${
           smDevice && "text-center"
         }`}
       >
         <Link to={`/book-overview/${_id}`} key={_id}>
-          <div
-            className={`cursor-pointer book_image ${
-              location.pathname === "/"
-                ? `${isMatch ? "scale-[1]" : "scale-[1]"}`
-                : "scale-[1]"
-            }  max-h-[300px] max-w-[200px] ${smDevice && "mx-auto"}`}
-          >
+          <div className={`cursor-pointer book_image ${smDevice && "mx-auto"}`}>
             <img
               src={image}
-              className={`w-full ${
-                location.pathname === "/"
-                  ? "min-h-[300px] min-w-[200px]"
-                  : "h-[300px]"
-              } object-cover object-left-top rounded-[25px] `}
+              className={`w-full lg:h-[400px] object-cover object-left-top rounded-[25px] `}
               alt={title}
               loading="lazy"
             />
@@ -170,75 +160,42 @@ const BookCard = ({
                 <h3
                   className={`${
                     darkMode ? "text-zinc-300" : "text-zinc-800"
-                  } text-sm pt-3 flex items-center justify-between`}
+                  } text-sm pt-3 flex items-center ${smDevice ? "justify-center" : "justify-start"}`}
                 >
                   Category: {category.name}
                 </h3>
               </>
             )}
           </Link>
-          <div className={`flex items-center`}>
+          <div className={`flex items-center ${smDevice ? "justify-center" : "justify-start"}`}>
             {(borrowBooks &&
               borrowRequest &&
               borrowBooks?.some((b) => b.book._id === book._id)) ||
             borrowRequest?.some((b) => b.book._id === book._id) ? (
               <>
-              <div className="mt-4 flex items-center">
-                <button
-                  className={` text-light_text rounded-[25px] ${
-                    darkMode ? "bg-[#074a69]" : "bg-light_theme_secondary"
-                  }  transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2`}
+                <div className="mt-4 flex items-center">
+                  {borrowRequest?.some((b) => b.book._id === book._id) ? (
+                    <>
+                      <button
+                        className={` text-light_text rounded-[25px] ${
+                          darkMode ? "bg-[#074a69]" : "bg-light_theme_secondary"
+                        }  transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2`}
+                      >
+                        Waiting For Approval
+                      </button>
+                      <span className="ms-2">
+                        <HiOutlineExternalLink
+                          onClick={handleNavigateRequests}
+                          size={20}
+                          className={`text-light_theme_secondary`}
+                        />
+                      </span>
+                    </>
+                  ) : <button
+                  className={` text-dark_text rounded-[25px] bg-yellow_color transition-all duration-300 capitalize text-[.8rem] font-semibold px-4 py-2`}
                 >
                   Borrowed
-                </button>
-                {borrowRequest?.some((b) => b.book._id === book._id) && (
-                  <>
-                    <span className="ms-4 me-2 ">
-                      <Typography
-                        aria-owns={open ? "mouse-over-popover" : undefined}
-                        aria-haspopup="true"
-                        onMouseEnter={handlePopoverOpen}
-                        onMouseLeave={handlePopoverClose}
-                        className="text-sm"
-                      >
-                        <FaExclamation
-                          size={20}
-                          className={`bg-yellow_color p-1 text-dark_text rounded-full`}
-                        />
-                      </Typography>
-                      <Popover
-                        id="mouse-over-popover"
-                        sx={{ pointerEvents: "none" }}
-                        open={open}
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                          vertical: "bottom",
-                          horizontal: "left",
-                        }}
-                        transformOrigin={{
-                          vertical: "top",
-                          horizontal: "left",
-                        }}
-                        onClose={handlePopoverClose}
-                        disableRestoreFocus
-                      >
-                        <Typography
-                          sx={{
-                            p: 1,
-                            backgroundColor: "#ea9d31",
-                            color: "#000",
-                            fontSize: ".8rem",
-                          }}
-                        >
-                          Waiting For Approval.
-                        </Typography>
-                      </Popover>
-                    </span>
-                    <span>
-                      <HiOutlineExternalLink onClick={handleNavigateRequests} size={20} className={`text-yellow_color`} />
-                    </span>
-                  </>
-                )}
+                </button>}
                 </div>
               </>
             ) : (

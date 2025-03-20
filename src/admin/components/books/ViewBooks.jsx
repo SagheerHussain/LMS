@@ -5,7 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Swal from "sweetalert2";
 // import { MoreVert } from '@mui/icons-material';
 import GridTable from "../GridTable";
-import { deleteBook, getBooks } from "../../../../services/bookService";
+import { deleteBook, deleteManyBooks, getBooks } from "../../../../services/bookService";
 
 const ViewBooks = () => {
   const [rows, setRows] = useState([]);
@@ -80,7 +80,7 @@ const ViewBooks = () => {
       renderCell: (params) => (
         <>
           <IconButton onClick={(event) => handleMenuOpen(event, params.row.id)}>
-            <BsThreeDotsVertical  className="text-white" />
+            <BsThreeDotsVertical className="text-white" />
           </IconButton>
           <Menu
             anchorEl={anchorEl}
@@ -139,7 +139,43 @@ const ViewBooks = () => {
   };
 
   // Handle Bulk Delete
-  const handleBulkDelete = async () => {};
+  const handleBulkDelete = async () => {
+    if (selectedRows.length === 0) {
+      Swal.fire(
+        "No Selection",
+        "Please select at least one book to delete.",
+        "warning"
+      );
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `Do you really want to delete ${selectedRows.length} categories? This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete them!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await deleteManyBooks(selectedRows);
+        if (response.success) {
+          setRows(rows.filter((row) => !selectedRows.includes(row.id)));
+          setSelectedRows([]);
+          Swal.fire(
+            "Deleted!",
+            "The selected books have been deleted.",
+            "success"
+          );
+        }
+      } catch (error) {
+        console.error("Error deleting books:", error);
+      }
+    }
+  };
 
   return (
     <>

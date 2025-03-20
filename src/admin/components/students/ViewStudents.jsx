@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Swal from "sweetalert2";
 import GridTable from "../GridTable";
-import { deleteStudent, getStudents } from "../../../../services/studentService";
+import {
+  deleteManyStudents,
+  deleteStudent,
+  getStudents,
+} from "../../../../services/studentService";
 
 const ViewStudents = () => {
   const [rows, setRows] = useState([]);
@@ -74,7 +78,11 @@ const ViewStudents = () => {
       editable: true,
       renderCell: (params) => (
         <span
-          className={`${params.value ? "bg-green-600 text-light_text" : "bg-red-600 text-light_text"} px-2 py-1 text-center`}
+          className={`${
+            params.value
+              ? "bg-green-600 text-light_text"
+              : "bg-red-600 text-light_text"
+          } px-2 py-1 text-center`}
         >
           {params.value ? "Verified" : "Not Verified"}
         </span>
@@ -155,8 +163,8 @@ const ViewStudents = () => {
     navigate(`/dashboard/edit-student/${selectedId}`);
   };
 
-   // Handle Single Delete
-   const handleDelete = async () => {
+  // Handle Single Delete
+  const handleDelete = async () => {
     handleMenuClose();
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -180,7 +188,43 @@ const ViewStudents = () => {
   };
 
   // Handle Bulk Delete
-  const handleBulkDelete = async () => {};
+  const handleBulkDelete = async () => {
+    if (selectedRows.length === 0) {
+      Swal.fire(
+        "No Selection",
+        "Please select at least one student to delete.",
+        "warning"
+      );
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `Do you really want to delete ${selectedRows.length} categories? This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete them!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await deleteManyStudents(selectedRows);
+        if (response.success) {
+          setRows(rows.filter((row) => !selectedRows.includes(row.id)));
+          setSelectedRows([]);
+          Swal.fire(
+            "Deleted!",
+            "The selected students have been deleted.",
+            "success"
+          );
+        }
+      } catch (error) {
+        console.error("Error deleting students:", error);
+      }
+    }
+  };
 
   return (
     <GridTable

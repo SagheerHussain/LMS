@@ -136,3 +136,14 @@ export const deleteStudent = async (id) => {
   }
 };
 
+// Delete Many Students
+export const deleteManyStudents = async (ids) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BASE_URL}/api/students/delete-many?ids=${ids.join(",")}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting students:", error);
+  }
+};

@@ -6,12 +6,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HiStatusOnline } from "react-icons/hi";
 import { Rating } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 const FilterBookCard = ({ book }) => {
   const { darkMode } = useContext(DarkThemeContext);
 
-  console.log(book);
-
+  const match = useMediaQuery("(max-width:500px)");
   return (
     <>
       {book && (
@@ -24,7 +24,7 @@ const FilterBookCard = ({ book }) => {
             <div className={`cursor-pointer book_image flex justify-center`}>
               <img
                 src={book.image}
-                className={`w-[200px] h-[250px] object-cover object-left-top rounded-[25px] `}
+                className={`w-[200px] h-[300px] object-cover object-left-top rounded-[25px] `}
                 alt={book.title}
                 loading="lazy"
               />
@@ -33,27 +33,35 @@ const FilterBookCard = ({ book }) => {
             <h1
               className={`${
                 darkMode ? "text-light_text" : "text-dark_text"
-              }  text-[.95rem] pt-4 font-semibold`}
+              }  text-[.95rem] pt-4 font-semibold ${
+                match ? "text-center" : "text-start"
+              }`}
             >
               {book.title.slice(0, 20)}...
             </h1>
-            <Rating
-              name="read-only"
-              className="text-[.8rem] pt-1"
-              value={book.rating}
-              readOnly
-            />
+            <div
+              className={`rating ${
+                match ? "w-full text-center" : "text-start"
+              }`}
+            >
+              <Rating
+                name="read-only"
+                value={book.rating}
+                readOnly
+                className={` text-[.8rem] pt-1`}
+              />
+            </div>
             <h4
               className={`${
                 darkMode ? "text-light_text" : "text-dark_text"
-              } pt-1 text-[.75rem]`}
+              } pt-1 text-[.75rem] ${match ? "text-center" : "text-start"}`}
             >
               Category: {book.category.name}
             </h4>
             <h4
               className={`${
                 darkMode ? "text-light_text" : "text-dark_text"
-              } pt-1 text-[.75rem]`}
+              } pt-1 text-[.75rem] ${match ? "text-center" : "text-start"}`}
             >
               Author: {book.author.name}
             </h4>

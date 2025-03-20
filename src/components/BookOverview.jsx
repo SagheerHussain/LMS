@@ -16,6 +16,8 @@ import {
 
 const BookOverview = ({ id, darkMode }) => {
   const matches = useMediaQuery("(max-width:530px)");
+  const largeDevices = useMediaQuery("(min-width:1900px)");
+  const mediumDevices = useMediaQuery("(min-width:1025px)");
 
   // Get Data From Local Storage
   const user = JSON.parse(localStorage.getItem("user"));
@@ -90,7 +92,7 @@ const BookOverview = ({ id, darkMode }) => {
 
   return (
     <>
-      <section id="book-overview" className="py-10 sm:py-20 min-h-[80vh]">
+      <section id="book-overview" className="py-10 sm:py-20 min-h-[100vh]">
         {loading && (
           <div className="flex justify-center items-center">
             <ClipLoader size={32} color={`${darkMode ? "#fff" : "#000"}`} />
@@ -98,12 +100,12 @@ const BookOverview = ({ id, darkMode }) => {
         )}
         {bookData && (
           <div className="container  mx-auto">
-            <div className={`${matches ? "block" : "flex"} min-h-[90vh]`}>
-              <div className="w-[30%] h-full relative">
+            <div className={`${matches ? "block" : "flex"} ${largeDevices && "min-h-[90vh]"} ${mediumDevices && "min-h-[110vh]"}`}>
+              <div className="sm:w-[30%] h-full relative">
                 <BookCover className="z-[999]" image={bookData.image} />
               </div>
               <div
-                className={`w-[70%] h-full book_overview sm:ps-6 ps-3 ${
+                className={`sm:w-[70%] h-full book_overview sm:ps-6 ps-3 ${
                   matches ? "pt-6" : "pt-0"
                 }`}
               >
@@ -204,7 +206,7 @@ const BookOverview = ({ id, darkMode }) => {
               </div>
             </div>
 
-            <div className="book_overview_details lg:hidden block">
+            <div className="book_overview_details lg:hidden block lg:min-h-0 min-h-[550px]">
               <BookOverviewDetails book={bookData} />
             </div>
 

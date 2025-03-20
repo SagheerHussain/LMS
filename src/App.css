@@ -32,7 +32,7 @@ p {
   color: #fff;
   background-color: #3d705f;
   border-radius: 25px;
-  font-size: .85rem;
+  font-size: 0.85rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
 }
@@ -42,9 +42,9 @@ p {
 
 .primary-dark-mode-button {
   color: #fff;
-  background-color: #04293A;
+  background-color: #04293a;
   border-radius: 25px;
-  font-size: .85rem;
+  font-size: 0.85rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
 }
@@ -58,8 +58,32 @@ p {
   padding: 0 0 40px 0 !important;
 }
 
+#bookLists .swiper-button-next:after,
+#bookLists .swiper-button-prev:after {
+  transform: translateY(-100%);
+}
+
+/* @media (min-width: 1121px) and (max-width: 1150px) {
+  #bookLists .swiper {
+    padding-left: 50px !important;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1120px) {
+  #bookLists .swiper {
+    padding-left: 40px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  #bookLists .swiper {
+    padding-left: 60px !important;
+  }
+} */
+
 /* Swiper Dots */
-.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
   bottom: 10px !important;
 }
 .swiper-pagination .swiper-pagination-bullet {
@@ -67,7 +91,7 @@ p {
   height: 9px;
   background: #e2911f;
   opacity: 0.3;
-  margin: .3rem 0.3rem -.8rem !important;
+  margin: 0.3rem 0.3rem -0.8rem !important;
 }
 .swiper-pagination .swiper-pagination-bullet-active {
   background: #e2911f !important;
@@ -78,13 +102,15 @@ p {
 .swiper-button-prev:after {
   background-color: #e99d31;
   color: #000;
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px !important;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px !important;
   padding: 1rem;
-  font-size: .6rem !important;
+  font-size: 0.9rem !important;
   font-weight: bolder !important;
-  transform: translateY(30%);
-  width: 30px;
-  height: 30px;
+  transform: translateY(0);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -173,8 +199,8 @@ p {
 
 /* Hero Slider Arrow Button */
 section#hero_section .swiper-button-prev {
-  left: 30px
- }
- section#hero_section .swiper-button-next {
-  right: 30px
- }
+  left: 30px;
+}
+section#hero_section .swiper-button-next {
+  right: 30px;
+}

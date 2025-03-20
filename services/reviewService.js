@@ -72,3 +72,15 @@ export const updateReview = async (id, data, token) => {
         alert("Failed to update review");
     }
 }
+
+// Delete Many Reviews
+export const deleteManyReviews = async (ids) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BASE_URL}/api/reviews/delete-many?ids=${ids.join(",")}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting reviews:", error);
+  }
+};

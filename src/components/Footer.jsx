@@ -13,7 +13,7 @@ const Footer = () => {
   const isMatch = useMediaQuery(`(max-width: 420px)`);
 
   return (
-    <footer class={` ${darkMode ? "bg-[#04293A]" : "bg-light_theme_secondary"} `}>
+    <footer class={` ${darkMode ? "bg-[#04293A]" : "bg-light_theme_primary"} `}>
       <div class="mx-auto w-full container">
         <div class={`grid ${isMatch ? "grid-cols-1" : "grid-cols-2"} md:grid-cols-3 gap-8 px-4 py-6 lg:py-8 lg:grid-cols-4`}>
           <div>
@@ -190,7 +190,7 @@ const Footer = () => {
         </div>
         <div
           class={`px-4 py-6 ${
-            darkMode ? "bg-[#04293A]" : "bg-light_theme_secondary"
+            darkMode ? "bg-[#04293A]" : "bg-light_theme_primary"
           } lg:flex lg:items-center lg:justify-between`}
         >
           <p

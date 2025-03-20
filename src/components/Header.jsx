@@ -47,22 +47,32 @@ const Header = () => {
   };
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > 10) {
-        setIsFixed(true); // Fix navbar when scrolled past 100px
-        setIsScrollingUp(currentScrollY < lastScrollY); // Check scroll direction
+        setIsFixed(true);
+        console.log("Fixed", currentScrollY, lastScrollY);
+        if (currentScrollY < lastScrollY) {
+          // Scrolling Up
+          setIsScrollingUp(true);
+        } else {
+          // Scrolling Down
+          setIsScrollingUp(false);
+        }
       } else {
-        setIsFixed(false); // Reset when at the top
+        setIsFixed(false);
+        setIsScrollingUp(false);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Drawer List
   const [open, setOpen] = React.useState(false);
@@ -228,18 +238,16 @@ const Header = () => {
         {/* Navbar */}
         <nav
           id="navbar"
-          className={`py-3 ${
+          className={`py-3 transition-all duration-500 ${
             darkMode ? "bg-secondary" : "bg-light_theme_primary"
           } ${
             isFixed
-              ? `w-full transition-all duration-300 shadow-md linear ${
-                  darkMode ? "bg-secondary" : "bg-light_theme_primary shadow"
-                } `
+              ? `${
+                  isScrollingUp
+                    ? "fixed top-0 left-0 w-full z-[999] translate-y-0"
+                    : "fixed -top-20 left-0 w-full shadow-lg z-[999] -translate-y-full"
+                }`
               : ""
-          } ${
-            isFixed && !isScrollingUp
-              ? "-translate-y-full bg-transparent"
-              : "translate-y-0 z-[999]"
           }`}
         >
           <div

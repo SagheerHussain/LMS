@@ -14,6 +14,7 @@ import {
   Pagination,
   Button,
   Drawer,
+  useMediaQuery,
 } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import { IoFilterSharp } from "react-icons/io5";
@@ -33,6 +34,8 @@ import { getAuthors } from "../../services/authorService";
 
 const FilterBooks = () => {
   const { darkMode } = useContext(DarkThemeContext);
+
+  const match = useMediaQuery("(max-width:500px)");
 
   // State Variable
   const [loading, setLoading] = useState(true);
@@ -258,7 +261,7 @@ const FilterBooks = () => {
               </div>
             )}
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-4">
+            <div className={`grid ${match ? "grid-cols-1" : "grid-cols-2"}  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4`}>
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((book) => <FilterBookCard book={book} />)
               ) : (

@@ -49,3 +49,15 @@ export const deleteCategory = async (id) => {
         console.error("Error deleting category:", error);
     }
 };
+
+// Delete Many Categories
+export const deleteManyCategories = async (ids) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BASE_URL}/api/categories/delete-many?ids=${ids.join(",")}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting categories:", error);
+  }
+};

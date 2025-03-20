@@ -4,6 +4,9 @@
 .MuiDataGrid-row--borderBottom {
     background: #041C32 !important;
 }
+.MuiDataGrid-selectedRowCount {
+    color: #fff !important;
+}
 .MuiDataGrid-columnSeparator svg{
     display: none !important;
 }
