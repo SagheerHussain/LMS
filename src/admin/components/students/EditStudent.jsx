@@ -97,10 +97,10 @@ const EditStudent = () => {
               Edit Student
             </h1>
             <div className="flex gap-4">
-              <div className="book_form">
+              <div className="book_form w-[75%]">
                 <form action="" onSubmit={handleSubmit}>
                   {/* Name */}
-                  <label className="text-[#fff] text-sm">Student Name*</label>
+                  <label className="text-[#fff] text-sm">Student Name</label>
                   <input
                     type="name"
                     onChange={handleChange}
@@ -149,7 +149,7 @@ const EditStudent = () => {
 
                   {/* Profile Picture */}
                   <label className="text-[#fff] text-sm">
-                    Student Profile Picture*
+                    Student Profile Picture
                   </label>
                   <input
                     type="file"
@@ -161,7 +161,7 @@ const EditStudent = () => {
 
                   {/* University ID Card Image */}
                   <label className="text-[#fff] text-sm">
-                    University ID Card Image*
+                    University ID Card Image
                   </label>
                   <input
                     type="file"
@@ -176,7 +176,7 @@ const EditStudent = () => {
                   </button>
                 </form>
               </div>
-              <div className="student_image">
+              <div className="student_image w-[25%]">
                 <img
                   src={file?.profilePicture || formData?.profilePicture}
                   alt="Student Profile Picture"

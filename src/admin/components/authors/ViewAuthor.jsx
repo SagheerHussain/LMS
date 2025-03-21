@@ -96,7 +96,7 @@ const ViewAuthor = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 1, minWidth: 150 },
+    { field: "No", headerName: "Index", flex: 1, minWidth: 150 },
     {
       field: "author",
       headerName: "Author",
@@ -142,7 +142,8 @@ const ViewAuthor = () => {
       try {
         const data = await getAuthors();
         const formattedRows = data.map((item, index) => ({
-          id: item._id || index + 1,
+          id: item._id,
+          No: index + 1,
           author: item.name || "N/A",
           slug: item.slug || "N/A",
         }));

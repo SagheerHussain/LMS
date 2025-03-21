@@ -25,6 +25,7 @@ const ReviewRequest = () => {
         console.log(data);
         const formattedRows = data.reviews.map((item, index) => ({
           id: item._id || index + 1,
+          No: index + 1,
           cover: item.book.image || "N/A",
           review: item.review || "N/A",
           rating: item.rating || "N/A",
@@ -42,7 +43,7 @@ const ReviewRequest = () => {
   }, []);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 1, minWidth: 150 },
+    { field: "No", headerName: "Index", flex: 1, minWidth: 150 },
     {
       field: "cover",
       headerName: "Cover",

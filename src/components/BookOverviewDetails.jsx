@@ -18,7 +18,7 @@ const lightTheme = {
   tabBg: "#c2f0ce",
   tabText: "#000",
   selectedTab: "#3d705f",
-  hoverTabBg: "#529881"
+  hoverTabBg: "#529881",
 };
 
 const darkTheme = {
@@ -27,7 +27,7 @@ const darkTheme = {
   tabBg: "#0A192F",
   tabText: "#fff",
   selectedTab: "#04293A",
-  hoverTabBg: "#074a69"
+  hoverTabBg: "#074a69",
 };
 
 // Styled Components for Tabs
@@ -91,12 +91,22 @@ const BookOverviewDetails = ({ book }) => {
 
   // Add New Review
   const handleReview = async () => {
+    // Condition to check if review or rating is empty
+    if (!review.trim() || rating === 0) {
+      Swal.fire({
+        title: "Please provide both a review and a rating!",
+        icon: "warning",
+      });
+      return; // Stop the function here if condition is not met
+    }
+
     try {
       const newReview = { student: user._id, book: book._id, review, rating };
       const data = await createReview(newReview, token);
       if (data.success) {
         Swal.fire({
-          title: "We appreciate your review! It will be published after admin approval.",
+          title:
+            "We appreciate your review! It will be published after admin approval.",
           icon: "success",
         });
         setReview("");
@@ -255,40 +265,44 @@ const BookOverviewDetails = ({ book }) => {
             </div>
           </StyledTabPanel>
           <StyledTabPanel value="3">
-            {studentReviews.length > 0 ? studentReviews.map((review) => (
-              <div className="student_reviews pb-6">
-                <div className="flex items-center">
+            {studentReviews.length > 0 ? (
+              studentReviews.map((review) => (
+                <div className="student_reviews pb-6">
+                  <div className="flex items-center">
+                    <h6
+                      className={`${
+                        darkMode ? "text-light_text" : "text-dark_text"
+                      } text-sm`}
+                    >
+                      By {review.student.name}
+                    </h6>
+                    <Rating
+                      name="read-only"
+                      className="mx-2"
+                      sx={{ fontSize: ".8rem !important" }}
+                      value={review.rating}
+                      readOnly
+                    />
+                  </div>
                   <h6
+                    className={`${
+                      darkMode ? "text-light_text" : "text-dark_text"
+                    } text-sm py-2`}
+                  >
+                    {review.createdAt?.split("T")[0]}
+                  </h6>
+                  <p
                     className={`${
                       darkMode ? "text-light_text" : "text-dark_text"
                     } text-sm`}
                   >
-                    By {review.student.name}
-                  </h6>
-                  <Rating
-                    name="read-only"
-                    className="mx-2"
-                    sx={{ fontSize: ".8rem !important" }}
-                    value={review.rating}
-                    readOnly
-                  />
+                    {review.review}
+                  </p>
                 </div>
-                <h6
-                  className={`${
-                    darkMode ? "text-light_text" : "text-dark_text"
-                  } text-sm py-2`}
-                >
-                  {review.createdAt?.split("T")[0]}
-                </h6>
-                <p
-                  className={`${
-                    darkMode ? "text-light_text" : "text-dark_text"
-                  } text-sm`}
-                >
-                  {review.review}
-                </p>
-              </div>
-            )) : <p className="text-center">No Reviews Yet</p>}
+              ))
+            ) : (
+              <p className="text-center">No Reviews Yet</p>
+            )}
           </StyledTabPanel>
           <StyledTabPanel value="4">
             <div className="review_write">
@@ -320,7 +334,9 @@ const BookOverviewDetails = ({ book }) => {
               />
               <button
                 onClick={handleReview}
-                className={`${darkMode ? "primary-dark-mode-button" : "primary-button"}  transition-all duration-300 text-[.8rem] font-semibold px-4 py-2 mt-4`}
+                className={`${
+                  darkMode ? "primary-dark-mode-button" : "primary-button"
+                }  transition-all duration-300 text-[.8rem] font-semibold px-4 py-2 mt-4`}
               >
                 Add Review
               </button>

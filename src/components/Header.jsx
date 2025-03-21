@@ -175,16 +175,16 @@ const Header = () => {
             <div className="flex items-center justify-between">
               <div className="client_contact flex items-center">
                 <Link
-                  to={`tel:+92 331 6725129`}
+                  to={`tel:+92 331 3908443`}
                   className={`${
                     darkMode ? "text-zinc-300" : "text-zinc-800"
                   } flex items-center me-4`}
                 >
                   <MdCall />
-                  <span className="font-medium">+92 331 6725129</span>
+                  <span className="font-medium">+92 331 3908443</span>
                 </Link>
                 <Link
-                  to={`mailto:info@booksvilla.com`}
+                  to={`mailto:info@skynetsilicon.com`}
                   className={`${
                     darkMode ? "text-zinc-300" : "text-zinc-800"
                   } flex items-center`}

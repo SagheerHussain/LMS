@@ -62,7 +62,7 @@ const SignIn = () => {
     <>
       <AuthLayout>
         <div
-          className="auth_form p-10 flex flex-col items-center justify-center min-h-full"
+          className="auth_form p-10 flex flex-col items-center justify-center min-h-full rounded-[25px]"
           style={{ backgroundColor: "#12141d" }}
         >
           <Logo />

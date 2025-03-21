@@ -40,13 +40,15 @@ const BorrowedBookCard = ({
             >
               {book.title.slice(0, 50)}...
             </h1>
-            <h4
+            {
+              book.category.name && <h4
               className={`${
                 darkMode ? "text-light_text" : "text-dark_text"
               } pt-4 font-medium text-[.75rem]`}
             >
               Category: {book.category.name}
             </h4>
+            }
             {borrowedDate && (
               <h6
                 className={`${

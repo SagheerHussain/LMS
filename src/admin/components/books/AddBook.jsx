@@ -118,7 +118,7 @@ const AddBook = () => {
               />
 
               {/* Description */}
-              <label className="text-[#fff] text-sm">Book Description</label>
+              <label className="text-[#fff] text-sm">Book Description*</label>
               <textarea
                 name="description"
                 onChange={handleChange}
@@ -284,7 +284,7 @@ const AddBook = () => {
               </div>
 
               {/* Sumamry */}
-              <label className="text-[#fff] text-sm">Book Summary</label>
+              <label className="text-[#fff] text-sm">Book Summary*</label>
               <textarea
                 name="summary"
                 onChange={handleChange}

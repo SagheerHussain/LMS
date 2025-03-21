@@ -29,6 +29,7 @@ const BorrowedRequests = () => {
         console.log(data);
         const formattedRows = data.map((item, index) => ({
           id: item._id || index + 1,
+          No: index + 1,
           cover: item.book.image || "N/A",
           title: item.book.title || "N/A",
           author: item.book.author || "N/A",
@@ -46,7 +47,7 @@ const BorrowedRequests = () => {
   }, []);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 1, minWidth: 150 },
+    { field: "No", headerName: "Index", flex: 1, minWidth: 150 },
     {
       field: "cover",
       headerName: "Cover",

@@ -47,7 +47,7 @@ const AddCategory = () => {
             </h1>
             <form action="" onSubmit={handleAddCategory}>
               <label htmlFor="" className="text-zinc-300 text-sm">
-                Category Name
+                Category Name*
               </label>
               <input
                 type="text"
@@ -58,7 +58,7 @@ const AddCategory = () => {
                 className="placeholder:text-[#ffffff58] w-full text-white bg-transparent focus:border-[#ffffff25] border-2 border-[#ffffff25] focus:shadow-none rounded-none mb-4 mt-1 px-3 py-2"
               />
               <label htmlFor="" className="text-zinc-300 text-sm mt-4">
-                Category Slug
+                Category Slug*
               </label>
               <input
                 type="name"

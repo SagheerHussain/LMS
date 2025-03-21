@@ -16,7 +16,7 @@ import {
 
 const BookOverview = ({ id, darkMode }) => {
   const matches = useMediaQuery("(max-width:530px)");
-  const largeDevices = useMediaQuery("(min-width:1900px)");
+  const largeDevices = useMediaQuery("(min-width:1281px)");
   const mediumDevices = useMediaQuery("(min-width:1025px)");
 
   // Get Data From Local Storage
@@ -100,7 +100,7 @@ const BookOverview = ({ id, darkMode }) => {
         )}
         {bookData && (
           <div className="container  mx-auto">
-            <div className={`${matches ? "block" : "flex"} ${largeDevices && "min-h-[90vh]"} ${mediumDevices && "min-h-[110vh]"}`}>
+            <div className={`${matches ? "block" : "flex"} ${largeDevices && "min-h-[855px]"} ${mediumDevices && "min-h-[900px]"}`}>
               <div className="sm:w-[30%] h-full relative">
                 <BookCover className="z-[999]" image={bookData.image} />
               </div>

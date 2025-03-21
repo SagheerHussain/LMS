@@ -20,6 +20,7 @@ const ViewBooks = () => {
         const data = await getBooks();
         const formattedRows = data.map((item, index) => ({
           id: item._id || index + 1,
+          No: index +1,
           cover: item.image,
           title: item.title || "N/A",
           description: `${item.description.slice(0, 30)}...` || "N/A",
@@ -35,7 +36,7 @@ const ViewBooks = () => {
   }, []);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 1, minWidth: 150 },
+    { field: "No", headerName: "Index", flex: 1, minWidth: 150 },
     {
       field: "cover",
       headerName: "Cover",

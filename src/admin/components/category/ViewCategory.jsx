@@ -100,7 +100,7 @@ const ViewCategory = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 1, minWidth: 150 },
+    { field: "No", headerName: "Index", flex: 1, minWidth: 150 },
     {
       field: "category",
       headerName: "Category",
@@ -146,7 +146,8 @@ const ViewCategory = () => {
       try {
         const data = await getCategories();
         const formattedRows = data.map((item, index) => ({
-          id: item._id || index + 1,
+          id: item._id,
+          No: index + 1,
           category: item.name || "N/A",
           slug: item.slug || "N/A",
         }));

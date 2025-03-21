@@ -68,7 +68,7 @@ const SignUp = () => {
     <>
       <AuthLayout>
         <div
-          className="auth_form p-10 w-full flex flex-col items-center justify-center"
+          className="auth_form p-10 w-full flex flex-col items-center justify-center rounded-[25px]"
           style={{ backgroundColor: "#12141d" }}
         >
           <Logo />

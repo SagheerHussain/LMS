@@ -132,7 +132,7 @@ const EditBook = () => {
               <div className="book_form">
                 <form action="" onSubmit={handleSubmit}>
                   {/* Title */}
-                  <label className="text-[#fff] text-sm">Book Title*</label>
+                  <label className="text-[#fff] text-sm">Book Title</label>
                   <input
                     type="text"
                     onChange={handleChange}
@@ -160,7 +160,7 @@ const EditBook = () => {
                   <div className="flex items-center justify-between">
                     <div className="rating w-full">
                       <label className="text-[#fff] text-sm">
-                        Book Rating*
+                        Book Rating
                       </label>
                       <input
                         name="rating"
@@ -173,7 +173,7 @@ const EditBook = () => {
                       />
                     </div>
                     <div className="isbn w-full mx-4">
-                      <label className="text-[#fff] text-sm">Book ISBN*</label>
+                      <label className="text-[#fff] text-sm">Book ISBN</label>
                       <input
                         name="ISBN"
                         onChange={handleChange}
@@ -186,7 +186,7 @@ const EditBook = () => {
                     </div>
                     <div className="binding w-full">
                       <label className="text-[#fff] text-sm">
-                        Book Binding*
+                        Book Binding
                       </label>
                       <input
                         name="binding"
@@ -204,7 +204,7 @@ const EditBook = () => {
                   <div className="flex items-center justify-between">
                     <div className="rating w-full">
                       <label className="text-[#fff] text-sm">
-                        Book Total Pages*
+                        Book Total Pages
                       </label>
                       <input
                         name="totalPages"
@@ -218,7 +218,7 @@ const EditBook = () => {
                     </div>
                     <div className="isbn w-full mx-4">
                       <label className="text-[#fff] text-sm">
-                        Book Total Copies*
+                        Book Total Copies
                       </label>
                       <input
                         name="totalCopies"
@@ -232,7 +232,7 @@ const EditBook = () => {
                     </div>
                     <div className="binding w-full">
                       <label className="text-[#fff] text-sm">
-                        Book Available Copies*
+                        Book Available Copies
                       </label>
                       <input
                         name="availableCopies"
@@ -250,7 +250,7 @@ const EditBook = () => {
                   <div className="flex items-center justify-between">
                     <div className="author w-full">
                       <label className="text-[#fff] text-sm">
-                        Book Author*
+                        Book Author
                       </label>
                       <select
                         name="author"
@@ -275,7 +275,7 @@ const EditBook = () => {
                     </div>
                     <div className="categories w-full ms-4">
                       <label className="text-[#fff] text-sm">
-                        Book Category*
+                        Book Category
                       </label>
                       <select
                         name="category"
@@ -304,7 +304,7 @@ const EditBook = () => {
                   <div className="flex items-center justify-between">
                     <div className="rating w-full">
                       <label className="text-[#fff] text-sm">
-                        Book Published Year*
+                        Book Published Year
                       </label>
                       <input
                         name="publishedYear"
@@ -317,7 +317,7 @@ const EditBook = () => {
                       />
                     </div>
                     <div className="isbn w-full ms-4">
-                      <label className="text-[#fff] text-sm">Book Color*</label>
+                      <label className="text-[#fff] text-sm">Book Color</label>
                       <input
                         name="color"
                         onChange={handleChange}
@@ -342,7 +342,7 @@ const EditBook = () => {
                   ></textarea>
 
                   {/* Image */}
-                  <label className="text-[#fff] text-sm">Book Image*</label>
+                  <label className="text-[#fff] text-sm">Book Image</label>
                   <input
                     type="file"
                     onChange={handleFileChange}

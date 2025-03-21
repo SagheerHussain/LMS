@@ -20,6 +20,7 @@ const AccountRequests = () => {
         const data = await getAccountRequests();
         const formattedRows = data.map((item, index) => ({
           id: item._id || index + 1,
+          No: index + 1,
           name: item.name || "N/A",
           email: item.email || "N/A",
           universityId: item.universityId || "N/A",
@@ -39,7 +40,7 @@ const AccountRequests = () => {
   }, []);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 1, minWidth: 150 },
+    { field: "No", headerName: "Index", flex: 1, minWidth: 150 },
     {
       field: "name",
       headerName: "Name",
